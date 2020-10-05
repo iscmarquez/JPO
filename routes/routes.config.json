@@ -6,7 +6,7 @@
             "handler"  : "./routes/login/Login"
         },
         {
-            "uri" : "/events",
+            "uri" : "/conference",
             "handler"  : "./routes/conferences/conference"
         }
     ]

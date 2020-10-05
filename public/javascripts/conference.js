@@ -2,7 +2,7 @@ $(document).ready(function (){
 
     const getEvents = () => {
         var settings = {
-            "url": "http://localhost:3000/event",
+            "url": "http://localhost:3000/conference",
             "method": "GET",
             "timeout": 0,
           };
@@ -20,7 +20,7 @@ $(document).ready(function (){
 
     const getOneEvents = (eventId) => {
         var settings = {
-            "url": `http://localhost:3000/event/${eventId}`,
+            "url": `http://localhost:3000/conference/event/${eventId}`,
             "method": "GET",
             "timeout": 0,
           };
@@ -44,8 +44,6 @@ $(document).ready(function (){
             });
           });
     }
-
-    getOneEvents('202001');
 
     function formatDate(dateString){
         const options = { year: "numeric", month: "long", day: "numeric" }

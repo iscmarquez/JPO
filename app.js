@@ -23,7 +23,7 @@ app.use(session({
 	cookie: { maxAge: 60000 }
 }));
 
-app.use(express.static('public'));
+app.use('/static', express.static('public'));
 
 let config = require('./routes/routes.config.json');
 for(index in config.routes){

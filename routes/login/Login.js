@@ -7,7 +7,7 @@ app.get('/', function(request, response) {
 });
 
 app.post('/auth', function(request, response) {
-	let connection = require('@db_integration/db');
+	let connection = require('db_integration');
 	var username = request.body.username;
 	var password = request.body.password;
 	if (username && password) {
@@ -16,25 +16,14 @@ app.post('/auth', function(request, response) {
 			if (results && results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
-				response.redirect('/login/home');
+				response.redirect('/static/conference.html');
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			
-			response.end();
 		});
 	} else {
 		response.send('Please enter Username and Password!');
-		response.end();
 	}
-});
-
-app.get('/home', function(request, response) {
-	if (request.session.loggedin) {
-		response.send('Welcome back, ' + request.session.username + '!');
-	} else {
-		response.send('Please login to view this page!');
-	}
-	response.end();
 });
 
 module.exports = app;
