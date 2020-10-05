@@ -1,0 +1,9 @@
+{
+    "routes":
+    [
+        {
+            "uri" : "/login",
+            "handler"  : "./routes/Login"
+        }
+    ]
+}

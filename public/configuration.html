@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Configuration</title>
+	<!--link rel="stylesheet" href="/resources/demos/style.css"-->
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+	<script src="/javascripts/jquery.min.js"></script>
+	<script src="/javascripts/jquery-ui.min.js"></script>
+	<script src="/javascripts/bootstrap.min.js"></script>
+	
+  </head>
+  <body>
+
+ 	<div class="container">
+		<div>
+			<div id="tabs">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a  href="#tab1" >Configuration général</a>
+					</li>
+					<li >
+						<a  href="#tab2" >Événement</a>
+						
+					</li>
+					<li >
+						<a  href="#tab3" >Speaker</a>
+					</li>
+				</ul>
+				<div>
+					<div class="tab-pane active" id="tab1">
+						<form role="formGeneral">
+							<div class="form-group">
+								 
+							<label for="inputVirtualVisit">
+									Lien visite virtuelle
+								</label>
+								<input type="text" class="form-control" id="virtualVisit">
+							</div>
+							<div class="form-group">
+								<label for="inputFAQ">
+									Lien FAQ
+								</label>
+								<input type="text" class="form-control" id="faq">
+							</div>
+							<div class="form-group">
+								 
+								<label for="inputMessage">
+									Message de fin
+								</label>
+								<input type="text" class="form-control" id="message">
+							</div>
+							
+							<button type="submit" class="btn btn-primary">
+								Enregistrer
+							</button>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<p>
+							Gestion de journés des portes ouverts
+						</p>
+						<form role="formEvenement"></form>
+							<div class="form-group">
+								<label for="descriptionEvent">
+									Nom de l'événement
+								</label>
+								<input type="text" class="form-control" id="name">
+							</div>
+					
+							<div class="form-group">
+								Date initial: <input type="text" id="dateInitial">
+								Date initial: <input type="text" id="dateEnd">
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab3">
+						<p>
+							Gestion des enseignents
+						</p>
+						<div class="row">
+							<div class="col-md-6">
+								<form role="form">
+									<div class="form-group">
+										 
+										<label for="inputNom">
+											Nom
+										</label>
+										<input type="text" class="form-control" id="name">
+									</div>
+									<div class="form-group">
+										 
+										<label for="inputDescription">
+											Description
+										</label>
+										<input type="text" class="form-control" id="description">
+									</div>
+									<div class="form-group">
+										 
+										<label for="exampleInputFile">
+											Image
+										</label>
+										<input type="file" class="form-control-file" id="inputFile">
+										<p class="help-block">
+											Ajouter l'image.
+										</p>
+									</div>
+									<button type="submit" class="btn btn-primary">
+										Submit
+									</button>
+								</form>
+							</div>
+							<div class="col-md-6">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>
+												Image
+											</th>
+											<th>
+												Nom
+											</th>
+											<th>
+												Description
+											</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												1
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												01/04/2012
+											</td>
+											
+										</tr>
+										<tr class="table-active">
+											<td>
+												1
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												01/04/2012
+											</td>
+											
+										</tr>
+										<tr class="table-success">
+											<td>
+												2
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												02/04/2012
+											</td>
+											
+										</tr>
+										<tr class="table-warning">
+											<td>
+												3
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												03/04/2012
+											</td>
+											
+										</tr>
+										<tr class="table-danger">
+											<td>
+												4
+											</td>
+											<td>
+												TB - Monthly
+											</td>
+											<td>
+												04/04/2012
+											</td>
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+   
+  </body>
+</html>
