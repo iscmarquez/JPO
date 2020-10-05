@@ -3,7 +3,11 @@
     [
         {
             "uri" : "/login",
-            "handler"  : "./routes/Login"
+            "handler"  : "./routes/login/Login"
+        },
+        {
+            "uri" : "/events",
+            "handler"  : "./routes/conferences/conference"
         }
     ]
 }
