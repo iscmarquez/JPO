@@ -2,9 +2,6 @@ var express = require('express');
 var path = require('path');
 
 var app =  express.Router();
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/login.html'));
-});
 
 app.post('/auth', function(request, response) {
 	let connection = require('db_integration');
@@ -16,7 +13,7 @@ app.post('/auth', function(request, response) {
 			if (results && results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
-				response.redirect('/static/conference.html');
+				response.redirect('/PortesOuvertsConfig/configuration.html');
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			

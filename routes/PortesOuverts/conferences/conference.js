@@ -25,7 +25,7 @@ app.get('/', (req, res, next) => {
             console.error(error);
             throw error;
         }
-        console.log(JSON.stringify(results))
+        console.log('Results : %s', JSON.stringify(results))
         return res.json(results);
 
     });

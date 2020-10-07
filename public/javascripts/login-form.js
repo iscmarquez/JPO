@@ -6,7 +6,7 @@ $( function() {
       event.preventDefault();
       $.ajax({
         type: POST,
-        url: "login/auth",
+        url: "/PortesOuvertsConfig/login/auth",
         data: {
             username: $( ".login-form input[name=username]").text(),
             password: $( ".login-form input[name=password]").text()

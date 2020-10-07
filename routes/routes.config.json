@@ -2,12 +2,16 @@
     "routes":
     [
         {
-            "uri" : "/login",
-            "handler"  : "./routes/login/Login"
+            "uri" : "/PortesOuvertsConfig/login",
+            "handler"  : "./routes/PortesOuvertsConfig/login/Login"
         },
         {
-            "uri" : "/conference",
-            "handler"  : "./routes/conferences/conference"
+            "uri" : "/PortesOuverts/conference",
+            "handler"  : "./routes/PortesOuverts/conferences/conference"
+        },
+        {
+            "uri" : "/PortesOuvertsConfig/configuration",
+            "handler"  : "./routes/PortesOuvertsConfig/configuration/configuration"
         }
     ]
 }
