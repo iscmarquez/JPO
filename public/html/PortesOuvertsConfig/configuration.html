@@ -51,7 +51,7 @@
 							<input type="text" class="form-control" name="message">
 						</div>
 						
-						<button type="button" class="btn btn-primary">
+						<button type="button" class="btn btn-primary" name="saveGeneral">
 							Enregistrer
 						</button>
 					</form>
@@ -65,13 +65,16 @@
 							<label for="descriptionEvent">
 								Nom de l'événement
 							</label>
-							<input type="text" class="form-control" id="name">
+							<input type="text" class="form-control" name="name">
 						</div>
 				
 						<div class="form-group">
-							Date initial: <input type="text" id="dateInitial">
-							Date initial: <input type="text" id="dateEnd">
+							Date initial: <input type="datetime-local" name="dateInitial">
+							Date initial: <input type="datetime-local" name="dateEnd">
 						</div>
+						<button type="button" class="btn btn-primary" name="saveEvent">
+							Enregistrer
+						</button>						
 					</form>
 				</div>
 				<div class="tab-pane" id="tab3">
@@ -80,36 +83,23 @@
 					</p>
 					<div class="row">
 						<div class="col-md-6">
-							<form role="form" action="/configuration/inSpeaker" method="POST">
+							<div class="form-group">
+								<label for="inputNom">Nom</label>
+								<input type="text" class="form-control" name="speakerName">
+							</div>
+							<div class="form-group"> 
+								<label for="inputDescription">Description</label>
+								<input type="text" class="form-control" name="speakerDescription">
+							</div>
+							<form role="form" enctype="multipart/form-data" id="speakerForm">
 								<div class="form-group">
-									 
-									<label for="inputNom">
-										Nom
-									</label>
-									<input type="text" class="form-control" id="name">
-								</div>
-								<div class="form-group">
-									 
-									<label for="inputDescription">
-										Description
-									</label>
-									<input type="text" class="form-control" id="description">
-								</div>
-								<div class="form-group">
-									<form action="fileupload" method="post" enctype="multipart/form-data">
-										<label for="exampleInputFile">
-											Image
-										</label>
+										<label for="exampleInputFile">Image</label>
 										<input type="file" class="form-control-file" id="inputFile">
-										<p class="help-block">
-											Ajouter l'image.
-										</p>
-										<input type="submit">
-									</form>
+										<p class="help-block">Ajouter l'image.</p>
 								</div>
-								<button type="submit" class="btn btn-primary">
-									Submit
-								</button>
+								<button type="button" class="btn btn-primary" name="saveSpeaker">
+										Enregistrer
+								</button>							
 							</form>
 						</div>
 						<div class="col-md-6">

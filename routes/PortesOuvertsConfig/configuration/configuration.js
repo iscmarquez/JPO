@@ -1,6 +1,6 @@
-var express = require('express');
-var path = require('path');
-var formidable = require('formidable'); 
+let express = require('express');
+let formidable = require('formidable');
+let fs = require('fs');
 
 var app =  express.Router();
 
@@ -20,7 +20,6 @@ app.post('/outGeneralConsult', function(request, response) {
 
 app.post('/inGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
-	console.log('Body %s', JSON.stringify(request.body));
 	let virtualVisit = request.body.linkVirtualVisit;
     let faq = request.body.linkFAQ;
     let message = request.body.message;
@@ -46,49 +45,86 @@ app.post('/inGeneralConsult', function(request, response) {
 
 app.post('/inEvent', function(request, response) {
 	let connection = require('db_integration');
-    var dateStart = request.body.dateInitial;
-    var dateEnd = request.body.dateEnd;
-    let user = request.session.username;
-    var sql = "INSERT INTO Event (startDate, endDate, idUser) VALUES (?,?,?);";
-    connection.query(sql, [dateStart, dateEnd , message ,user], function (err, result) {
-        if (err) throw err;
-	    console.log('Result %s', results);
-	    if (results && results.length > 0) {
-		    request.session.loggedin = true;
-		    request.session.username = username;
-		    response.redirect('/static/configuration.html');
-	    } else {
-		    response.send('Incorrect Username and/or Password!');
-	    }			
+	let dateStart = request.body.dateInitial;
+	let dateEnd = request.body.dateEnd;
+	let eventName = request.body.eventName;
+	let user = request.session.username;
+	let sql = "INSERT INTO Event (startDate, endDate, idUser) VALUES (?,?,?);";
+	connection.query(sql, [dateStart, dateEnd ,user], function (err, result) {
+		if (err){
+			console.error(err);
+			response.status(500).json(
+				{
+					"readyState":err.code,
+					"status":err.sqlState,
+					"statusText":err.sqlMessage
+				}
+			);
+			return;
+		}
+		response.json({
+			message: 'success'
+		})			
 	});
-});
-
-app.post('/fileupload', function(request, response) {
-    var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-        res.write('File uploaded');
-        res.end();
-    });
 });
 
 app.post('/inSpeaker', function(request, response) {
-	let connection = require('db_integration');
-    var name = request.body.name;
-    var description = request.body.description;
-    let user = request.session.username;
-    
-    var sql = "INSERT INTO Speaker (name, description, photoLink, idUser) VALUES (?,?,?,?);";
-    connection.query(sql, [name, description , photoLink ,user], function (err, result) {
-        if (err) throw err;
-	    console.log('Result %s', results);
-	    if (results && results.length > 0) {
-		    request.session.loggedin = true;
-		    request.session.username = username;
-		    response.redirect('/static/configuration.html');
-	    } else {
-		    response.send('Incorrect Username and/or Password!');
-	    }			
-	});
+	try{
+		if(!request.files){
+			response.status(500).json({
+				status : "Error",
+				error: {
+					"readyState" : 500,
+						"status" : -1,
+					"statusText" : "Invalid File"
+				}
+			})
+			return;
+		}
+	
+		let connection = require('db_integration'); 
+		let name = request.body.name;
+		let description = request.body.description;
+		let user = request.session.username;
+		var photoLink = request.path + '/' + request.files.file.name;
+		
+		var sql = "INSERT INTO Speaker (name, description, photoLink, idUser) VALUES (?,?,?,?);";
+		connection.query(sql, [name, description , photoLink ,user], function (err, result) {
+			if (err){
+				response.status(500).json({
+					status : "Error",
+					error : {
+						"readyState":err.code,
+						"status":err.sqlState,
+						"statusText":err.sqlMessage
+					}
+				});
+				return;
+			} 
+			console.log('Result %s', result);
+			request.files.file.mv(imagesPath + "/" + request.files.file.name, function(err){
+				that.data.status = "Error";
+				that.data.error = {
+					"readyState":err.code,
+					"status": -1,
+					"statusText":err.errorMessage
+				}
+				return;	
+			});
+			response.status(200).json(data);
+	
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
 });
 
 module.exports = app;

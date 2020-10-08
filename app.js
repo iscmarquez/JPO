@@ -1,3 +1,4 @@
+
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -5,6 +6,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let session = require('express-session');
 let fs = require('fs');
+let fileUpload = require('express-fileupload');
 
 let app = express();
 
@@ -12,6 +14,7 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +30,8 @@ app.use('/js', express.static(__dirname + '/public/javascripts'));
 app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/images', express.static(__dirname + '/public/images'));
 app.use('/documents', express.static(__dirname + '/public/documents'));
+
+imagesPath = path.resolve('./public/images');
 
 let config = require('./routes/routes.config.json');
 for(index in config.routes){

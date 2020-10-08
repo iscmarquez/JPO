@@ -19,7 +19,7 @@ $(document).ready(function(){
         }
     });
 
-    $( ".btn" ).click(function( event ) {
+    $( "button[name='saveGeneral']" ).click(function( event ) {
         event.preventDefault();
         $.ajax({
             "url": "/PortesOuvertsConfig/configuration/inGeneralConsult",
@@ -31,21 +31,82 @@ $(document).ready(function(){
                 message: $("input[name='message']").val()              
             }
           }).done(function (response) {
-              if(response.message == 'success'){
-                $( '#successAlert' ).show('fade').fadeTo(500, 0).slideUp(500, function(){
+              if(response.message == "success"){
+                $( "#successAlert" ).show("fade").fadeTo(500, 0).slideUp(500, function(){
                     $(this).remove(); 
                 });
                 setTimeout(function () { 
-                    $('#successAlert').alert('close'); 
-                }, 5000); 
+                    $("#successAlert").alert("close"); 
+                }, 10000); 
               }
         }).fail(function(xhr, status, error) {
             console.log('Error - ' + JSON.stringify(xhr));
-            $('#errorMesssge').html((xhr.responseJSON.status + ': ' + xhr.responseJSON.statusText));
-            $( '#errorAlert' ).show('fade');
+            $("#errorMesssge").html((xhr.responseJSON.status + ":" + xhr.responseJSON.statusText));
+            $("#errorAlert").show("fade");
             setTimeout(function () { 
-                $('#errorAlert').alert('close'); 
-            }, 5000);
+                $("#errorAlert").alert("close"); 
+            }, 10000);
+      });
+    });
+
+    $( "button[name='saveEvent']" ).click(function( event ) {
+        event.preventDefault();
+        console.log($("input[name='dateInitial']").val());
+        $.ajax({
+            "url": "/PortesOuvertsConfig/configuration/inEvent",
+            "method": "POST",
+            "timeout": 0,
+            "data" : {
+                dateInitial : $("input[name='dateInitial']").val(),
+                dateEnd : $("input[name='dateEnd']").val(),
+                eventName: $("input[name='name']").val()              
+            }
+          }).done(function (response) {
+              if(response.message == "success"){
+                $( "#successAlert" ).show("fade");
+                setTimeout(function () { 
+                    $("#successAlert").alert("close"); 
+                }, 10000); 
+              }
+        }).fail(function(xhr, status, error) {
+            console.log('Error - ' + JSON.stringify(xhr));
+            $("#errorMesssge").html((xhr.responseJSON.status + ":" + xhr.responseJSON.statusText));
+            $("#errorAlert").show("fade");
+            setTimeout(function () { 
+                $("#errorAlert").alert("close"); 
+            }, 10000);
+      });
+    });
+
+    $( "button[name='saveSpeaker']" ).click(function( event ) {
+        event.preventDefault();
+        var data = new FormData();
+        var file = $('#inputFile')[0].files[0];
+        data.append("file",file);
+        data.append("description", $("input[name='speakerName']").val())
+        data.append("name", $("input[name='speakerDescription']").val())
+        $.ajax({
+            "url": "/PortesOuvertsConfig/configuration/inSpeaker",
+            "method": "POST",
+            "enctype": 'multipart/form-data',
+            "processData": false,  // Important!
+            "contentType": false,
+            "cache": false,
+            "data" : data
+          }).done(function (response) {
+              if(response.message == "success"){
+                $( "#successAlert" ).show("fade");
+                setTimeout(function () { 
+                    $("#successAlert").alert("close"); 
+                }, 10000); 
+              }
+        }).fail(function(xhr, status, error) {
+            console.log('Error - ' + JSON.stringify(xhr));
+            $("#errorMesssge").html((xhr.responseJSON.status + ":" + xhr.responseJSON.statusText));
+            $("#errorAlert").show("fade");
+            setTimeout(function () { 
+                $("#errorAlert").alert("close"); 
+            }, 10000);
       });
     });
 
