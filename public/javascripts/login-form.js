@@ -1,20 +1,18 @@
-const { json } = require("express");
-
-$( function() {
-    $( ".login-form input[type=submit]" ).button();
-    $( ".login-form input[type=submit]").click( function( event ) {
-      event.preventDefault();
-      $.ajax({
-        type: POST,
-        url: "/PortesOuvertsConfig/login/auth",
-        data: {
-            username: $( ".login-form input[name=username]").text(),
-            password: $( ".login-form input[name=password]").text()
-        },
-        success: function(result){
-            console.log(JSON.stringify);
-        },
-        dataType: 'json'
-      });
-    } );
+$(document).ready(function (){
+          $.ajax({
+            "url": "/PortesOuverts/loginpublic",
+            "method": "POST",
+            "timeout": 0,
+          }).done(function (response) {
+            console.log("Response : " + JSON.stringify(response));
+            if(!response[0]){
+                $('#errorMesssge').html("Desole la journee des portes ouverts est deja fini. Veuiellez vous incrire a la prochain. ");
+                $( '#errorAlert' ).show('fade');
+                         
+                $("#login1").hide();
+            }
+            else{
+              $("#errorAlert").hide();
+            }
+          }); 
   } );
