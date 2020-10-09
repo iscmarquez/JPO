@@ -12,6 +12,10 @@
         {
             "uri" : "/PortesOuvertsConfig/configuration",
             "handler"  : "./routes/PortesOuvertsConfig/configuration/configuration"
+        },
+        {
+            "uri" : "/PortesOuverts/loginpublic",
+            "handler"  : "./routes/PortesOuverts/loginpublic/loginpublic"
         }
     ]
 }
