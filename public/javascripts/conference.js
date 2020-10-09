@@ -1,8 +1,33 @@
 $(document).ready(function (){
 
+  $.ajax({
+    "url": "/PortesOuverts/conference",
+    "method": "GET",
+    "timeout": 0,
+  }).done(function (response) {
+      console.log(response);
+      const events = $('#cardsContainer');
+      response.forEach((item) => {
+          console.log(JSON.stringify(item));
+          events.append(`<article class="col">
+          <div class="card">
+            <div class="card-header">${item.nameConference}</div>
+            <div class="card-body">
+                <p>${item.start} ${item.end} </p>
+                <img class="card-img" src="${item.photolink}" alt="Conferencista: ${item.name}"/> 
+                <p>${item.description}</p>
+              <a class="btn btn-warning" href="${item.linkConference}">Participer</a>
+            </div>
+          </div>
+        </article>`);
+      });
+    }); 
+} );
+
+/*
     const getEvents = () => {
         var settings = {
-            "url": "http://localhost:3000/conference",
+            "url": "/PortesOuverts/conferences/conference",
             "method": "GET",
             "timeout": 0,
           };
@@ -20,7 +45,7 @@ $(document).ready(function (){
 
     const getOneEvents = (eventId) => {
         var settings = {
-            "url": `http://localhost:3000/conference/event/${eventId}`,
+            "url": `/PortesOuverts/conferences/conference/event/${eventId}`,
             "method": "GET",
             "timeout": 0,
           };
@@ -50,10 +75,10 @@ $(document).ready(function (){
         return new Date(dateString).toLocaleDateString(undefined, options)
       }
 
-   
+     
 
   
-});
+});*/
 
 
 // function cargarUsuarios(){
