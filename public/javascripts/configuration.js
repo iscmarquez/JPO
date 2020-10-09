@@ -2,7 +2,7 @@ $(document).ready(function(){
     $.fn.getGeneralConfig = function(){ 
         $.ajax({
             "url": "/PortesOuvertsConfig/configuration/outGeneralConsult",
-            "method": "POST",
+            "method": "GET",
             "timeout": 0,
           }).done(function (response) {
             $("input[name='virtualVisit']").val(response[0].linkVirtualVisit);
@@ -11,11 +11,25 @@ $(document).ready(function(){
         }); 
    }
 
+   $.fn.getSpeakers = function(){ 
+        $.ajax({
+                "url": "/PortesOuvertsConfig/configuration/inSpeaker",
+                "method": "GET",
+                "timeout": 0,
+            }).done(function (response) {
+                console.log("Result : ", JSON.stringify(response));
+        }); 
+    }
+
     $( "#tabs" ).tabs({
         activate: function(event ,ui){
-            if(ui.newTab.index()){   
+            console.log("Tab Activated : " + ui.newTab.index());
+            if(ui.newTab.index() == 0){   
                 $.fn.getGeneralConfig();           
             }
+            if(ui.newTab.index() == 2){
+                $.fn.getSpeakers();           
+            }             
         }
     });
 
