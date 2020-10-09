@@ -16,7 +16,24 @@ setup.use(bodyParser.urlencoded({ extended: true }));
 setup.use(bodyParser.json());
 setup.use(cors());
 
+app.get('/', (request, res) => {
+    try{console.log("pprueba" + request.session.id);
+    let conexion = require('db_integration');
+    conexion.query('select c.nameConference, c.linkConference, c.start, c.end, s.name, s.description, s.photoLink from conference  c inner join  speaker s  on c.idSpeaker = s.idSpeaker where c.idEvent = ?', [request.session.idEvent], (error, results, fields) => { // and event.startdate >= NOW()
+        console.log(results);
+        if(error){
+            console.error(error);
+            throw error;
+        }
+        console.log('Results : %s', JSON.stringify(results))
+        return res.json(results);
 
+    });}
+    catch(Error ){
+        console.error(Error);
+    }
+});
+/*
 app.get('/', (req, res, next) => {
     console.log(req.body);
     let conexion = require('db_integration');
@@ -29,7 +46,7 @@ app.get('/', (req, res, next) => {
         return res.json(results);
 
     });
-});
+});*/
 
 app.get('/event', (req, res, next) => {
     console.log(req.body);
