@@ -4,7 +4,7 @@ let fs = require('fs');
 
 var app =  express.Router();
 
-app.post('/outGeneralConsult', function(request, response) {
+app.get('/outGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
         connection.query('SELECT linkVirtualVisit, linkFAQ, endMessage, date, idUser FROM Configuration', (error, results) => { 
 			if(error){
@@ -103,16 +103,47 @@ app.post('/inSpeaker', function(request, response) {
 			} 
 			console.log('Result %s', result);
 			request.files.file.mv(imagesPath + "/" + request.files.file.name, function(err){
-				that.data.status = "Error";
-				that.data.error = {
-					"readyState":err.code,
-					"status": -1,
-					"statusText":err.errorMessage
+				if(err){
+					console.log("ERROR : %s", JSON.stringify(err));
+					response.status(500).json({
+						status : "Error",
+						error : {
+							"readyState":err.code,
+							"status": -1,
+							"statusText":err.errorMessage
+							}
+					});	
 				}
-				return;	
 			});
-			response.status(200).json(data);
+			response.status(200).json({
+				status : "success"
+			});
 	
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
+app.get('/inSpeaker', function(request, response) {
+	try{
+		let connection = require('db_integration');
+        connection.query('SELECT idSpeaker, name, description, photoLink, idUser FROM speaker', (error, results) => { 
+			if(error){
+				response.json({
+					error: error
+				});
+				return;
+			}
+			response.json(results);			
 		});
 		
 	}catch(error){
