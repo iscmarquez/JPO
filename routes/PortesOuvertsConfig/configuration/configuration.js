@@ -6,7 +6,8 @@ var app =  express.Router();
 
 app.get('/outGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
-        connection.query('SELECT linkVirtualVisit, linkFAQ, endMessage, date, idUser FROM Configuration', (error, results) => { 
+        connection.query('SELECT linkVirtualVisit, linkFAQ, endMessage, noEvent , video1, video2, date, idUser FROM Configuration', (error, results) => { 
+			console.log(results);
 			if(error){
 				response.json({
 					error: error
@@ -18,15 +19,19 @@ app.get('/outGeneralConsult', function(request, response) {
 	
 });
 
+
 app.post('/inGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
 	let virtualVisit = request.body.linkVirtualVisit;
     let faq = request.body.linkFAQ;
-    let message = request.body.message;
+	let message = request.body.message;
 	let username = request.session.username;
+	let noEvent = request.body.noEvent;
+	let video1 = request.body.video1;
+	let video2 = request.body.video2;
 	
-    var sql = "UPDATE  Configuration SET linkVirtualVisit = ?, linkFAQ = ?, endMessage = ? , date =now(), idUser = ?;";
-    connection.query(sql, [virtualVisit, faq , message, username], function (err, result) {
+    var sql = "UPDATE  Configuration SET linkVirtualVisit = ?, linkFAQ = ?, endMessage = ? , noEvent = ?, video1 = ?, video2= ? , idUser = ?, date =now() ;";
+    connection.query(sql, [virtualVisit, faq , message, noEvent, video1, video2, username ], function (err, result) {
         if (err){
 			response.status(500).json(
 				{
@@ -156,6 +161,97 @@ app.get('/inSpeaker', function(request, response) {
 			}
 		);		
 	}
+});
+
+app.get('/outSpeakerDdl', function(request, response) {
+	try{
+		let connection = require('db_integration');
+        connection.query('SELECT idSpeaker, name FROM speaker', (error, results) => { 
+			console.log("ddl" + JSON.stringify(results));
+			if(error){
+				response.json({
+					error: error
+				});
+				return;
+			}
+			response.json(results);			
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
+app.get('/outEvents', function(request, response) {
+	try{
+		let connection = require('db_integration');
+		console.log("outEvents- eventos disponibles");
+        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') date FROM portesouvertsgrasset.event	where  date_format(startDate,\'%Y-%m-%d\') >= date_format(now(),\'%Y-%m-%d\') ;', (error, results) => { 
+			if(error){
+				response.json({
+					error: error
+				});
+				return;
+			}
+			response.json(results);			
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
+app.post('/inConference', function(request, response) {
+	try{
+	let connection = require('db_integration');
+	let nameConference = request.body.nameConference;
+	let event = request.body.event;
+    let init = request.body.init;
+	let end = request.body.end;
+	let link = request.body.link;
+	let speaker = request.body.speaker;
+	let username = request.session.username;
+	
+	
+
+    var sql = "INSERT INTO  Conference(nameConference, idEvent, idSpeaker, start, end, linkConference, date, idUser) VALUES(?,?,?,?,?,?,now(),?) ;";
+    connection.query(sql, [nameConference,event,speaker, init , end, link, username  ], function (err, result) {
+		console.log("response " + result);
+		if (err){
+			console.log("error " + err);
+			response.status(500).json(
+				{
+					"readyState":err.code,
+					"status":err.sqlState,
+					"statusText":err.sqlMessage
+				}
+			);
+			return;
+		}
+		response.json({
+			message: 'success'
+		})			
+	});
+	}
+	catch(Err)
+	{
+		console.error(Err);
+	}
+
 });
 
 module.exports = app;

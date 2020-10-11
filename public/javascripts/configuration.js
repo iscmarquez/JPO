@@ -6,9 +6,13 @@ $(document).ready(function(){
             "method": "GET",
             "timeout": 0,
           }).done(function (response) {
+              console.log(response );
             $("input[name='virtualVisit']").val(response[0].linkVirtualVisit);
             $("input[name='faq']").val(response[0].linkFAQ);
             $("input[name='message']").val(response[0].endMessage);
+            $("input[name='noEvent']").val(response[0].noEvent);
+            $("input[name='video1']").val(response[0].video1);
+            $("input[name='video2']").val(response[0].video2);
         }); 
    }
 
@@ -26,13 +30,42 @@ $(document).ready(function(){
         }); 
     }
 
+    $.fn.getSpeakersConference = function(){ 
+        $.ajax({
+                "url": "/PortesOuvertsConfig/configuration/outSpeakerDdl",
+                "method": "GET",
+                "timeout": 0,
+            }).done(function (response) {
+                response.forEach((item) => {
+                 $("#idSpeaker").append('<option value="'+item.idSpeaker+'">'+item.name+'</option>');
+                });
+            });
+    }
+
+    $.fn.getEvents = function(){ 
+        $.ajax({
+                "url": "/PortesOuvertsConfig/configuration/outEvents",
+                "method": "GET",
+                "timeout": 0,
+            }).done(function (response) {
+                console.log(response);
+                response.forEach((item) => {
+                 $("#idEvent").append('<option value="'+item.idEvent+'">'+item.date+'</option>');
+                });
+            });
+    }
+
     $( "#tabs" ).tabs({
         activate: function(event ,ui){
             if(ui.newTab.index() == 0){   
                 $.fn.getGeneralConfig();           
             }
             if(ui.newTab.index() == 2){
-                $.fn.getSpeakers();          
+                $.fn.getSpeakers();           
+            }
+            if(ui.newTab.index() == 3){
+                $.fn.getSpeakersConference();  
+                $.fn.getEvents(); 
             }             
         }
     });
@@ -64,7 +97,10 @@ $(document).ready(function(){
             "data" : {
                 linkVirtualVisit : $("input[name='virtualVisit']").val(),
                 linkFAQ : $("input[name='faq']").val(),
-                message: $("input[name='message']").val()              
+                message: $("input[name='message']").val(),
+                noEvent: $("input[name='noEvent']").val(),
+                video1: $("input[name='video1']").val(),    
+                video2: $("input[name='video2']").val()                     
             }
           }).done(function (response) {
               if(response.message == "success"){
@@ -134,6 +170,41 @@ $(document).ready(function(){
               if(response.status == "success"){
                 $.fn.getSpeakers();
                 $( "#successAlert" ).show("fade");
+                setTimeout(function () { 
+                    $("#successAlert").alert("close"); 
+                }, 10000); 
+              }
+        }).fail(function(xhr, status, error) {
+            console.log('Error - ' + JSON.stringify(xhr));
+            $("#errorMesssge").html((xhr.responseJSON.status + ":" + xhr.responseJSON.statusText));
+            $("#errorAlert").show("fade");
+            setTimeout(function () { 
+                $("#errorAlert").alert("close"); 
+            }, 10000);
+      });
+    });
+
+
+    $( "button[name='saveConference']" ).click(function( event ) {
+        event.preventDefault();
+        $.ajax({
+            "url": "/PortesOuvertsConfig/configuration/inConference",
+            "method": "POST",
+            "timeout": 0,
+            "data" : {
+                nameConference : $("input[name='conferenceName']").val(),
+                event : $("#idEvent").val(),
+                init : $("input[name='commence']").val(),
+                end : $("input[name='end']").val(),
+                link: $("input[name='linkConference']").val(),
+                speaker: $("#idSpeaker").val()
+                               
+            }
+          }).done(function (response) {
+                if(response.message == "success"){
+                $( "#successAlert" ).show("fade").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove(); 
+                });
                 setTimeout(function () { 
                     $("#successAlert").alert("close"); 
                 }, 10000); 

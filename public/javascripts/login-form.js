@@ -5,10 +5,8 @@ $(document).ready(function (){
             "timeout": 0,
           }).done(function (response) {
             console.log("Response : " + JSON.stringify(response));
-            if(!response[0]){
-                $('#errorMesssge').html("Desole la journee des portes ouverts est deja fini. Veuiellez vous incrire a la prochain. ");
-                $( '#errorAlert' ).show('fade');
-                         
+            if(response[0].eventId == -1){
+                $('#errorMesssge').html(response[0].noEvent);
                 $("#login1").hide();
             }
             else{
