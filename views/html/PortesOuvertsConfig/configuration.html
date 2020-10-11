@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Configuration</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/datatables.min.js" type="text/css">
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/jquery-ui.min.js"></script>
-	<script src="/js/datatables.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/configuration.js"></script>
   </head>
@@ -28,6 +26,9 @@
 				<li class="nav-item active">
 					<a  href="#tab3" role="tab">Speaker</a>
 				</li>
+				<li class="nav-item active">
+					<a  href="#tab4" role="tab">Conferences</a>
+				</li>
 			</ul>
 			<div>
 				<div class="tab-pane active" id="tab1">
@@ -37,20 +38,38 @@
 						<label for="inputVirtualVisit">
 								Lien visite virtuelle
 							</label>
-							<input type="text" class="form-control" name="virtualVisit">
+							<input type="text" class="form-control" name="virtualVisit" required required  maxlength="2">
 						</div>
 						<div class="form-group">
 							<label for="inputFAQ">
 								Lien FAQ
 							</label>
-							<input type="text" class="form-control" name="faq">
+							<input type="text" class="form-control" name="faq" required maxlength="255">
+						</div>
+						<div class="form-group">
+							<label for="video1">
+								Lien video 1
+							</label>
+							<input type="text" class="form-control" name="video1" required maxlength="255">
+						</div>
+						<div class="form-group">
+							<label for="video2">
+								Lien video 2
+							</label>
+							<input type="text" class="form-control" name="video2" required maxlength="255">
 						</div>
 						<div class="form-group">
 							 
 							<label for="inputMessage">
 								Message de fin
 							</label>
-							<input type="text" class="form-control" name="message">
+							<input type="textarea" class="form-control" name="message" required maxlength="255">
+						</div>
+						<div class="form-group">
+							<label for="inputMessage">
+								Message pour s'inscrire
+							</label>
+							<input type="textarea" class="form-control" name="noEvent" required maxlength="255">
 						</div>
 						
 						<button type="button" class="btn btn-primary" name="saveGeneral">
@@ -58,17 +77,18 @@
 						</button>
 					</form>
 				</div>
+			
 				<div class="tab-pane" id="tab2">
 					<p>Gestion de journés des portes ouverts</p>
 					<form role="formEvenement" action="/configuration/inEvent" method="POST">
-						<div class="form-group">
+						<div class="form-group" >
 							<label for="descriptionEvent">Nom de l'événement</label>
 							<input type="text" class="form-control" name="name">
 						</div>
 				
 						<div class="form-group">
-							Date initial: <input type="datetime-local" name="dateInitial">
-							Date initial: <input type="datetime-local" name="dateEnd">
+							Date initial: <input type="date" name="dateInitial">
+							Date initial: <input type="date" name="dateEnd">
 						</div>
 						<button type="button" class="btn btn-primary" name="saveEvent">
 							Enregistrer
@@ -76,52 +96,103 @@
 					</form>
 				</div>
 				<div class="tab-pane" id="tab3">
-					<table class="table table-bordered" id="speakerList" style="width:100%">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Image</th>
-								<th>Nom</th>
-								<th>Description</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal">+</button>
-					<button type="button" class="btn btn-primary">-</button>
-					<div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-						  <div class="modal-content">
-							<div class="modal-header">
-							  <h5 class="modal-title" id="speakerModalLabel">Gestion des enseignents</h5>
-							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							  </button>
+					<p>Gestion des enseignents</p>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="inputNom">Nom</label>
+								<input type="text" class="form-control" name="speakerName">
 							</div>
-							<div class="modal-body">
-								<form role="form" enctype="multipart/form-data" id="speakerForm">
-									<div class="form-group">
-										<label for="inputNom">Nom</label>
-										<input type="text" class="form-control" name="speakerName">
-									</div>
-									<div class="form-group"> 
-										<label for="inputDescription">Description</label>
-										<input type="text" class="form-control" name="speakerDescription">
-									</div>										<div class="form-group">
-											<label for="exampleInputFile">Image</label>
-											<input type="file" class="form-control-file" id="inputFile">
-											<p class="help-block">Ajouter l'image.</p>
-									</div>						
-								</form>
+							<div class="form-group"> 
+								<label for="inputDescription">Description</label>
+								<input type="text" class="form-control" name="speakerDescription">
 							</div>
-							<div class="modal-footer">
-							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							  <button type="button" class="btn btn-primary" name="saveSpeaker">Enregistrer</button>
-							</div>
-						  </div>
-						</div>						
+							<form role="form" enctype="multipart/form-data" id="speakerForm">
+								<div class="form-group">
+										<label for="exampleInputFile">Image</label>
+										<input type="file" class="form-control-file" id="inputFile">
+										<p class="help-block">Ajouter l'image.</p>
+								</div>
+								<button type="button" class="btn btn-primary" name="saveSpeaker">
+										Enregistrer
+								</button>							
+							</form>
+						</div>
+						<div class="col-md-6">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Image</th>
+										<th>Nom</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>TB - Monthly</td>
+										<td>01/04/2012</td>
+									</tr>
+									<tr class="table-active">
+										<td>1</td>
+										<td>TB - Monthly</td>
+										<td>01/04/2012</td>
+									</tr>
+									<tr class="table-success">
+										<td>2</td>
+										<td>TB - Monthly</td>
+										<td>02/04/2012</td>
+									</tr>
+									<tr class="table-warning">
+										<td>3</td>
+										<td>TB - Monthly</td>
+										<td>03/04/2012</td>
+									</tr>
+									<tr class="table-danger">
+										<td>4</td>
+										<td>TB - Monthly</td>
+										<td>04/04/2012</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 				</div>
+			
+			
+			</div>
+			<div class="tab-pane" id="tab4">
+				<p>Gestion des conferences</p>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label >Evenement</label>
+							<select  id="idEvent"></select>
+							
+						</div>
+						<div class="form-group">
+							<label for="inputNom">Nom de la conference</label>
+							<input type="text" class="form-control" name="conferenceName">
+						</div>
+						<div class="form-group">
+								Heure initial: <input type="time" name="commence">
+								Heure final: <input type="time" name="end">
+						</div>
+						<div class="form-group">
+							<label for="inputNom">Lien de la conference</label>
+							<input type="text" class="form-control" name="linkConference">
+						</div>
+						<div class="form-group">
+							<label >Conferencier</label>
+							<select id="idSpeaker" ></select>
+							
+						</div>
+						<form role="form" enctype="multipart/form-data" id="speakerForm">
+							<button type="button" class="btn btn-primary" name="saveConference">
+								Enregistrer
+							</button>							
+						</form>
+					</div>
+				</div>	
 			</div>
 		</div>
 		</div>
