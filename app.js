@@ -1,4 +1,3 @@
-
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -41,12 +40,12 @@ for(index in config.routes){
 app.use(function(request, response, next){
   let htmlRegex = /.*htm.*$/;
   if(request.path.match(htmlRegex).length > 0){
-    let pathFile = path.resolve('./public/html' + request.path);
+    let pathFile = path.resolve('./views/html' + request.path);
     let stat = fs.statSync(pathFile);
     if(stat && stat.isFile()){
       response.sendFile(pathFile);
     }else{
-      console.log('Does not exist the file : %s', path.resolve('./public/html' + request.path));
+      console.log('Does not exist the file : %s', path.resolve('./views/html' + request.path));
       next();
     }
   }else{
