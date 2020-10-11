@@ -1,3 +1,4 @@
+var editor;
 $(document).ready(function(){
     $.fn.getGeneralConfig = function(){ 
         $.ajax({
@@ -17,21 +18,42 @@ $(document).ready(function(){
                 "method": "GET",
                 "timeout": 0,
             }).done(function (response) {
-                console.log("Result : ", JSON.stringify(response));
+                $tableBody.clear();
+                for(let i = 0; i < response.length; i++){
+                     $tableBody.row.add([response[i].idSpeaker, response[i].photoLink, response[i].name, response[i].description]);
+                }
+                $tableBody.draw();
         }); 
     }
 
     $( "#tabs" ).tabs({
         activate: function(event ,ui){
-            console.log("Tab Activated : " + ui.newTab.index());
             if(ui.newTab.index() == 0){   
                 $.fn.getGeneralConfig();           
             }
             if(ui.newTab.index() == 2){
-                $.fn.getSpeakers();           
+                $.fn.getSpeakers();          
             }             
         }
     });
+
+    var $tableBody = $("#speakerList").DataTable({
+        'columnDefs': [{
+            'targets': 0,
+            'searchable':false,
+            'orderable':false,
+            'width':'1%',
+            'render': function (data, type, full, meta){
+                return '<input type="radio" value="' + data + '" name="idSpeaker">';
+            } 
+         }]
+    });    
+
+    $tableBody.on('click', 'tr', function () {
+        var data = $tableBody.row( this ).data();
+        let $radio = $('input[type="radio"]', $(this));
+        $radio.prop("checked", true);
+    } );
 
     $( "button[name='saveGeneral']" ).click(function( event ) {
         event.preventDefault();
@@ -82,6 +104,7 @@ $(document).ready(function(){
                     $("#successAlert").alert("close"); 
                 }, 10000); 
               }
+             
         }).fail(function(xhr, status, error) {
             console.log('Error - ' + JSON.stringify(xhr));
             $("#errorMesssge").html((xhr.responseJSON.status + ":" + xhr.responseJSON.statusText));
@@ -108,7 +131,8 @@ $(document).ready(function(){
             "cache": false,
             "data" : data
           }).done(function (response) {
-              if(response.message == "success"){
+              if(response.status == "success"){
+                $.fn.getSpeakers();
                 $( "#successAlert" ).show("fade");
                 setTimeout(function () { 
                     $("#successAlert").alert("close"); 
