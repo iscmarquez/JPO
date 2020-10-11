@@ -6,10 +6,12 @@ var app =  express.Router();
 app.post('/auth', function(request, response) {
 	let connection = require('db_integration');
 	var username = request.body.username;
+	console.log(request.body.username);
+	console.log(request.body.password);
 	var password = request.body.password;
 	if (username && password) {
 		connection.query('SELECT * FROM user WHERE email = ? AND password = ?', [username, password], function(error, results, fields) {
-			console.log('Result %s', results);
+			console.log('Result %s', JSON.stringify(results));
 			if (results && results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
