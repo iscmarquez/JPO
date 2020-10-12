@@ -10,8 +10,41 @@
 	<script src="/js/jquery-ui.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/datatables.min.js"></script>
-	<script src="/js/configuration.js"></script>
+	<script src="/js/configuration.js"></script>	
   </head>
+  <style>
+	  #overlay{	
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+	height:100%;
+	display: none;
+	background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;  
+}
+.spinner {
+	width: 40px;
+	height: 40px;
+	border: 4px #ddd solid;
+	border-top: 4px #2e93e6 solid;
+	border-radius: 50%;
+	animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+	100% { 
+		transform: rotate(360deg); 
+	}
+}
+.is-hide{
+	display:none;
+}
+  </style>
   <body>
 
  	<div class="container">
@@ -99,68 +132,53 @@
 				</div>
 				<div class="tab-pane" id="tab3">
 					<p>Gestion des enseignents</p>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="inputNom">Nom</label>
-								<input type="text" class="form-control" name="speakerName">
+					<table class="table table-bordered" id="speakerList"  style="width: 100%;">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Image</th>
+								<th>Nom</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="addSpeaker">+</button>
+					<button type="button" class="btn btn-primary" name="removeSpeaker">-</button>
+
+					<div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							  </button>
 							</div>
-							<div class="form-group"> 
-								<label for="inputDescription">Description</label>
-								<input type="text" class="form-control" name="speakerDescription">
-							</div>
-							<form role="form" enctype="multipart/form-data" id="speakerForm">
+							<div class="modal-body">
 								<div class="form-group">
-										<label for="exampleInputFile">Image</label>
-										<input type="file" class="form-control-file" id="inputFile">
-										<p class="help-block">Ajouter l'image.</p>
+									<label for="inputNom">Nom</label>
+									<input type="text" class="form-control" name="speakerName">
 								</div>
-								<button type="button" class="btn btn-primary" name="saveSpeaker">
-										Enregistrer
-								</button>							
-							</form>
+								<div class="form-group"> 
+									<label for="inputDescription">Description</label>
+									<input type="text" class="form-control" name="speakerDescription">
+								</div>
+								<form role="form" enctype="multipart/form-data" id="speakerForm">
+									<div class="form-group">
+											<label for="exampleInputFile">Image</label>
+											<input type="file" class="form-control-file" id="inputFile">
+											<p class="help-block">Ajouter l'image.</p>
+									</div>							
+								</form>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  <button type="button" class="btn btn-primary" name="saveSpeaker">Enregistrer</button>
+							</div>
+						  </div>
 						</div>
-						<div class="col-md-6">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th>Image</th>
-										<th>Nom</th>
-										<th>Description</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>TB - Monthly</td>
-										<td>01/04/2012</td>
-									</tr>
-									<tr class="table-active">
-										<td>1</td>
-										<td>TB - Monthly</td>
-										<td>01/04/2012</td>
-									</tr>
-									<tr class="table-success">
-										<td>2</td>
-										<td>TB - Monthly</td>
-										<td>02/04/2012</td>
-									</tr>
-									<tr class="table-warning">
-										<td>3</td>
-										<td>TB - Monthly</td>
-										<td>03/04/2012</td>
-									</tr>
-									<tr class="table-danger">
-										<td>4</td>
-										<td>TB - Monthly</td>
-										<td>04/04/2012</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-				</div>
-			
-			
+					  </div>		
 			</div>
 			<div class="tab-pane" id="tab4">
 				<p>Gestion des conferences</p>
@@ -205,6 +223,11 @@
 			  <span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-	</div>   
+	</div>
+	<div id="overlay">
+		<div class="cv-spinner">
+			<span class="spinner"></span>
+		</div>
+	</div>
   </body>
 </html>

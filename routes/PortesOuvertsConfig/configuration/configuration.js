@@ -91,7 +91,7 @@ app.post('/inSpeaker', function(request, response) {
 		let name = request.body.name;
 		let description = request.body.description;
 		let user = request.session.username;
-		var photoLink = request.path + '/' + request.files.file.name;
+		var photoLink = '/images/speaker/' + request.files.file.name;
 		
 		var sql = "INSERT INTO Speaker (name, description, photoLink, idUser) VALUES (?,?,?,?);";
 		connection.query(sql, [name, description , photoLink ,user], function (err, result) {
@@ -149,6 +149,36 @@ app.get('/inSpeaker', function(request, response) {
 				return;
 			}
 			response.json(results);			
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
+app.delete('/inSpeaker', function(request, response) {
+	try{
+		let connection = require('db_integration');
+		console.log("ID Speaker to delete : %s", request.body.idSpeaker);
+        connection.query('DELETE FROM speaker where idSpeaker = ?', [request.body.idSpeaker], (error, results) => { 
+			if(error){
+				response.status(500).json({
+					"readyState":error.code,
+					"status":error.sqlState,
+					"statusText":error.sqlMessage
+				});
+				return;
+			}
+			response.status(200).json({
+				status : "success"
+			});			
 		});
 		
 	}catch(error){

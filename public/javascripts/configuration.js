@@ -184,6 +184,32 @@ $(document).ready(function(){
       });
     });
 
+    $( "button[name='removeSpeaker']" ).click(function( event ) {
+        event.preventDefault();
+        $.ajax({
+            "url": "/PortesOuvertsConfig/configuration/inSpeaker",
+            "method": "DELETE",
+            "timeout": 0,
+            "data" : {
+                idSpeaker : $("input[name='idSpeaker']:checked").val()              
+            }
+          }).done(function (response) {
+              if(response.status == "success"){
+                $.fn.getSpeakers();
+                $( "#successAlert" ).show("fade");
+                setTimeout(function () { 
+                    $("#successAlert").alert("close"); 
+                }, 10000); 
+              }
+        }).fail(function(xhr, status, error) {
+            console.log('Error - ' + JSON.stringify(xhr));
+            $("#errorMesssge").html((xhr.responseJSON.status + ":" + xhr.responseJSON.statusText));
+            $("#errorAlert").show("fade");
+            setTimeout(function () { 
+                $("#errorAlert").alert("close"); 
+            }, 10000);
+      });
+    });
 
     $( "button[name='saveConference']" ).click(function( event ) {
         event.preventDefault();
@@ -221,3 +247,10 @@ $(document).ready(function(){
 
     $.fn.getGeneralConfig();
 });
+$(document).ajaxStart(function(){
+    console.log("Ajaxz Start");
+    $("#overlay").fadeIn();
+  }).ajaxComplete(function(){
+    console.log("Ajaxz Complete");
+    $("#overlay").fadeOut();
+  });
