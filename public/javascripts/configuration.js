@@ -1,4 +1,5 @@
-var editor;
+var speakerMethod;
+var speakerData;
 $(document).ready(function(){
     $.fn.getGeneralConfig = function(){ 
         $.ajax({
@@ -76,6 +77,7 @@ $(document).ready(function(){
             'searchable':false,
             'orderable':false,
             'width':'1%',
+            'selected': true,
             'render': function (data, type, full, meta){
                 return '<input type="radio" value="' + data + '" name="idSpeaker">';
             } 
@@ -83,7 +85,8 @@ $(document).ready(function(){
     });    
 
     $tableBody.on('click', 'tr', function () {
-        var data = $tableBody.row( this ).data();
+        speakerData = $tableBody.row( this ).data();
+        console.log("speakerData : " + JSON.stringify(speakerData));
         let $radio = $('input[type="radio"]', $(this));
         $radio.prop("checked", true);
     } );
@@ -156,8 +159,10 @@ $(document).ready(function(){
         var data = new FormData();
         var file = $('#inputFile')[0].files[0];
         data.append("file",file);
-        data.append("description", $("input[name='speakerName']").val())
-        data.append("name", $("input[name='speakerDescription']").val())
+        data.append("description", $("input[name='speakerName']").val());
+        data.append("name", $("input[name='speakerDescription']").val());
+        if(speakerMethod === "PUT")
+            data.append("idSpeaker", $("input[name='idSpeaker']:checked").val());    
         $.ajax({
             "url": "/PortesOuvertsConfig/configuration/inSpeaker",
             "method": "POST",
@@ -182,6 +187,7 @@ $(document).ready(function(){
                 $("#errorAlert").alert("close"); 
             }, 10000);
       });
+      $('#speakerForm')[0].reset();
     });
 
     $( "button[name='removeSpeaker']" ).click(function( event ) {
@@ -191,7 +197,7 @@ $(document).ready(function(){
             "method": "DELETE",
             "timeout": 0,
             "data" : {
-                idSpeaker : $("input[name='idSpeaker']:checked").val()              
+                idSpeaker : speakerData[0]              
             }
           }).done(function (response) {
               if(response.status == "success"){
@@ -245,6 +251,21 @@ $(document).ready(function(){
       });
     });
 
+    $("#speakerModal").on("hidden.bs.modal", function () {
+        $("#speakerForm")[0].reset();
+    })
+
+    $("#speakerModal").on("show.bs.modal", function (event) {
+        var button = $(event.relatedTarget)
+        if(button.attr("name") === "addSpeaker")
+            speakerMethod="POST";
+        else if(button.attr("name") === "updateSpeaker"){
+            speakerMethod="PUT";
+            $("input[name='speakerName']").val(speakerData[2]);
+            $("input[name='speakerDescription']").val(speakerData[3]);
+        }  
+      })   
+
     $.fn.getGeneralConfig();
 });
 $(document).ajaxStart(function(){
@@ -253,4 +274,7 @@ $(document).ajaxStart(function(){
   }).ajaxComplete(function(){
     console.log("Ajaxz Complete");
     $("#overlay").fadeOut();
-  });
+  }).ajaxError(function(event, jqxhr, settings, thrownError) {
+    console.log("Ajaxz Error");
+    $("#overlay").fadeOut();
+  });;
