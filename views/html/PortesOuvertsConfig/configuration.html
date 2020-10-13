@@ -50,21 +50,21 @@
   <body>
 
  	<div class="container">
-		<div id="tabs">
+		<div id="tabs" >
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="nav-item active" role="tab">
-					<a  href="#tab1" >Configuration général</a>
+					<a  href="#tab1" >Configuration générale</a>
 				</li>
 
 				<li class="nav-item active">
-					<a  href="#tab2" role="tab">Événement</a>
+					<a  href="#tab2" role="tab">Gestion des journées portes ouvertes </a>
 					
 				</li>
 				<li class="nav-item active">
-					<a  href="#tab3" role="tab">Speaker</a>
+					<a  href="#tab3" role="tab">Gestion des conférenciers et des clavardeurs</a>
 				</li>
 				<li class="nav-item active">
-					<a  href="#tab4" role="tab">Conferences</a>
+					<a  href="#tab4" role="tab">Gestion des conférenciers et des clavardeurs</a>
 				</li>
 			</ul>
 			<div>
@@ -116,22 +116,52 @@
 				</div>
 			
 				<div class="tab-pane" id="tab2">
-					<p>Gestion de journés des portes ouverts</p>
-					<form role="formEvenement" action="/configuration/inEvent" method="POST">
-						<div class="form-group" >
-							<label for="descriptionEvent">Nom de l'événement</label>
-							<input type="text" class="form-control" name="name">
+					<p>Gestion des journées portes ouvertes</p>
+					<table class="table table-bordered" id="eventList"  style="width: 100%;">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Date de début</th>
+								<th>Nom</th>								
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal" name="addEvent">Ajouter</button>
+					<button type="button" class="btn btn-primary" name="removeEvent">Effacer</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal" name="updateEvent">Mettre à jour</button>
+
+					<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">Événement</h5>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+								<span aria-hidden="true">&times;</span>
+							  </button>
+							</div>
+							<div class="modal-body">
+								<form role="form" enctype="multipart/form-data" id="eventForm">
+									<div class="form-group" >
+										<label for="descriptionEvent">Nom de l'événement</label>
+										<input type="text" class="form-control" name="name" id="nameEvent">
+									</div>
+							
+									<div class="form-group">
+										Date de début: <input type="date" name="dateInitial" id="dateEvent" value="2020-11-02">
+									</div>
+									
+								</form>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+							  <button type="button" class="btn btn-primary" name="saveEvent">Enregistrer/Mettre à jour</button>
+							</div>
+						  </div>
 						</div>
-				
-						<div class="form-group">
-							Date initial: <input type="date" name="dateInitial">
-							Date initial: <input type="date" name="dateEnd">
-						</div>
-						<button type="button" class="btn btn-primary" name="saveEvent">
-							Enregistrer
-						</button>						
-					</form>
-				</div>
+					  </div>		
+			</div>
+
 				<div class="tab-pane" id="tab3">
 					<p>Gestion des enseignents</p>
 					<table class="table table-bordered" id="speakerList"  style="width: 100%;">
@@ -141,13 +171,15 @@
 								<th>Image</th>
 								<th>Nom</th>
 								<th>Description</th>
+								<th>Clavardage</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
 					</table>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="addSpeaker">+</button>
-					<button type="button" class="btn btn-primary" name="removeSpeaker">-</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="updateSpeaker">%</button>
+
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="addSpeaker">Ajouter</button>
+					<button type="button" class="btn btn-primary" name="removeSpeaker">Effacer</button>
+				<!--	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="updateSpeaker">Mettre à jour</button>-->
 
 					<div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
@@ -172,7 +204,11 @@
 										<label for="exampleInputFile">Image</label>
 										<input type="file" class="form-control-file" id="inputFile">
 										<p class="help-block">Ajouter l'image.</p>
-									</div>						
+									</div>
+									<div class="form-group">
+										<label for="exampleInputFile">Clavardage</label>
+										<input type="checkbox" id="chat" name="chat">										
+									</div>					
 								</form>
 							</div>
 							<div class="modal-footer">
@@ -197,8 +233,8 @@
 							<input type="text" class="form-control" name="conferenceName">
 						</div>
 						<div class="form-group">
-								Heure initial: <input type="time" name="commence">
-								Heure final: <input type="time" name="end">
+								Heure initial: <input type="time" name="commence" value="09:00">
+								Heure final: <input type="time" name="end" value="09:00">
 						</div>
 						<div class="form-group">
 							<label for="inputNom">Lien de la conference</label>
@@ -219,7 +255,7 @@
 			</div>
 		</div>
 		</div>
-		<div id="successAlert" class="alert alert-success collapse" role="alert">Data was updated successfully</div>
+		<div id="successAlert" class="alert alert-success collapse" role="alert">Les informations ont été enregistrées</div>
 		<div id="errorAlert" class="alert alert-danger alert-dismissible collapse" role="alert" >
 			<strong>Error!</strong> <span id="errorMesssge"></span>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
