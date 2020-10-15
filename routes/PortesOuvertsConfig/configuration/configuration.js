@@ -160,7 +160,7 @@ app.delete('/inEvent', function(request, response) {
 app.get('/inSpeaker', function(request, response) {
 	try{
 		let connection = require('db_integration');
-        connection.query('SELECT idSpeaker, name, description, photoLink, chat, idUser FROM speaker', (error, results) => { 
+        connection.query('SELECT idSpeaker, name, description, photoLink, chat, linkchat, idUser FROM speaker', (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -201,10 +201,11 @@ app.post('/inSpeaker', function(request, response) {
 		let description = request.body.description;
 		let chat = request.body.chat;
 		let user = request.session.username;
+		let linkchat = request.body.linkchat;
 		var photoLink = '/images/speaker/' + request.files.file.name;
-		
-		var sql = "INSERT INTO Speaker (name, description, photoLink, chat, idUser) VALUES (?,?,?,?,?);";
-		connection.query(sql, [name, description , photoLink , chat, user], function (err, result) {
+		console.log("chat" + linkchat);
+		var sql = "INSERT INTO Speaker (name, description, photoLink, chat, linkchat, idUser) VALUES (?,?,?,?,?,?);";
+		connection.query(sql, [name, description , photoLink , chat, linkchat, user], function (err, result) {
 		
 			if (err){
 				console.log("ERROR : %s", JSON.stringify(err));
@@ -250,6 +251,68 @@ app.post('/inSpeaker', function(request, response) {
 	}
 });
 
+app.put('/inSpeaker', function(request, response) {
+	try{
+		let connection = require('db_integration'); 
+		let idSpeaker = request.body.idSpeaker;
+		let name = request.body.name;
+		let description = request.body.description;
+		let chat = request.body.chat;
+		let linkchat = request.body.linkchat;
+		let user = request.session.username;
+		var photoLink = request.files ? '/images/speaker/' + request.files.file.name : null;
+		console.log('photolink' +  photoLink);
+		console.log("JSON" + JSON.stringify(request.files));
+		console.log('chat' +  chat);
+		var sql = "UPDATE Speaker SET name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, idUser = ? where idSpeaker = ? ;";
+
+		var query = connection.query(sql, [name, description ,   linkchat, user, idSpeaker], function (err, result) {
+			if (err){
+				console.log("ERROR : %s", JSON.stringify(err));
+				response.status(500).json({
+					status : "Error",
+					error : {
+						"readyState":err.code,
+						"status":err.sqlState,
+						"statusText":err.sqlMessage
+					}
+				});
+				return;
+			} 
+			if(request.files){
+				request.files.file.mv(imagesPath + "/speaker/" + request.files.file.name, function(err){
+					if(err){
+						console.log("ERROR : %s", JSON.stringify(err));
+						response.status(500).json({
+							status : "Error",
+							error : {
+								"readyState":err.code,
+								"status": -1,
+								"statusText":err.errorMessage
+								}
+						});	
+					}
+				});
+	
+				}
+			response.status(200).json({
+				status : "success"
+			});
+	
+		});
+		console.log(query.sql);
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
 
 app.delete('/inSpeaker', function(request, response) {
 	
@@ -273,37 +336,6 @@ app.delete('/inSpeaker', function(request, response) {
 	
 });
 
-/*
-app.delete('/inEvent', function(request, response) {
-	try{
-		let connection = require('db_integration');
-		console.log("ID event to delete : %s", request.body.idSpeaker);
-        connection.query('DELETE FROM event where idEvent = ?', [request.body.idSpeaker], (error, results) => { 
-			if(error){
-				response.status(500).json({
-					"readyState":error.code,
-					"status":error.sqlState,
-					"statusText":error.sqlMessage
-				});
-				return;
-			}
-			response.status(200).json({
-				status : "success"
-			});			
-		});
-		
-	}catch(error){
-		console.error(error);
-		response.status(500).json(
-			{
-				"readyState":error.code,
-				"status":error.sqlState,
-				"statusText":error.sqlMessage
-			}
-		);		
-	}
-});
-*/
 
 app.get('/outSpeakerDdl', function(request, response) {
 	try{
@@ -331,12 +363,11 @@ app.get('/outSpeakerDdl', function(request, response) {
 	}
 });
 
-
 app.get('/outEvents', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		console.log("outEvents- eventos disponibles");
-        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') date FROM portesouvertsgrasset.event	where  date_format(startDate,\'%Y-%m-%d\') >= date_format(now(),\'%Y-%m-%d\') ;', (error, results) => { 
+        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') date FROM event	where  date_format(startDate,\'%Y-%m-%d\') >= date_format(now(),\'%Y-%m-%d\') ;', (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -357,6 +388,33 @@ app.get('/outEvents', function(request, response) {
 		);		
 	}
 });
+
+app.get('/Events', function(request, response) {
+	try{
+		let connection = require('db_integration');
+		console.log("Events- eventos disponibles");
+        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') date FROM event	 ;', (error, results) => { 
+			if(error){
+				response.json({
+					error: error
+				});
+				return;
+			}
+			response.json(results);			
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
 
 app.post('/inConference', function(request, response) {
 	try{
@@ -396,5 +454,102 @@ app.post('/inConference', function(request, response) {
 	}
 
 });
+
+
+app.get('/inConference', function(request, response) {
+	try{
+		let connection = require('db_integration');
+		
+        connection.query('SELECT idConference,  nameConference, speaker.name, start, end, linkConference, conference.idSpeaker , conference.idEvent FROM conference INNER JOIN Speaker on conference.idSpeaker = speaker.idSpeaker order by conference.start asc  ;		', (error, results) => { 
+			
+			if(error){
+				response.status(500).json({
+					"readyState":error.code,
+					"status":error.sqlState,
+					"statusText":error.sqlMessage
+				});
+				return;
+			}
+			response.status(200).json(results);			
+		});
+		
+	}catch(error){
+		
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
+
+app.delete('/inConference', function(request, response) {
+	
+	let connection = require('db_integration');
+	console.log("ID conference to delete : %s", request.body.idConference);
+	connection.query('DELETE FROM Conference where idConference = ?', [request.body.idConference], (error, results) => { 
+		console.log(results);
+		if(error){
+			response.status(500).json({
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			});
+			return;
+		}
+		response.status(200).json({
+			status : "success"
+		});			
+	});
+	
+
+});
+
+app.put('/inConference', function(request, response) {
+	try{
+	let connection = require('db_integration');
+	let idConference = request.body.idConference;
+	let nameConference = request.body.nameConference;
+	let event = request.body.event;
+    let init = request.body.init;
+	let end = request.body.end;
+	let link = request.body.link;
+	let speaker = request.body.speaker;
+	let username = request.session.username;
+	
+	console.log("idConference "+ nameConference);
+	
+    var sql = "UPDATE  Conference SET nameConference=?, idEvent=?, idSpeaker=?, start=?, end=?, linkConference=?, date=now(), idUser=? where idConference=? ;";
+    let con = connection.query(sql, [nameConference,event,speaker, init , end, link, username ,idConference ], function (err, result) {
+		if (err){
+			console.log("error " + err);
+			response.status(500).json(
+				{
+					"readyState":err.code,
+					"status":err.sqlState,
+					"statusText":err.sqlMessage
+				}
+			);
+			return;
+		}
+		
+		response.json({
+			message: 'success'
+		})			
+	});
+	console.log("update "+ con);
+
+	}
+	catch(Err)
+	{
+		console.error(Err);
+	}
+
+});
+
+
 
 module.exports = app;
