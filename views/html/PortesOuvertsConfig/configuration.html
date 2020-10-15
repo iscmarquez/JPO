@@ -64,7 +64,7 @@
 					<a  href="#tab3" role="tab">Gestion des conférenciers et des clavardeurs</a>
 				</li>
 				<li class="nav-item active">
-					<a  href="#tab4" role="tab">Gestion des conférenciers et des clavardeurs</a>
+					<a  href="#tab4" role="tab">Gestion des conférences</a>
 				</li>
 			</ul>
 			<div>
@@ -172,6 +172,7 @@
 								<th>Nom</th>
 								<th>Description</th>
 								<th>Clavardage</th>
+								<th>Lien clavardage</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -179,13 +180,13 @@
 
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="addSpeaker">Ajouter</button>
 					<button type="button" class="btn btn-primary" name="removeSpeaker">Effacer</button>
-				<!--	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="updateSpeaker">Mettre à jour</button>-->
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speakerModal" name="updateSpeaker">Mettre à jour</button>
 
 					<div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 						  <div class="modal-content">
 							<div class="modal-header">
-							  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+							  <h5 class="modal-title" id="exampleModalLabel">Gestion des conférenciers et des clavardeurs</h5>
 							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							  </button>
@@ -207,7 +208,8 @@
 									</div>
 									<div class="form-group">
 										<label for="exampleInputFile">Clavardage</label>
-										<input type="checkbox" id="chat" name="chat">										
+										<input type="checkbox" id="chat" name="chat">
+										<input type="text" class="form-control" name="linkchat">										
 									</div>					
 								</form>
 							</div>
@@ -221,40 +223,67 @@
 			</div>
 			<div class="tab-pane" id="tab4">
 				<p>Gestion des conferences</p>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label >Evenement</label>
-							<select  id="idEvent"></select>
-							
+				<table class="table table-bordered" id="conferenceList"  style="width: 100%;">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Nom de la conference</th>
+							<th>Heure initial </th>
+							<th>Heure final: </th>
+							<th>Conférencier </th>
+							<th >Lien de la conference</th>
+							<th>speakerid</th>
+							<th>eventid</th>									
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#conferenceModal" name="addConference">Ajouter</button>
+				<button type="button" class="btn btn-primary" name="removeConference">Effacer</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#conferenceModal" name="updateConference">Mettre à jour</button>
+				<div class="modal fade" id="conferenceModal" tabindex="-1" role="dialog" aria-labelledby="conferenceModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					  <div class="modal-content">
+						<div class="modal-header">
+						  <h5 class="modal-title" id="exampleModalLabel">Conférences</h5>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+							<span aria-hidden="true">&times;</span>
+						  </button>
 						</div>
-						<div class="form-group">
-							<label for="inputNom">Nom de la conference</label>
-							<input type="text" class="form-control" name="conferenceName">
+						<div class="modal-body">
+								<form role="form" enctype="multipart/form-data" id="conferenceForm">
+									<div class="form-group">
+										<label >Événement</label>
+										<select  id="idEventConference" name="idEventConference"></select>
+									</div>
+								<div class="form-group">
+									<label for="inputNom">Nom de la conference</label>
+									<input type="text" class="form-control" name="conferenceName" id="conferenceName">
+								</div>
+								<div class="form-group">
+										Heure initial: <input type="time" name="commence" id="commence" value="09:00">
+										Heure final: <input type="time" name="end" id="end" value="09:00">
+								</div>
+								<div class="form-group">
+									<label >Conférencier</label>
+									<select id="idSpeaker" ></select>
+									
+								</div>
+								<div class="form-group">
+									<label for="inputNom">Lien de la conference</label>
+									<input type="text" class="form-control" name="linkConference" id="linkConference">
+								</div>								
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+							  <button type="button" class="btn btn-primary" name="saveConference">Enregistrer/Mettre à jour</button>
+							</div>
+						  </div>
 						</div>
-						<div class="form-group">
-								Heure initial: <input type="time" name="commence" value="09:00">
-								Heure final: <input type="time" name="end" value="09:00">
-						</div>
-						<div class="form-group">
-							<label for="inputNom">Lien de la conference</label>
-							<input type="text" class="form-control" name="linkConference">
-						</div>
-						<div class="form-group">
-							<label >Conferencier</label>
-							<select id="idSpeaker" ></select>
-							
-						</div>
-						<form role="form" enctype="multipart/form-data" id="speakerForm">
-							<button type="button" class="btn btn-primary" name="saveConference">
-								Enregistrer
-							</button>							
-						</form>
-					</div>
-				</div>	
+					  </div>		
 			</div>
-		</div>
-		</div>
+			
+					
 		<div id="successAlert" class="alert alert-success collapse" role="alert">Les informations ont été enregistrées</div>
 		<div id="errorAlert" class="alert alert-danger alert-dismissible collapse" role="alert" >
 			<strong>Error!</strong> <span id="errorMesssge"></span>
