@@ -38,31 +38,46 @@ for(index in config.routes){
 }
 
 app.use(function(request, response, next){
-  let htmlRegex = /.*htm.*$/;
-  if(request.path.match(htmlRegex).length > 0){
-    let pathFile = path.resolve('./views/html' + request.path);
-    let stat = fs.statSync(pathFile);
-    if(stat && stat.isFile()){
-      response.sendFile(pathFile);
-    }else{
-      console.log('Does not exist the file : %s', path.resolve('./views/html' + request.path));
-      next();
-    }
+  if(request.path.includes("index.html")){
+    next();
   }else{
-    response.end();
+    let htmlRegex = /.*htm.*$/;
+    if(request.path.match(htmlRegex).length > 0){
+      let pathFile = path.resolve('./views/html' + request.path);
+      let stat = fs.statSync(pathFile);
+      if(stat && stat.isFile()){
+        response.sendFile(pathFile);
+      }else{
+        console.log('Does not exist the file : %s', path.resolve('./views/html' + request.path));
+        next();
+      }
+    }else{
+      response.end();
+    }
   }
+});
+
+app.use("/index.html", function( request, response) {
+  console.log("Entering to index.html");
+  response.sendFile(path.resolve("./views/html/PortesOuverts/loginpublic.html"));
 });
 
 // catch 404 and forward to error handler
 app.use(function(request, response, next) {
+  console.log("404 Error , it does not exist : " + request.path);
   next(createError(404));
 });
 // error handler
 app.use(function(err, request, response, next) {
   // set locals, only providing error in development
-  if(!err)
+  if(!err){
+    next();
     return;
+  }
     response.send({errorMessage:err});
 });
+
+
+
 
 module.exports = app;
