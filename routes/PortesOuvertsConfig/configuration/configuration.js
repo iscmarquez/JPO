@@ -1,6 +1,6 @@
 let express = require('express');
-let formidable = require('formidable');
 let fs = require('fs');
+let path = require('path');
 
 var app =  express.Router();
 
@@ -160,7 +160,7 @@ app.delete('/inEvent', function(request, response) {
 app.get('/inSpeaker', function(request, response) {
 	try{
 		let connection = require('db_integration');
-        connection.query('SELECT idSpeaker, name, description, photoLink, chat, linkchat, idUser FROM speaker', (error, results) => { 
+        connection.query("SELECT idSpeaker, name, description, REPLACE(photoLink, '#idSpeaker#', idSpeaker) as photoLink, chat, linkchat, idUser FROM speaker", (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -183,6 +183,7 @@ app.get('/inSpeaker', function(request, response) {
 });
 
 app.post('/inSpeaker', function(request, response) {
+	
 	try{
 		if(!request.files){
 			response.status(500).json({
@@ -195,53 +196,44 @@ app.post('/inSpeaker', function(request, response) {
 			})
 			return;
 		}
-	
+
 		let connection = require('db_integration'); 
 		let name = request.body.name;
 		let description = request.body.description;
 		let chat = request.body.chat;
 		let user = request.session.username;
 		let linkchat = request.body.linkchat;
-		var photoLink = '/images/speaker/' + request.files.file.name;
-		console.log("chat" + linkchat);
-		var sql = "INSERT INTO Speaker (name, description, photoLink, chat, linkchat, idUser) VALUES (?,?,?,?,?,?);";
-		connection.query(sql, [name, description , photoLink , chat, linkchat, user], function (err, result) {
+		let fileName = request.files.file.name;
 		
+		let imageName = "photo." + fileName.substr(fileName.indexOf(".") + 1);
+		let photoLink = '/images/speaker/#idSpeaker#/' + imageName;
+		
+		let sql = "INSERT INTO Speaker (name, description, photoLink, chat, linkchat, idUser) VALUES (?,?,?,?,?,?);";
+		
+		connection.query(sql, [name, description , photoLink , JSON.parse(chat), linkchat, user], function (err, result) {
 			if (err){
-				console.log("ERROR : %s", JSON.stringify(err));
-				response.status(500).json({
-					status : "Error",
-					error : {
-						"readyState":err.code,
-						"status":err.sqlState,
-						"statusText":err.sqlMessage
-					}
-				});
-				return;
-			} 
-			console.log('Result %s', result);
-			request.files.file.mv(imagesPath + "/" + request.files.file.name, function(err){
+				console.error(err);
+				throw (err);
+			}
+			console.log('Result %s', JSON.stringify(result));
+
+			let pathDir = path.resolve(imagesPath + "/speaker/"+ result.insertId + "/");
+			if(!fs.existsSync(pathDir)){
+				fs.mkdirSync(pathDir);
+			}
+
+			request.files.file.mv(imagesPath + "/speaker/"+ result.insertId + "/" + imageName, function(err){
 				if(err){
-					console.log("ERROR : %s", JSON.stringify(err));
-					response.status(500).json({
-						status : "Error",
-						error : {
-							"readyState":err.code,
-							"status": -1,
-							"statusText":err.errorMessage
-							}
-					});	
+					console.error(err);
+					throw (err);
 				}
 			});
-			response.status(200).json({
-				status : "success"
-			});
-	
 		});
-		
+
 	}catch(error){
+		console.log("ERROR => ");
 		console.error(error);
-		response.status(500).json(
+		return response.status(500).json(
 			{
 				"readyState":error.code,
 				"status":error.sqlState,
@@ -249,6 +241,10 @@ app.post('/inSpeaker', function(request, response) {
 			}
 		);		
 	}
+
+	return 	response.status(200).json({
+		status : "success"
+	});
 });
 
 app.put('/inSpeaker', function(request, response) {
@@ -260,51 +256,27 @@ app.put('/inSpeaker', function(request, response) {
 		let chat = request.body.chat;
 		let linkchat = request.body.linkchat;
 		let user = request.session.username;
-		var photoLink = request.files ? '/images/speaker/' + request.files.file.name : null;
-		console.log('photolink' +  photoLink);
-		console.log("JSON" + JSON.stringify(request.files));
-		console.log('chat' +  chat);
+		let fileName = request.files.file.name;
+		let imageName = "photo." + fileName.substr(fileName.indexOf(".") + 1);
+		const photoLink = request.files ? '/images/speaker/#idSpeaker#/' + imageName : null;
 		var sql = "UPDATE Speaker SET name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, idUser = ? where idSpeaker = ? ;";
 
 		var query = connection.query(sql, [name, description ,   linkchat, user, idSpeaker], function (err, result) {
 			if (err){
-				console.log("ERROR : %s", JSON.stringify(err));
-				response.status(500).json({
-					status : "Error",
-					error : {
-						"readyState":err.code,
-						"status":err.sqlState,
-						"statusText":err.sqlMessage
-					}
-				});
-				return;
+				throw(err);
 			} 
 			if(request.files){
-				request.files.file.mv(imagesPath + "/speaker/" + request.files.file.name, function(err){
+				request.files.file.mv(imagesPath + "/speaker/"+ idSpeaker + "/" + imageName, function(err){
 					if(err){
-						console.log("ERROR : %s", JSON.stringify(err));
-						response.status(500).json({
-							status : "Error",
-							error : {
-								"readyState":err.code,
-								"status": -1,
-								"statusText":err.errorMessage
-								}
-						});	
+						throw (err);
 					}
 				});
-	
-				}
-			response.status(200).json({
-				status : "success"
-			});
-	
+			}
 		});
 		console.log(query.sql);
-		
 	}catch(error){
 		console.error(error);
-		response.status(500).json(
+		return response.status(500).json(
 			{
 				"readyState":error.code,
 				"status":error.sqlState,
@@ -312,6 +284,9 @@ app.put('/inSpeaker', function(request, response) {
 			}
 		);		
 	}
+	return response.status(200).json({
+		status : "success"
+	});
 });
 
 app.delete('/inSpeaker', function(request, response) {
