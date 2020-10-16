@@ -3,7 +3,7 @@
     [
         {
             "uri" : "/PortesOuvertsConfig/login",
-            "handler"  : "./routes/PortesOuvertsConfig/login/Login"
+            "handler"  : "./routes/PortesOuvertsConfig/login/login"
         },
         {
             "uri" : "/PortesOuverts/conference",
@@ -16,6 +16,10 @@
         {
             "uri" : "/PortesOuverts/loginpublic",
             "handler"  : "./routes/PortesOuverts/loginpublic/loginpublic"
+        },
+        {
+            "uri" : "/PortesOuverts/accueil",
+            "handler"  : "./routes/accueil/accueil"
         }
     ]
 }

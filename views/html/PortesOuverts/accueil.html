@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 
-  <head>
+<head>
     <title>Accueil Portes Ouvertes Institut Grasset</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
-        <script src="/js/conference.js"></script>
+        <script src="/js/accueil.js"></script>
 </head>
 
 <body>
@@ -38,11 +38,11 @@
 
         </div>
         <nav style="padding-left:0;" class="nav nav-pills-notstyle flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link " href="/PortesOuverts/accueil.html">ACCUEIL</a>
-            <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/conference.html">CALENDRIER</a>
+            <a class="flex-sm-fill text-sm-center nav-link active" href="index.html">ACCUEIL</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/conference.html">CALENDRIER</a>
             <a class="flex-sm-fill text-sm-center nav-link" href="clavarder.html">CLAVARDER</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="visiter.html">VISITER</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="faq.html">FOIRE AUX QUESTIONS</a>
+            <a id="visitevirtuelle" class="flex-sm-fill text-sm-center nav-link" href="visiter.html" target="_blank">VISITER</a>
+            <a id="faq" class="flex-sm-fill text-sm-center nav-link" href="faq.html" target="_blank">FOIRE AUX QUESTIONS</a>
             <a class="flex-sm-fill text-sm-center nav-link" href="brochures.html">BROCHURES</a>
         </nav>
 
@@ -55,12 +55,19 @@
                 <h3 class="w.300" style="padding-top: 30px; padding-left: 15px;color: #162b65; ">Titre de la section
                 </h3>
                 <h5 class="w.500" style="color:crimson; padding-left: 30px;">Sous-titre</h5>
-                <div id="resultat">
-                  <div class="row row-cols-3" id="cardsContainer">
-                  </div>
+                <p style="padding-left: 15px;font-weight:300; ; color: #162b65; text-align: justify;"><br>Lorem ipsum
+                    dolor sit
+                    amet, consectetur adipiscing elit. Nunc lobortis augue et enim lacinia, non
+                    pretium lacus fermentum. Sed sit amet lacus eget ipsum rutrum consequat quis ut sem. Integer
+                    tincidunt ac orci eget hendrerit. Nunc in luctus libero. Proin facilisis placerat est eu vehicula.
+                    In malesuada feugiat eros, sit amet varius magna dignissim eget. Integer mollis porttitor fringilla.
+                    Vestibulum eget arcu sollicitudin, dignissim massa non, convallis metus. </p>
+            </div>
+            <div class="col">
+                <div style="padding-top: 15px;padding-right: 15px; padding-bottom: 15px;">
+                    <img class="img-fluid" src="/images/accueil_img.jpg">
                 </div>
             </div>
-            
         </div>
     </div>
 
@@ -77,5 +84,3 @@
 </body>
 
 </html>
-
-  

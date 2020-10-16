@@ -1,53 +1,105 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Portes ouverts Institut Grasset - Administration</title>
-		<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/jquery-ui.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<style>
-		.login-form {
-			width: 300px;
-			margin: 0 auto;
-			font-family: Tahoma, Geneva, sans-serif;
-		}
-		.login-form h1 {
-			text-align: center;
-			color: #4d4d4d;
-			font-size: 24px;
-			padding: 20px 0 20px 0;
-		}
-		.login-form input[type="password"],
-		.login-form input[type="text"] {
-			width: 100%;
-			padding: 15px;
-			border: 1px solid #dddddd;
-			margin-bottom: 15px;
-			box-sizing:border-box;
-		}
-		.login-form input[type="submit"] {
-			width: 100%;
-			padding: 15px;
-			background-color: #535b63;
-			border: 0;
-			box-sizing: border-box;
-			cursor: pointer;
-			font-weight: bold;
-			color: #ffffff;
-		}
-		</style>
-	</head>
-	<body>
-		<div class="login-form">
-			<h1>Connexion à la console d'administration</h1>
-			<form action="/PortesOuvertsConfig/login/auth" method="POST">
-				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
-				<input type="submit" class="btn btn-primary" value="Entrer">
-			</form>
+<!doctype html>
+<html lang="fr">
 
-		</div>
-	</body>
+<head>
+    <title>Console d'administrateur</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,800;1,300;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS SANS CDN-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <!-- Override de Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/css/custom2.css">
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+
+    <div class="container" id="shadow" style="padding-left: 7; background-color: #162b65; border: 1px solid white; ">
+        <img src="/images/logo_blanc.png" alt="Logo" style="height: 70px;">
+    </div>
+
+    <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+        <div class="row">
+            <div class="col" style="text-align: center; padding-top: 5px;">
+                <h2 class="w700">ADMINISTRATION DU SITE</h2>
+            </div>
+        </div>
+        <div class="row" style="height:5px; background-color: white;"></div>
+    </div>
+
+    <div class="container" id="shadow" style="border: 1px solid white;" s>
+        <div class="row">
+            <div class="col">
+                <h4 class="w300" style="color:#162b65; text-align: center;"><br>Veuillez saisir vos identifiants de
+                    connexion</h4>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col"> <center>
+                <form action="/PortesOuvertsConfig/login/auth" method="POST">
+
+                        <label for="uname"><b>
+                                <h6 class="w300" style="color: #162b65" ;>Nom d'utilisateur</h6>
+                            </b></label>
+                        <br>
+                        <input class="w300" type="text" placeholder="Nom utilisateur" name="username" required>
+                        <br><br>
+                        <label for="psw"><b>
+                                <h6 class="w300" style="color: #162b65" ;> Mot de passe</h6>
+                            </b></label>
+                        <br>
+                        <input class="w300" type="password" placeholder="Taper votre mot de passe" name="password" required>
+                        <br><br>
+                        <button type="submit" style=" margin-top: 15px; color: white; border: 0; width: 140px;background-image:
+              repeating-linear-gradient(135deg,crimson, red 15%);" class="btn btn-primary">Se connecter</button>
+                        <br>
+                        <!-- <label>
+                            <input style="text-align: right;" type="checkbox" checked="checked" name="remember">
+                            <h6 class="w300" style="color: #162b65" ;>Se souvenir de moi</h6>
+                        </label> -->
+
+                </form>
+            
+        </center>
+    </div>
+        </div>
+
+
+
+
+        <div class="col" style="padding:10px; border-bottom: 0;">
+
+            <a href="/PortesOuverts/index.html">
+                <h4 class="w300" style="color: #162b65; text-align: right;"><br>Revenir à la page d'accueil du site</h4>
+            </a>
+
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+    </div>
+
+
+</body>
+
 </html>

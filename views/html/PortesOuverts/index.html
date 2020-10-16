@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>Site2_login_utilisateur</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS SANS CDN-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- Override de Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/custom2.css">
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+        </script>
+    <script src="/js/login-form.js"></script>
+</head>
+
+<body>
+
+    <div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
+        <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;">
+            <div class="col-3">
+                <div style="border-left: 1px solid white;">
+                    <img src="./images/logo_blanc.png" alt="Logo" style="padding-left: 7px;height: 70px;">
+                </div>
+            </div>
+            <div class="col-8">
+            </div>
+            <div class="col-1 medias">
+                <a href="/PortesOuvertsConfig/login.html"> <img class="mr-3" src="./images/admin_icon.png" alt="Icone"
+                        style="padding-left: 45px; padding-top: 3px; height: 20px;"></a>
+            </div>
+        </div>
+
+        <div class="container" id="shadow" style="background-color: #162b65;border: 1px solid white;">
+            <div class="row">
+                <div class="col" style="text-align: center; padding-top: 10px;">
+
+                    <h2 class="w700" style="font-size: 46px;">BIENVENUE <span class="w300">AUX</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+            <div class="row">
+                <div class="col" style="padding-top:18px; border-bottom: 0; text-align: center;">
+                    <h1 class="w700">PORTES OUVERTES VIRTUELLES</h1>
+                </div>
+            </div>
+            <div class="row" style="height:5px; background-color: white;"></div>
+        </div>
+
+        <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+
+            <div class="form-wrap">
+                <form action="/PortesOuverts/loginpublic/loginpublic" method="POST">
+                <label style="color: white; padding: 3px; margin-top:10px;" for="email">
+                    <h5 class="w300">Connectez-vous avec l'adresse
+                        courriel utilisée pour vous inscrire</h5>
+                </label>
+                <input type="email" class="form-control" name="username" id="username" placeholder="Adresse courriel"
+                    required="yes">
+                <div class="form-group">
+                    <center>
+                        <button style=" margin-top: 15px; color: white; border: 0; width: 140px;background-image:
+                                repeating-linear-gradient(135deg,crimson, red 15%);" type="submit"
+                            class="btn btn-primary" value="Entrer" name="login">ENTRER</button></a>
+                    </center>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+            <div class="row">
+                <div class="col" style="border-bottom: 1px solid white; text-align: center; padding: 10px;">
+                    <h5 class="w300">Pas encore inscrit(e) ? Aller au <a href="site1_index_formulaire.html#jump_inscrire"
+                            style="text-decoration: underline;">formulaire d'inscription</a></h5>
+                    </a>
+                </div>
+                <img class="col-md-auto" src="/images/login_img.jpg" style="padding-left: 0px; padding-right: 0px;">
+            </div>
+        </div>
+
+
+</body>
+
+</html>
