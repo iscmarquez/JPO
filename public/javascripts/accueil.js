@@ -8,6 +8,8 @@ $(document).ready(function (){
      
           $("#visitevirtuelle").attr('href',response[0].linkVirtualVisit);
           $("#faq").attr('href',response[0].linkFAQ);
+          $("#welcomeText").append(response[0].endMessage);
+         
       
     }); 
 } );
