@@ -256,8 +256,10 @@ app.put('/inSpeaker', function(request, response) {
 		let chat = request.body.chat;
 		let linkchat = request.body.linkchat;
 		let user = request.session.username;
-		let fileName = request.files.file.name;
-		let imageName = "photo." + fileName.substr(fileName.indexOf(".") + 1);
+
+
+		let fileName = request.files != null ? request.files.file.name : null;
+		let imageName = fileName != null ? "photo." + fileName.substr(fileName.indexOf(".") + 1) : null;
 		const photoLink = request.files ? '/images/speaker/#idSpeaker#/' + imageName : null;
 		var sql = "UPDATE Speaker SET name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, idUser = ? where idSpeaker = ? ;";
 
