@@ -1,0 +1,103 @@
+ @font-face {
+   font-family: gotham;
+   font-weight: 500;
+   src: url("Gotham-Medium.otf") format("opentype");
+
+ }
+
+ @font-face {
+   font-family: gotham;
+   font-weight: 300;
+   src: url("Gotham-Light.otf") format("opentype");
+
+ }
+
+ @font-face {
+   font-family: gotham;
+   font-weight: 700;
+   src: url("Gotham-Bold.otf") format("opentype");
+
+ }
+
+*{
+   font-family: 'gotham';
+ }
+
+ .w300 {
+   font-weight: 300;
+ }
+
+ .w500 {
+   font-weight: 500;
+ }
+
+ .w700 {
+   font-weight: 700;
+ }
+
+
+
+
+
+ .nav-link {
+   background-color: #162b65;
+   border: 1px solid white;
+   font-weight: 500;
+ }
+
+ .nav-link.active {
+  background-image: repeating-linear-gradient(135deg,crimson, red 15%);
+  color: white;
+ }
+
+ a {
+   color: white;
+ }
+
+ h1 {
+   font-family: gotham;
+   font-weight: 700;
+   color: white;
+   font-size: 62px
+ }
+
+ h2 {
+   color: white;
+   font-size: 50px;
+ }
+
+ h3 {
+   color: white;
+   font-size: 30px;
+ }
+
+ h4 {
+   color: white;
+ }
+
+ h5 {
+   color: white;
+
+ }
+
+ p {
+   color: white;
+   font-size: 18px;
+ }
+
+ a.active {
+   color: red;
+ }
+
+ a:hover {
+   color: crimson;
+ }
+
+ #shadow {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+
+ #bouton {
+   background-color: #162b65;
+   color: white;
+ }

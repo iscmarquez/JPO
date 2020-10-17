@@ -59,7 +59,7 @@ app.use(function(request, response, next){
 
 app.use("/index.html", function( request, response) {
   console.log("Entering to index.html");
-  response.sendFile(path.resolve("./views/html/PortesOuverts/loginpublic.html"));
+  response.sendFile(path.resolve("./views/html/PortesOuverts/index.html"));
 });
 
 // catch 404 and forward to error handler

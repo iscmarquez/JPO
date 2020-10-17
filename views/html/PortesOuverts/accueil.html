@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 
-  <head>
+<head>
     <title>Accueil Portes Ouvertes Institut Grasset</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,12 +24,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
-        <script src="/js/conference.js"></script>
+        <script src="/js/accueil.js"></script>
 </head>
 
 <body>
 
-    <div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
+
+    <div class="container" id="shadow" style="padding:0; background-color: yellow; border: 1px solid white;">
         <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;">
             
 <div class="container" id="shadow" style="padding-left: 7px; background-color: #162b65; border: 1px solid white;">
@@ -38,11 +39,11 @@
 
         </div>
         <nav style="padding-left:0;" class="nav nav-pills-notstyle flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link " href="/PortesOuverts/accueil.html">ACCUEIL</a>
-            <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/conference.html">CALENDRIER</a>
+            <a class="flex-sm-fill text-sm-center nav-link active" href="index.html">ACCUEIL</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/conference.html">CALENDRIER</a>
             <a class="flex-sm-fill text-sm-center nav-link" href="clavarder.html">CLAVARDER</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="visiter.html">VISITER</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="faq.html">FOIRE AUX QUESTIONS</a>
+            <a id="visitevirtuelle" class="flex-sm-fill text-sm-center nav-link" href="visiter.html" target="_blank">VISITER</a>
+            <a id="faq" class="flex-sm-fill text-sm-center nav-link" href="faq.html" target="_blank">FOIRE AUX QUESTIONS</a>
             <a class="flex-sm-fill text-sm-center nav-link" href="brochures.html">BROCHURES</a>
         </nav>
 
@@ -55,12 +56,13 @@
                 <h3 class="w.300" style="padding-top: 30px; padding-left: 15px;color: #162b65; ">Titre de la section
                 </h3>
                 <h5 class="w.500" style="color:crimson; padding-left: 30px;">Sous-titre</h5>
-                <div id="resultat">
-                  <div class="row row-cols-3" id="cardsContainer">
-                  </div>
+                <p id="welcomeText" style="padding-left: 15px;font-weight:300; ; color: #162b65; text-align: justify;"><br> </p>
+            </div>
+            <div class="col">
+                <div style="padding-top: 15px;padding-right: 15px; padding-bottom: 15px;">
+                    <img class="img-fluid" src="/images/accueil_img.jpg">
                 </div>
             </div>
-            
         </div>
     </div>
 
@@ -77,5 +79,3 @@
 </body>
 
 </html>
-
-  

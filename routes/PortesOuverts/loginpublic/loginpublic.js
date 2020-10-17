@@ -36,7 +36,8 @@ app.post('/loginpublic', function(request, response) {
 			console.log('Result %s', results);
 			if (results && results.length > 0) {
 				request.session.loggedin = true;
-				response.redirect('/PortesOuverts/conference.html');
+				
+				response.redirect('/PortesOuverts/accueil.html');
 			} else {
 				response.send('Vous n etes pas inscrit');
 			}			
