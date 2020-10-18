@@ -24,6 +24,10 @@
         {
             "uri" : "/PortesOuverts/chat",
             "handler"  : "./routes/PortesOuverts/chat/chat"
+        },
+        {
+            "uri" : "/PortesOuverts/brochures",
+            "handler"  : "./routes/PortesOuverts/brochures/brochures"
         }
     ]
 }

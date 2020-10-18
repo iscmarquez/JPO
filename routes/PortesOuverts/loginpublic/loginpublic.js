@@ -31,41 +31,42 @@ app.post('/loginpublic', function(request, response) {
 	let connection = require('db_integration');
 	var username = request.body.username;
 	console.log(JSON.stringify(request.body));
-	if(request.body.index =="Entrer"){
-		if (username ) {
-			connection.query('SELECT * FROM inscription WHERE mail = ? ', [username], function(error, results, fields) {
-				console.log('Result %s', results);
-				if (results && results.length > 0) {
-					request.session.loggedin = true;
-					response.redirect('/PortesOuverts/accueil.html');
-				} else {
-					response.send('Vous n etes pas inscrit');
-				}			
-			});
-		}else {
-			response.send('Veuillez donner l email avec vous avez s incrit!');
-		}
-	}
-	else{
-		let connection = require('db_integration');
-		connection.query("INSERT INTO guests(dateAdmission) VALUES (date_format(now(),'%Y-%m-%d %h:%i'));", function(error, results, fields) {
+	if (username ) {
+		connection.query('SELECT * FROM inscription WHERE mail = ? ', [username], function(error, results, fields) {
 			console.log('Result %s', results);
-			if (error){
-				response.status(500).json(
-					{
-						"readyState":err.code,
-						"status":err.sqlState,
-						"statusText":err.sqlMessage
-					}
-				);
-				return;
-			}else{
+			if (results && results.length > 0) {
 				request.session.loggedin = true;
-				response.redirect('/PortesOuverts/accueil.html');	
-			}		
+				response.redirect('/PortesOuverts/accueil.html');
+			} else {
+				response.send('Vous n etes pas inscrit');
+			}			
 		});
+	}else {
+		response.send('Veuillez donner l email avec vous avez s incrit!');
 	}
+
 });
+
+app.get('/loginpublic', function(request, response){
+	console.log("Login Guest!");
+	let connection = require('db_integration');
+	connection.query("INSERT INTO guests(dateAdmission) VALUES (date_format(now(),'%Y-%m-%d %h:%i'));", function(error, results, fields) {
+		console.log('Result %s', results);
+		if (error){
+			response.status(500).json(
+				{
+					"readyState":err.code,
+					"status":err.sqlState,
+					"statusText":err.sqlMessage
+				}
+			);
+			return;
+		}else{
+			request.session.loggedin = true;
+			response.redirect('/PortesOuverts/accueil.html');	
+		}		
+	});
+})
 
 
 module.exports = app;

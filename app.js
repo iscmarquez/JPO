@@ -31,6 +31,7 @@ app.use('/images', express.static(__dirname + '/public/images'));
 app.use('/documents', express.static(__dirname + '/public/documents'));
 
 imagesPath = path.resolve('./public/images');
+documentsPath = path.resolve('./public/documents');
 
 let config = require('./routes/routes.config.json');
 for(index in config.routes){

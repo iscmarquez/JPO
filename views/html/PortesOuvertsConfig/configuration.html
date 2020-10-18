@@ -66,6 +66,9 @@
 				<li class="nav-item active">
 					<a  href="#tab4" role="tab">Gestion des conférences</a>
 				</li>
+				<li class="nav-item active">
+					<a  href="#tab5" role="tab">Gestion des brochures</a>
+				</li>
 			</ul>
 			<div>
 				<div class="tab-pane active" id="tab1">
@@ -302,6 +305,58 @@
 					  </div>		
 			</div>
 			
+			<div class="tab-pane" id="tab5">
+				<p>Gestion des brochures</p>
+				<table class="table table-bordered" id="fileList"  style="width: 100%;">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Image</th>
+							<th>Document</th>
+							<th>Description</th>							
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" name="addFile">Ajouter</button>
+				<button type="button" class="btn btn-primary" name="removeFiles">Effacer</button>
+
+				<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					  <div class="modal-content">
+						<div class="modal-header">
+						  <h5 class="modal-title" id="exampleModalLabel">Gestion des brochures</h5>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button>
+						</div>
+						<div class="modal-body">
+							<form role="form" enctype="multipart/form-data" id="fileForm">
+								<div class="form-group"> 
+									<label for="inputDescription">Description</label>
+									<input type="text" class="form-control" name="fileDescription">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputFile">Document</label>
+									<input type="file" class="form-control-file" id="inputFileDocument">
+									<p class="help-block">Ajouter le document.</p>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputFile">Image</label>
+									<input type="file" class="form-control-file" id="inputFileImage">
+									<p class="help-block">Ajouter l'image.</p>
+								</div>					
+							</form>
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						  <button type="button" class="btn btn-primary" name="saveFile">Enregistrer</button>
+						</div>
+					  </div>
+					</div>
+				  </div>		
+		</div>		
 					
 		<div id="successAlert" class="alert alert-success collapse" role="alert">Les informations ont été enregistrées</div>
 		<div id="errorAlert" class="alert alert-danger alert-dismissible collapse" role="alert" >
