@@ -2,6 +2,7 @@ var speakerMethod;
 var speakerData;
 var eventMethod;
 var eventData;
+var filesData;
 
 $(document).ready(function(){
 
@@ -19,6 +20,10 @@ $(document).ready(function(){
             }
             if(ui.newTab.index() == 3){
                 $.fn.getAllConferences();
+               
+            }
+            if(ui.newTab.index() == 4){
+                $.fn.getFiles();
                
             }             
         }
@@ -516,7 +521,7 @@ var $tableFiles = $("#fileList").DataTable({
         'width':'1%',
         'selected': true,
         'render': function (data, type, full, meta){
-            return '<input type="radio" value="' + data + '" name="idDownloadable"> ' ;
+            return '<input type="radio" value="' + data + '" name="idFile"> ' ;
         } 
      },{
         'targets': 1,
@@ -532,58 +537,43 @@ var $tableFiles = $("#fileList").DataTable({
 
 
 $tableFiles.on('click', 'tr', function () {
-    fileData = $tableFiles.row( this ).data();
-    console.log("fileData : " + JSON.stringify(fileData));
+    filesData = $tableFiles.row( this ).data();
+    console.log("filesData : " + JSON.stringify(filesData));
     let $radio = $('input[type="radio"]', $(this));
     $radio.prop("checked", true);
 } );
 
   $.fn.getFiles = function(){ 
     $.ajax({
-            "url": "/PortesOuvertsConfig/configuration/files",
+            "url": "/PortesOuvertsConfig/configuration/File",
             "method": "GET",
             "timeout": 0,
         }).done(function (response) {
-            $fileData.clear();
+            $tableFiles.clear();
             for(let i = 0; i < response.length; i++){
-                $fileData.row.add([response[i].idDownloadable, response[i].fileImage, response[i].fileLink, response[i].description ] );
+                $tableFiles.row.add([response[i].idDownloadable, response[i].fileImage, response[i].fileLink, response[i].description] );
 
             }
-            $fileData.draw();
+            $tableFiles.draw();
     }); 
 }
 
-$("#filesModal").on("hidden.bs.modal", function () {
-    $("#filesForm")[0].reset();
+$("#fileModal").on("hidden.bs.modal", function () {
+    $("#fileForm")[0].reset();
 })
 
-$("#filesModal").on("show.bs.modal", function (event) {
-    var button = $(event.relatedTarget)
-    if(button.attr("name") === "addFiles")
-        fileMethod="POST";
-    else if(button.attr("name") === "updatefiles"){
-        fileMethod="PUT";
-        $("input[name='fileLink']").val(fileMethod[2]);
-        $("input[name='descriptionfile']").val(fileMethod[3]);
-
-    }  
-  })   
-
-
-  $( "button[name='saveFile']" ).click(function( event ) {
+$( "button[name='saveFile']" ).click(function( event ) {
     event.preventDefault();
     var data = new FormData();
-    var file = $('#inputFileDownloable')[0].files[0];
-    data.append("fileLink",file);
-    data.append("descriptionfile", $("input[name='descriptionfile']").val());
-   
+    var file = $('#inputFileDocument')[0].files[0];
+    data.append("file",file);
+    var image = $('#inputFileImage')[0].files[0];
+    data.append("image",image);
+    data.append("description", $("input[name='fileDescription']").val());
 
-    if(fileMethod === "PUT")
-        data.append("idFile", $("input[name='idFile']:checked").val());    
-    console.log("tipo de post" +fileMethod );
-        $.ajax({
-        "url": "/PortesOuvertsConfig/configuration/files",
-        "method": fileMethod,
+    $.ajax({
+        "url": "/PortesOuvertsConfig/configuration/File",
+        "method": "POST",
         "enctype": 'multipart/form-data',
         "processData": false,  // Important!
         "contentType": false,
@@ -611,15 +601,14 @@ $("#filesModal").on("show.bs.modal", function (event) {
   $('#fileForm')[0].reset();
 });
 
-
-$( "button[name='removeFile']" ).click(function( event ) {
+$( "button[name='removeFiles']" ).click(function( event ) {
     event.preventDefault();
     $.ajax({
-        "url": "/PortesOuvertsConfig/configuration/file",
+        "url": "/PortesOuvertsConfig/configuration/File",
         "method": "DELETE",
         "timeout": 0,
         "data" : {
-            idFile : fileData[0]              
+            idFile : filesData[0]
         }
       }).done(function (response) {
           if(response.status == "success"){
@@ -638,6 +627,7 @@ $( "button[name='removeFile']" ).click(function( event ) {
         }, 10000);
   });
 });
+
 
     $.fn.getGeneralConfig();
 });

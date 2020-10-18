@@ -533,5 +533,124 @@ app.put('/inConference', function(request, response) {
 });
 
 
+app.get('/File', function(request, response) {
+	try{
+		console.log("file get");
+		let connection = require('db_integration');
+        connection.query("SELECT idDownloadable, fileImage, fileLink, description FROM downloadable;", (error, results) => { 
+			if(error){
+				response.json({
+					error: error
+				});
+				return;
+			}
+			response.json(results);			
+		});
+		
+	}catch(error){
+		console.error(error);
+		response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+});
+
+app.post('/File', function(request, response) {
+	
+	try{
+		if(!request.files){
+			response.status(500).json({
+				status : "Error",
+				error: {
+					"readyState" : 500,
+						"status" : -1,
+					"statusText" : "Invalid File"
+				}
+			})
+			return;
+		}
+		
+		let connection = require('db_integration'); 
+		let description = request.body.description;
+		let fileName = request.files.file.name;
+		let fileImage = request.files.image.name;
+		let user = request.session.username;
+		
+		
+		let fileLink = '/documents/files/' + fileName;
+		let imageLink = '/documents/filesImages/' + fileImage;
+		
+		let sql = "INSERT INTO Downloadable (description, fileImage, fileLink, date, idUser) VALUES (?,?,?,now(),?);";
+		
+		connection.query(sql, [description, imageLink , fileLink, user], function (err, result) {
+			if (err){
+				console.error(err);
+				throw (err);
+			}
+			console.log('Result %s', JSON.stringify(result));
+
+
+
+			request.files.file.mv(documentsPath + "/files/" + fileName, function(err){
+				if(err){
+					console.error(err);
+					throw (err);
+				}
+			});
+
+			request.files.image.mv(documentsPath + "/filesImages/" + fileImage, function(err){
+				if(err){
+					console.error(err);
+					throw (err);
+				}
+			});
+
+		});
+
+	}catch(error){
+		console.log("ERROR => ");
+		console.error(error);
+		return response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+
+	return 	response.status(200).json({
+		status : "success"
+	});
+});
+
+
+app.delete('/File', function(request, response) {
+	try{
+		let connection = require('db_integration');
+		console.log("ID Speaker to delete : %s", request.body.idFile);
+        connection.query('DELETE FROM downloadable WHERE idDownloadable = ?', [request.body.idFile], (error, results) => { 
+			console.log(results);
+			if(error){
+				throw(error);
+			}
+		});
+	}catch(err){
+		return response.status(500).json({
+			"readyState":error.code,
+			"status":error.sqlState,
+			"statusText":error.sqlMessage
+		});
+
+	}
+		
+	return response.status(200).json({status : "success"});			
+
+});
+
 
 module.exports = app;
