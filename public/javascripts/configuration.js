@@ -34,7 +34,9 @@ $(document).ready(function(){
               console.log(response );
             $("input[name='virtualVisit']").val(response[0].linkVirtualVisit);
             $("input[name='faq']").val(response[0].linkFAQ);
-            $("input[name='message']").val(response[0].endMessage);
+            $("#welcomeText").text (response[0].welcomeText);
+            $("input[name='welcomeTitle']").val(response[0].welcomeTitle);
+            $("input[name='welcomeSubTitle']").val(response[0].welcomeSubTitle);
             $("input[name='noEvent']").val(response[0].noEvent);
             $("input[name='video1']").val(response[0].video1);
             $("input[name='video2']").val(response[0].video2);
@@ -50,10 +52,13 @@ $(document).ready(function(){
         "data" : {
             linkVirtualVisit : $("input[name='virtualVisit']").val(),
             linkFAQ : $("input[name='faq']").val(),
-            message: $("input[name='message']").val(),
+            message: $("#message").val(),
+            welcomeTexte: $("input[name='welcomeText']").val(),
             noEvent: $("input[name='noEvent']").val(),
             video1: $("input[name='video1']").val(),    
-            video2: $("input[name='video2']").val()                     
+            video2: $("input[name='video2']").val() ,
+            welcomeTitle: $("input[name='welcomeTitle']").val(),    
+            welcomeSubTitle: $("input[name='welcomeSubTitle']").val()                      
         }
       }).done(function (response) {
           if(response.message == "success"){

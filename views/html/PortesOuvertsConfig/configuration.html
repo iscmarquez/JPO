@@ -70,8 +70,11 @@
 			<div>
 				<div class="tab-pane active" id="tab1">
 					<form role="formGeneral">
-						<div class="form-group">
-							 
+						<hr>
+						<label for="inputMessage">
+							<h4>Générale</h4>
+						</label><br/>
+						<div class="form-group">							 
 						<label for="inputVirtualVisit">
 								Lien visite virtuelle
 							</label>
@@ -95,12 +98,28 @@
 							</label>
 							<input type="text" class="form-control" name="video2" required maxlength="255">
 						</div>
+						<hr>
+						<label for="inputMessage">
+							<h4>Page d'accueil</h4>
+						</label><br/>
 						<div class="form-group">
-							 
+							
+
 							<label for="inputMessage">
-								Message de fin
+								Titre de bienvenu
 							</label>
-							<input type="textarea" class="form-control" name="message" required maxlength="255">
+							<input type="text" class="form-control" name="welcomeTitle" form="usrform">
+							<label for="inputMessage">
+								Sous titre de bienvenu
+							</label>
+							<input type="text" class="form-control" name="welcomeSubTitle" form="usrform">
+							<label for="inputMessage">
+								Message de bienvenu
+							</label>
+							
+						<!--	<input type="text" class="form-control" name="message" form="usrform">-->
+							<textarea id="welcomeText" class="form-control" name="welcomeText" rows="10" cols="30"></textarea>
+								
 						</div>
 						<div class="form-group">
 							<label for="inputMessage">

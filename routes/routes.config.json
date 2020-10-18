@@ -20,6 +20,10 @@
         {
             "uri" : "/PortesOuverts/accueil",
             "handler"  : "./routes/accueil/accueil"
+        },
+        {
+            "uri" : "/PortesOuverts/chat",
+            "handler"  : "./routes/PortesOuverts/chat/chat"
         }
     ]
 }

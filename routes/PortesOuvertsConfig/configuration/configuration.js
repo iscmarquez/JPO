@@ -6,7 +6,7 @@ var app =  express.Router();
 
 app.get('/outGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
-        connection.query('SELECT linkVirtualVisit, linkFAQ, endMessage, noEvent , video1, video2, date, idUser FROM Configuration', (error, results) => { 
+        connection.query('SELECT linkVirtualVisit, linkFAQ, welcomeTitle, welcomeSubTitle,welcomeText, endMessage, noEvent , video1, video2, date, idUser FROM Configuration', (error, results) => { 
 			console.log(results);
 			if(error){
 				response.json({
@@ -25,13 +25,18 @@ app.post('/inGeneralConsult', function(request, response) {
 	let virtualVisit = request.body.linkVirtualVisit;
     let faq = request.body.linkFAQ;
 	let message = request.body.message;
+	let welcomeTitle = request.body.welcomeTitle;
+	let welcomeSubTitle = request.body.welcomeSubTitle;
 	let username = request.session.username;
+	let welcomeText = request.body.welcomeTexte;
 	let noEvent = request.body.noEvent;
 	let video1 = request.body.video1;
 	let video2 = request.body.video2;
-	
-    var sql = "UPDATE  Configuration SET linkVirtualVisit = ?, linkFAQ = ?, endMessage = ? , noEvent = ?, video1 = ?, video2= ? , idUser = ?, date =now() ;";
-    connection.query(sql, [virtualVisit, faq , message, noEvent, video1, video2, username ], function (err, result) {
+	console.log("welcomeTitle" + welcomeTitle);
+	console.log("welcomeSubTitle" + welcomeSubTitle);
+    var sql = "UPDATE  Configuration SET linkVirtualVisit = ?, linkFAQ = ?, endMessage = ? , welcomeTitle = ?,  welcomeSubTitle = ?, welcomeText = ?, noEvent = ?, video1 = ?, video2= ? , idUser = ?, date =now() ;";
+   
+	connection.query(sql, [virtualVisit, faq , message, welcomeTitle, welcomeSubTitle, welcomeText, noEvent, video1, video2, username ], function (err, result) {
         if (err){
 			response.status(500).json(
 				{
@@ -256,8 +261,10 @@ app.put('/inSpeaker', function(request, response) {
 		let chat = request.body.chat;
 		let linkchat = request.body.linkchat;
 		let user = request.session.username;
-		let fileName = request.files.file.name;
-		let imageName = "photo." + fileName.substr(fileName.indexOf(".") + 1);
+
+
+		let fileName = request.files != null ? request.files.file.name : null;
+		let imageName = fileName != null ? "photo." + fileName.substr(fileName.indexOf(".") + 1) : null;
 		const photoLink = request.files ? '/images/speaker/#idSpeaker#/' + imageName : null;
 		var sql = "UPDATE Speaker SET name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, idUser = ? where idSpeaker = ? ;";
 

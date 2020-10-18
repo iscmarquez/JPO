@@ -30,21 +30,42 @@ app.post('/', function(request, response) {
 app.post('/loginpublic', function(request, response) {
 	let connection = require('db_integration');
 	var username = request.body.username;
-	console.log(request.body.username);
-	if (username ) {
-		connection.query('SELECT * FROM inscription WHERE mail = ? ', [username], function(error, results, fields) {
+	console.log(JSON.stringify(request.body));
+	if(request.body.index =="Entrer"){
+		if (username ) {
+			connection.query('SELECT * FROM inscription WHERE mail = ? ', [username], function(error, results, fields) {
+				console.log('Result %s', results);
+				if (results && results.length > 0) {
+					request.session.loggedin = true;
+					response.redirect('/PortesOuverts/accueil.html');
+				} else {
+					response.send('Vous n etes pas inscrit');
+				}			
+			});
+		}else {
+			response.send('Veuillez donner l email avec vous avez s incrit!');
+		}
+	}
+	else{
+		let connection = require('db_integration');
+		connection.query("INSERT INTO guests(dateAdmission) VALUES (date_format(now(),'%Y-%m-%d %h:%i'));", function(error, results, fields) {
 			console.log('Result %s', results);
-			if (results && results.length > 0) {
+			if (error){
+				response.status(500).json(
+					{
+						"readyState":err.code,
+						"status":err.sqlState,
+						"statusText":err.sqlMessage
+					}
+				);
+				return;
+			}else{
 				request.session.loggedin = true;
-				
-				response.redirect('/PortesOuverts/accueil.html');
-			} else {
-				response.send('Vous n etes pas inscrit');
-			}			
+				response.redirect('/PortesOuverts/accueil.html');	
+			}		
 		});
-	} else {
-		response.send('Veuillez donner l email avec vous avez s incrit!');
 	}
 });
+
 
 module.exports = app;

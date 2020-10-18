@@ -23,7 +23,7 @@ app.get('/', (request, res) => {
     try{
         console.log("pprueba" + request.session.idEvent);
     let conexion = require('db_integration');
-    conexion.query('select c.nameConference, c.linkConference, c.start, c.end, s.name, s.description, s.photoLink from conference  c inner join  speaker s  on c.idSpeaker = s.idSpeaker where c.idEvent = ?', [request.session.idEvent], (error, results, fields) => { // and event.startdate >= NOW()
+    conexion.query("select c.nameConference, c.linkConference, c.start, c.end, s.name, s.description,REPLACE(photoLink, '#idSpeaker#', s.idSpeaker) as photoLink from conference  c inner join  speaker s  on c.idSpeaker = s.idSpeaker where c.idEvent = ?", [request.session.idEvent], (error, results, fields) => { // and event.startdate >= NOW()
         console.log(results);
         if(error){
             console.error(error);
@@ -66,7 +66,7 @@ app.get('/event/:eventId', (req, res, next) => {
     let conexion = require('db_integration');
     const eventId = req.params.eventId; 
     console.log(req.body);
-    conexion.query(`select speaker.name, speaker.photolink, conference.linkconference,  conference.nameconference, event.startdate from speaker left join conference on conference.idspeaker = speaker.idspeaker inner join event on conference.idevent = event.idevent and event.idevent = ${eventId}`, (error, results, fields) => {
+    conexion.query(`select speaker.name, REPLACE(photoLink, '#idSpeaker#', speaker.idSpeaker) as photoLink, conference.linkconference,  conference.nameconference, event.startdate from speaker left join conference on conference.idspeaker = speaker.idspeaker inner join event on conference.idevent = event.idevent and event.idevent = ${eventId}`, (error, results, fields) => {
         if(error)
             throw error;
         return res.json(results);
