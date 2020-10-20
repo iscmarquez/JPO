@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
+	<title>configuration</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Configuration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link
+       
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom2.css">
 	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" href="/css/datatables.min.css" type="text/css">
 	<link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
@@ -13,8 +19,25 @@
 	<script src="/js/datatables.min.js"></script>
 	<script src="/js/dataTables.select.min.js"></script>
 	<script src="/js/configuration.js"></script>	
+
+	
   </head>
   <style>
+
+	  a{
+		  background-color: #162b65;
+	  }
+	  .btn{
+
+		background-color: #162b65;
+	  }
+
+	  .btn:hover{
+		background-image: repeating-linear-gradient(135deg,crimson, red 15%);
+		border: 0;
+	  }
+
+	
 	  #overlay{	
 	position: fixed;
 	top: 0;
@@ -49,8 +72,40 @@
   </style>
   <body>
 
- 	<div class="container">
-		<div id="tabs" >
+	<!-- <div class="container" id="shadow" style="padding-left: 7; background-color: #162b65; border: 1px solid white; ">
+        <img src="./images/logo_blanc.png" alt="Logo" style="height: 70px;">
+    </div> -->
+
+	<div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
+        <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;">
+            <div class="col-2">
+                <div style="border-left: 1px solid white;">
+                    <img src="/images/logo_blanc.png" alt="Logo" style="padding-left: 7px;height: 70px;">
+                </div>
+            </div>
+            <div class="col-8">
+            </div>
+            <div class="col-2" style="text-align: right; padding-right: 18px;"" >
+                <a href="/index.html"> <p class="p2b">accueil</p>
+                    <!-- <img class="mr-3" src="./images/admin_icon.png" alt="Icone"
+                        style="padding-left: 45px; padding-top: 3px; height: 20px;"> -->
+                    </a>
+            </div>
+		</div>
+	</div>
+
+    <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+        <div class="row">
+            <div class="col" style="text-align: center; padding-top: 5px;">
+                <h2 class="w700">ADMINISTRATION DU SITE</h2>
+            </div>
+        </div>
+        <div class="row" style="height:5px; background-color: white;"></div>
+    </div>
+	
+
+ 	<div class="container" id="shadow" style="border: 1px solid white; padding-top: 20px;">
+		<div id="tabs" style="border: black;" >
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="nav-item active" role="tab">
 					<a  href="#tab1" >Configuration générale</a>
