@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-  <head>
+<head>
     <title>Accueil Portes Ouvertes Institut Grasset</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,28 +24,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
-         <script src="/js/accueil.js"></script>
-         
-        <script src="/js/conference.js"></script>
+    <script src="/js/accueil.js"></script>
+
+    <script src="/js/conference.js"></script>
 </head>
+
+<style>
+    a {
+        text-decoration: none;
+
+    }
+
+    .btn {
+        background-image: repeating-linear-gradient(135deg, crimson, red 15%);
+        color: white;
+    }
+</style>
 
 <body>
 
+
     <div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
         <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;">
-            
-<div class="container" id="shadow" style="padding-left: 7px; background-color: #162b65; border: 1px solid white;">
-        <img src="/images/logo_blanc.png" alt="Logo" style="height: 70px;">
-    </div> 
+
+            <div class="container" id="shadow"
+                style="padding-left: 7px; background-color: #162b65; border: 1px solid white;">
+                <img src="/images/logo_blanc.png" alt="Logo" style="height: 70px;">
+            </div>
 
         </div>
         <nav style="padding-left:0;" class="nav nav-pills-notstyle flex-column flex-sm-row">
             <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/accueil.html">ACCUEIL</a>
-        <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/conference.html">CALENDRIER</a>
-        <a class="flex-sm-fill text-sm-center nav-link " href="/PortesOuverts/chat.html">CLAVARDER</a>
-        <a id="visitevirtuelle" class="flex-sm-fill text-sm-center nav-link" href="visiter.html" target="_blank">VISITER</a>
-        <a id="faq" class="flex-sm-fill text-sm-center nav-link" href="faq.html" target="_blank">FOIRE AUX QUESTIONS</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/brochures.html">BROCHURES</a>
+            <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/conference.html">CALENDRIER</a>
+            <a class="flex-sm-fill text-sm-center nav-link " href="/PortesOuverts/chat.html">CLAVARDER</a>
+            <a id="visitevirtuelle" class="flex-sm-fill text-sm-center nav-link" href="visiter.html"
+                target="_blank">VISITER</a>
+            <a id="faq" class="flex-sm-fill text-sm-center nav-link" href="faq.html" target="_blank">FOIRE AUX
+                QUESTIONS</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/brochures.html">BROCHURES</a>
         </nav>
 
     </div>
@@ -54,30 +70,102 @@
         <div class="row">
 
             <div class="col">
-                <h3 class="w.300" style="padding-top: 30px; padding-left: 15px;color: #162b65; ">Programme de la journée
-                </h3>
-               
-                <div id="resultat">
-                  <div class="row row-cols-3" id="cardsContainer">
-                  </div>
+                <h3 class="w.300" style="padding-top: 30px; padding-left: 15px;color: #162b65; text-align: center; ">Programme de la journée
+                <br><br></h3>
+
+
+
+                <!--ELIZABETH
+                /////////////////////////////////////////////////////-->
+                <!-- <div id="resultat">
+                    <div class="row row-cols-3" id="cardsContainer">
+                    </div>
                 </div>
             </div>
-            
+
         </div>
-    </div>
+    </div> -->
 
-    <div class="container" id="shadow" style="padding:0; background-image: repeating-linear-gradient(135deg,crimson, red 2%); border: 1px solid white; height:8px;">
-       
-            </div>
 
-    <div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
-        <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;height: 80px;">
-            </div>
-            </div>
+                <div class="container"
+                    style="padding:0; border-left:1px solid white;border-right:1px solid white;">
+
+                    <div class="row" style="padding-left: 50px; padding-top: 20; padding-right: 50px;">
+
+                        <div class="col">
+                            <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;">
+                                <img class="card-img-bottom" src="/images/prog_studio.jpg" alt="Image">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color: #162b65;">Titre de la conférence</h4>
+                                    <p class="card-text" style="color: #162b65;">Sujet de la conférence
+                                    </p>
+                                    <p style="color: crimson; font-size:smaller;">autre information</p>
+                                    <a href="#" class="btn">Participer</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;">
+                                <img class="card-img-bottom" src="/images/prog_estim2.jpg" alt="Image">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color: #162b65;">Titre de la conférence</h4>
+                                    <p class="card-text" style="color: #162b65;">Sujet de la conférence
+                                    </p>
+                                    <p style="color: crimson; font-size:smaller;">autre information</p>
+                                    <a href="#" class="btn">Participer</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="row" style="padding-left: 50px; padding-top: 20; padding-right: 50px;">
+
+                            <div class="col">
+                                <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;">
+                                    <img class="card-img-bottom" src="/images/prog_studio.jpg" alt="Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title" style="color: #162b65;">Titre de la conférence</h4>
+                                        <p class="card-text" style="color: #162b65;">Sujet de la conférence
+                                        </p>
+                                        <p style="color: crimson; font-size:smaller;">autre information</p>
+                                        <a href="#" class="btn">Participer</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;">
+                                    <img class="card-img-bottom" src="/images/prog_estim2.jpg" alt="Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title" style="color: #162b65;">Titre de la conférence</h4>
+                                        <p class="card-text" style="color: #162b65;">Sujet de la conférence
+                                        </p>
+                                        <p style="color: crimson; font-size:smaller;">autre information</p>
+                                        <a href="#" class="btn">Participer</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="container" id="shadow"
+                    style="padding:0; background-image: repeating-linear-gradient(135deg,crimson, red 2%); border: 1px solid white; height:8px;">
+
+                </div>
+
+                <div class="container" id="shadow"
+                    style="padding:0; background-color: #162b65; border: 1px solid white;">
+                    <div class="row"
+                        style="border-right: 1px solid white; border-bottom: 1px solid white;height: 80px;">
+                    </div>
+                </div>
 
 
 </body>
 
 </html>
-
-  
