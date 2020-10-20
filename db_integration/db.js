@@ -4,7 +4,7 @@ var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
 	password : '',
-	database : 'instit43_jpo_test'
+	database : 'instit43_jpo_test_2.0'
 });
 
 connection.connect( function onConnect(err) {   // The server is either down
