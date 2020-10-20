@@ -36,9 +36,6 @@
  }
 
 
-
-
-
  .nav-link {
    background-color: #162b65;
    border: 1px solid white;
@@ -50,10 +47,25 @@
   color: white;
  }
 
+ #fond-blanc{
+   color: #162b65;
+ }
+
+ 
+
+/* BLUE BACKGROUND */
+
  a {
    color: white;
  }
 
+ a.active {
+  color: crimson;
+}
+
+a:hover {
+  color: crimson;
+}
  h1 {
    font-family: gotham;
    font-weight: 700;
@@ -77,7 +89,6 @@
 
  h5 {
    color: white;
-
  }
 
  p {
@@ -85,13 +96,8 @@
    font-size: 18px;
  }
 
- a.active {
-   color: red;
- }
 
- a:hover {
-   color: crimson;
- }
+
 
  #shadow {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
