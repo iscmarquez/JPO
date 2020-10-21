@@ -1,0 +1,77 @@
+
+ <!DOCTYPE html>
+<html>
+
+
+<head>
+        <title> Formulaire de Rapport de programme</title>
+        <meta charset="utf-8" />
+        <script type="text/javascript">
+            var datefield=document.createElement("input")
+            datefield.setAttribute("type", "date")
+            if (datefield.type!="date"){ 
+                document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+                document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+                document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
+            }
+        </script>
+
+        <script>
+            if (datefield.type!="date"){
+                jQuery(function($){
+                $('#debut').datepicker();
+                $('#debut').attr("readonly",true);
+                $('#fin').datepicker();
+                $('#fin').attr("readonly",true);
+                })
+            }
+        </script>
+
+        <script type="text/javascript">function validate(){
+            var dddDebut = document.forms["monForm"]["debut"].value;
+            var ddDebut= new Date(dddDebut);
+            var dddFin =document.forms["monForm"]["fin"].value;
+            var ddFin= new Date(dddFin);
+            if (datefield.type!="date"){ 
+                var yeard = dddDebut.slice(6,10);
+                var dayd  = dddDebut.slice(3,5);
+                var monthd = dddDebut.slice(0,2);
+
+                var yearf = dddFin.slice(6,10);
+                var dayf  = dddFin.slice(3,5);
+                var monthf = dddFin.slice(0,2);
+
+                document.forms["monForm"]["debut"].value = yeard+"-"+monthd+"-"+dayd;
+                document.forms["monForm"]["fin"].value = yearf+"-"+monthf+"-"+dayf ;
+
+            }
+
+            if (ddDebut.getTime() > ddFin.getTime()){
+              alert("Dates invalides (debut est plus grand que fin)"); 
+              return false; 
+            }else{
+               return true;
+            }      
+        }</script>
+</head>
+<body>
+
+<button id="Accueil"><a href="/">Accueil</a></button>
+<form name="monForm" method="Post" action ="myaction1" onsubmit="return validate()">
+    <h2> Selection de date de Rapport de programme</h2>
+
+    <label for="debut">debut:</label>
+    <input id="debut" type="date" name="debut" value="YYYY-MM-DD" required><br><br>
+
+    <label for="fin">fin:</label>
+    <input id="fin" type="date" name="fin" value="YYYY-MM-DD" required><br><br>
+
+    <input type="submit" value="Valider"> 
+    <p id="rp"></p>
+    <table id="tab">
+    	
+    </table>
+</form>
+
+</body>
+</html>

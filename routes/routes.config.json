@@ -28,6 +28,15 @@
         {
             "uri" : "/PortesOuverts/brochures",
             "handler"  : "./routes/PortesOuverts/brochures/brochures"
+        },
+        {
+            "uri" : "/PortesOuvertsConfig/rapportInscription",
+            "handler"  : "./routes/PortesOuvertsConfig/reports/reports"
+        },
+        {
+            "uri" : "/PortesOuvertsConfig/rapportProgramme",
+            "handler"  : "./routes/PortesOuvertsConfig/reports/reports"
         }
+        
     ]
 }
