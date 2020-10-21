@@ -1,26 +1,27 @@
 $(document).ready(function (){
-/*
-    $.ajax({
-      "url": "/PortesOuverts/brochures",
-      "method": "GET",
-      "timeout": 0,
-    }).done(function (response) {
-        console.log(response);
-        const events = $('#cardsContainer');
-        response.forEach((item) => {
-            console.log("linkphoyto" + item.photolink);
   
-            events.append(`<article class="col">
-            <div class="card" with="400">
-              <div class="card-header">${item.nameConference}</div>
-              <div class="card-body" >
-                  <p>${item.start} ${item.end} </p>
-                  <img class="card-img" src="${item.photoLink}" alt="Conferencista: ${item.name}" width="200" height="250"/> 
-                  <p>${item.description}</p>
-                <a class="btn btn-warning" href="${item.linkConference}" target="_blank">Participer</a>
-              </div>
+  $.ajax({
+    "url": "/PortesOuverts/brochures/docs",
+    "method": "GET",
+    "timeout": 0,
+  }).done(function (response) {
+      console.log(response);
+      const doc = $('#fichiers');
+      response.forEach((item) => {
+          console.log("fichiers" + item.photolink);
+
+          doc.append(`<div class="col">
+          <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;" >
+          <img class="card-img-top" src="${item.fileImage}" alt="Image": ${item.fileImage} width="100" height="100"/>    
+            <div class="card-body" >
+              <p class="card-text" style="color: #162b65;">${item.description} 
+              <br>
+              <br>
+              </p>              
+              <a download class="btn" href="${item.fileLink}" >Télècharger</a>
             </div>
-          </article>`);
-        });
-      }); */
-  } );
+          </div>
+        </div>`);
+      });
+    });
+});
