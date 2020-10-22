@@ -16,7 +16,7 @@
 	<script src="/js/datatables.min.js"></script>
 	<script src="/js/dataTables.select.min.js"></script>
 	<script src="/js/configuration.js"></script>	
-
+	<script src="/js/validatorconfiguration.js"></script>
 	
   </head>
   <style>
@@ -124,7 +124,7 @@
 			</ul>
 			<div>
 				<div class="tab-pane active" id="tab1">
-					<form role="formGeneral">
+					<form role="formGeneral" class="bootstrap-form" id="general">
 						<hr>
 						<label for="inputMessage">
 							<h4>Générale</h4>
@@ -173,14 +173,14 @@
 							</label>
 							
 						<!--	<input type="text" class="form-control" name="message" form="usrform">-->
-							<textarea id="welcomeText" class="form-control" name="welcomeText" rows="10" cols="30"></textarea>
+							<textarea id="welcomeText" class="form-control" name="welcomeText" rows="10" cols="30" maxlength="255" required="yes"></textarea>
 								
 						</div>
 						<div class="form-group">
 							<label for="inputMessage">
 								Message pour s'inscrire
 							</label>
-							<input type="textarea" class="form-control" name="noEvent" required maxlength="255">
+							<input type="textarea" class="form-control" name="noEvent" required maxlength="500" required="yes">
 						</div>
 						
 						<button type="button" class="btn btn-primary" name="saveGeneral">

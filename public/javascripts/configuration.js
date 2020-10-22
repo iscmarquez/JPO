@@ -50,6 +50,15 @@ $(document).ready(function(){
 
    $( "button[name='saveGeneral']" ).click(function( event ) {
     event.preventDefault();
+
+    let form = $('#general');
+    
+    if(form[0].checkValidity() == false) {
+        form.addClass('was-validated');
+        e.stopPropagation();
+        return;
+    }
+
     $.ajax({
         "url": "/PortesOuvertsConfig/configuration/inGeneralConsult",
         "method": "POST",

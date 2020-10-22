@@ -12,6 +12,7 @@
               $(this).addClass('was-validated');
               e.preventDefault();
               e.stopPropagation();
+              return;
           }
   
       });
