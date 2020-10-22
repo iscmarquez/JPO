@@ -24,19 +24,18 @@ app.post('/inGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
 	let virtualVisit = request.body.linkVirtualVisit;
     let faq = request.body.linkFAQ;
-	let message = request.body.message;
 	let welcomeTitle = request.body.welcomeTitle;
 	let welcomeSubTitle = request.body.welcomeSubTitle;
-	let username = request.session.username;
 	let welcomeText = request.body.welcomeTexte;
-	let noEvent = request.body.noEvent;
+	let welcomeText2 = request.body.welcomeText2;//sera stockeé en endmessage
+	console.log(JSON.stringify(request.body));
 	let video1 = request.body.video1;
 	let video2 = request.body.video2;
 	console.log("welcomeTitle" + welcomeTitle);
 	console.log("welcomeSubTitle" + welcomeSubTitle);
     var sql = "update  configuration set linkvirtualvisit = ?, linkfaq = ?, endmessage = ? , welcometitle = ?,  welcomesubtitle = ?, welcometext = ?,  video1 = ?, video2= ? , date =now() ;";
    
-	var query = connection.query(sql, [virtualVisit, faq , message, welcomeTitle, welcomeSubTitle, welcomeText, video1, video2 ], function (err, result) {
+	var query = connection.query(sql, [virtualVisit, faq , welcomeText2, welcomeTitle, welcomeSubTitle, welcomeText, video1, video2 ], function (err, result) {
         if (err){
 			response.status(500).json(
 				{

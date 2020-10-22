@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'instit43_jpo_test'
+	host     : '23.235.197.135',//'localhost',
+	user     : 'instit43_jpo-test_adm',//'root',
+	password : 'jpo2020',//'',
+	database : 'instit43_jpo-test'
 });
 
 connection.connect( function onConnect(err) {   // The server is either down

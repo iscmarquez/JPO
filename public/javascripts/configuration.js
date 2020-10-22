@@ -68,7 +68,7 @@ $(document).ready(function(){
             linkFAQ : $("input[name='faq']").val(),
             message: $("#message").val(),
             welcomeTexte: $("#welcomeText").val(),
-            noEvent: $("input[name='noEvent']").val(),
+            welcomeText2:  $("#welcomeText2").val(),
             video1: $("input[name='video1']").val(),    
             video2: $("input[name='video2']").val() ,
             welcomeTitle: $("input[name='welcomeTitle']").val(),    
