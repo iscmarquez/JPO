@@ -6,12 +6,13 @@ var app =  express.Router();
 app.get('/', function(request, response) {
     try{
 	let connection = require('db_integration');
-	connection.query("select idSpeaker, name, description, replace(photoLink, '#idSpeaker#', idSpeaker) as photoLink, chat, linkchat from speaker where chat= true;", function(error, results, fields) {
+	let chatquery=connection.query("select idspeaker, name, description, replace(photolink, '#idSpeaker#', idspeaker) as photolink, chat, linkchat from speaker where chat= true;", function(error, results, fields) {
 	console.log('Result %s', JSON.stringify(results));
         if(error)
                 throw error;
     return response.json(results);;
     });
+    console.log(chatquery.sql);
 }
 catch(Err){
     console.error(Err);
