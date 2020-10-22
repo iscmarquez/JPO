@@ -6,11 +6,13 @@ $(document).ready(function (){
     }).done(function (response) {
       console.log("Response : " + JSON.stringify(response));
      
-          $("#visitevirtuelle").attr('href',response[0].linkVirtualVisit);
-          $("#faq").attr('href',response[0].linkFAQ);
-          $("#welcomeText").append(response[0].welcomeText);
-          $("#title").append(response[0].welcomeTitle);
-          $("#subtitle").append(response[0].welcomeSubTitle);
+          $("#visitevirtuelle").attr('href',response[0].linkvirtualvisit);
+          $("#faq").attr('href',response[0].linkfaq);
+          $("#welcomeText").append(response[0].welcometext);
+          $("#title").append(response[0].welcometitle);
+          $("#subtitle").append(response[0].welcomesubtitle);
+          $("#video1").attr('src',response[0].video1);
+          $("#video2").attr('src',response[0].video2);
          
       
     }); 

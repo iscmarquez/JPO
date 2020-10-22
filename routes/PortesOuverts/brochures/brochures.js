@@ -12,7 +12,7 @@ setup.use(cors());
 app.get('/docs', function(request, response) {
     try{
 	    let connection = require('db_integration');
-	    connection.query("SELECT Downloadable.fileImage, Downloadable.fileLink, Downloadable.description FROM `Downloadable`", function(error, results, fields) {
+	    connection.query("select downloadable.fileimage, downloadable.fileLink, downloadable.description from downloadable", function(error, results, fields) {
         console.log('Result %s', JSON.stringify(results));
         if(error)
             throw error;

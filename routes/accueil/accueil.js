@@ -8,7 +8,7 @@ app.get('/', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		console.log("äccueil");
-        connection.query('SELECT linkVirtualVisit, linkFAQ, endMessage, welcomeTitle, welcomeSubTitle, welcomeText FROM Configuration;', (error, results) => { 
+        connection.query('select linkvirtualvisit, linkfaq, endmessage, welcometitle, welcomesubtitle, welcometext, video1, video2 from configuration;', (error, results) => { 
 			console.log(results);
 			if(error){
 				response.json({

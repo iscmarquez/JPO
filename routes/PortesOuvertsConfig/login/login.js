@@ -10,12 +10,14 @@ app.post('/auth', function(request, response) {
 	console.log(request.body.password);
 	var password = request.body.password;
 	if (username && password) {
-		connection.query('SELECT * FROM user WHERE email = ? AND password = ?', [username, password], function(error, results, fields) {
+		connection.query('select * from user where email = ? and password = ?', [username, password], function(error, results, fields) {
 			console.log('Result %s', JSON.stringify(results));
 			if (results && results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
 				response.redirect('/PortesOuvertsConfig/configuration.html');
+			
+			//response.redirect('/PortesOuvertsConfig/rapportInscription.html');
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			

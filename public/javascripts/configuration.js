@@ -37,12 +37,12 @@ $(document).ready(function(){
             "timeout": 0,
           }).done(function (response) {
               console.log(response );
-            $("input[name='virtualVisit']").val(response[0].linkVirtualVisit);
-            $("input[name='faq']").val(response[0].linkFAQ);
-            $("#welcomeText").text (response[0].welcomeText);
-            $("input[name='welcomeTitle']").val(response[0].welcomeTitle);
-            $("input[name='welcomeSubTitle']").val(response[0].welcomeSubTitle);
-            $("input[name='noEvent']").val(response[0].noEvent);
+            $("input[name='virtualVisit']").val(response[0].linkvirtualvisit);
+            $("input[name='faq']").val(response[0].linkfaq);
+            $("#welcomeText").text (response[0].welcometext);
+            $("input[name='welcomeTitle']").val(response[0].welcometitle);
+            $("input[name='welcomeSubTitle']").val(response[0].welcomesubtitle);
+            $("input[name='noEvent']").val(response[0].noevent);
             $("input[name='video1']").val(response[0].video1);
             $("input[name='video2']").val(response[0].video2);
         }); 
@@ -117,7 +117,7 @@ $.fn.getAllEvents = function(){
             $tableEvent.clear();
             for(let i = 0; i < response.length; i++){
                 console.log(response[i]);
-                 $tableEvent.row.add([response[i].idEvent, response[i].startDate, response[i].nomEvent]);
+                 $tableEvent.row.add([response[i].idevent, response[i].startdate, response[i].nomevent]);
             }
             $tableEvent.draw();
     }); 
@@ -245,7 +245,7 @@ $( "button[name='removeEvent']" ).click(function( event ) {
             }).done(function (response) {
                 $tableBody.clear();
                 for(let i = 0; i < response.length; i++){
-                    $tableBody.row.add([response[i].idSpeaker, response[i].photoLink, response[i].name, response[i].description,(response[i].chat ? "oui" : "non"),response[i].linkchat ] );
+                    $tableBody.row.add([response[i].idspeaker, response[i].photolink, response[i].name, response[i].description,(response[i].chat ? "oui" : "non"),response[i].linkchat ] );
 
                 }
                 $tableBody.draw();
@@ -386,7 +386,7 @@ $( "button[name='removeEvent']" ).click(function( event ) {
                 $tableConference.clear();
                 for(let i = 0; i < response.length; i++){
                     console.log(response[i]);
-                     $tableConference.row.add([response[i].idConference,response[i].nameConference, response[i].start, response[i].end, response[i].name, response[i].linkConference,response[i].idSpeaker,response[i].idEvent]);
+                     $tableConference.row.add([response[i].idconference,response[i].nameconference, response[i].start, response[i].end, response[i].name, response[i].linkconference,response[i].idspeaker,response[i].idevent]);
                 }
                 $tableConference.draw();
         }); 
@@ -551,7 +551,7 @@ $tableFiles.on('click', 'tr', function () {
         }).done(function (response) {
             $tableFiles.clear();
             for(let i = 0; i < response.length; i++){
-                $tableFiles.row.add([response[i].idDownloadable, response[i].fileImage, response[i].fileLink, response[i].description] );
+                $tableFiles.row.add([response[i].iddownloadable, response[i].fileimage, response[i].filelink, response[i].description] );
 
             }
             $tableFiles.draw();

@@ -6,7 +6,7 @@ var app =  express.Router();
 app.get('/', function(request, response) {
     try{
 	let connection = require('db_integration');
-	connection.query("SELECT idSpeaker, name, description, REPLACE(photoLink, '#idSpeaker#', idSpeaker) as photoLink, chat, linkchat, idUser FROM Speaker WHERE chat= true;", function(error, results, fields) {
+	connection.query("select idSpeaker, name, description, replace(photoLink, '#idSpeaker#', idSpeaker) as photoLink, chat, linkchat from speaker where chat= true;", function(error, results, fields) {
 	console.log('Result %s', JSON.stringify(results));
         if(error)
                 throw error;

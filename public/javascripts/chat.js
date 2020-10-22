@@ -11,16 +11,17 @@
         response.forEach((item) => {
             console.log("linkphoyto" + item.photolink);
   
-            events.append(`<article class="col">
-            <div class="card">
-                <div class="card-header">${item.name}</div>
-                <div class="card-body">
-                    <img class="card-img" src= "${item.photoLink}" alt="Conferencista: ${item.name}" width="200" height="250"/>
-                  <p>${item.description}</p>
-                  <a class="btn btn-warning" href="chat.html?linkchat=${item.linkchat}">Chat</a>
-                </div>
+            events.append(`
+            <div class="col">
+            <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;">
+              <img class="card-img-bottom" src="${item.photolink}" alt=${item.name}>
+              <div class="card-body">
+                <p class="card-text" style="color: #162b65;">${item.name}</p>
+                <p class="card-text" style="color: #162b65;">${item.description}</p>                
+                <a href="chat.html?linkchat=${item.linkchat}" class="btn">Chat</a>
               </div>
-          </article>`);
+            </div>
+          </div>`);
         });
       }); 
   } );

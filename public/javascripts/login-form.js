@@ -6,7 +6,7 @@ $(document).ready(function (){
           }).done(function (response) {
             console.log("Response : " + JSON.stringify(response));
             if(response[0].eventId == -1){
-                $('#errorMesssge').html(response[0].noEvent);
+                $('#errorMesssge').html(response[0].noevent);
                 $("#login1").hide();
             }
             else{

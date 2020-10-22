@@ -6,7 +6,7 @@ var app =  express.Router();
 
 app.get('/outGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
-        connection.query('SELECT linkVirtualVisit, linkFAQ, welcomeTitle, welcomeSubTitle,welcomeText, endMessage, noEvent , video1, video2, date, idUser FROM Configuration', (error, results) => { 
+        connection.query('SELECT linkvirtualvisit, linkfaq, welcometitle, welcomesubtitle,welcometext, endmessage, noevent , video1, video2, date FROM configuration', (error, results) => { 
 			console.log(results);
 			if(error){
 				response.json({
@@ -34,9 +34,9 @@ app.post('/inGeneralConsult', function(request, response) {
 	let video2 = request.body.video2;
 	console.log("welcomeTitle" + welcomeTitle);
 	console.log("welcomeSubTitle" + welcomeSubTitle);
-    var sql = "UPDATE  Configuration SET linkVirtualVisit = ?, linkFAQ = ?, endMessage = ? , welcomeTitle = ?,  welcomeSubTitle = ?, welcomeText = ?, noEvent = ?, video1 = ?, video2= ? , idUser = ?, date =now() ;";
+    var sql = "update  configuration set linkvirtualvisit = ?, linkfaq = ?, endmessage = ? , welcometitle = ?,  welcomesubtitle = ?, welcometext = ?, noevent = ?, video1 = ?, video2= ? , date =now() ;";
    
-	connection.query(sql, [virtualVisit, faq , message, welcomeTitle, welcomeSubTitle, welcomeText, noEvent, video1, video2, username ], function (err, result) {
+	connection.query(sql, [virtualVisit, faq , message, welcomeTitle, welcomeSubTitle, welcomeText, noEvent, video1, video2 ], function (err, result) {
         if (err){
 			response.status(500).json(
 				{
@@ -58,8 +58,8 @@ app.post('/inEvent', function(request, response) {
 	let dateStart = request.body.dateInitial;
 	let eventName = request.body.eventName;
 	let user = request.session.username;
-	let sql = "INSERT INTO Event (startDate, nomEvent, idUser) VALUES (?,?,?);";
-	connection.query(sql, [dateStart, eventName ,user], function (err, result) {
+	let sql = "insert into event (startdate, nomevent, date) VALUES (?,?,now());";
+	connection.query(sql, [dateStart, eventName ], function (err, result) {
 		if (err){
 			console.error(err);
 			response.status(500).json(
@@ -82,7 +82,7 @@ app.get('/inEvent', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		
-        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') startDate , nomEvent FROM event order by startDate desc', (error, results) => { 
+        connection.query('select idevent, date_format(startdate,\'%Y-%m-%d\') startdate , nomevent from event order by startdate desc', (error, results) => { 
 			
 			if(error){
 				response.status(500).json({
@@ -115,8 +115,8 @@ app.put('/inEvent', function(request, response) {
 	let eventName = request.body.eventName;
 	let user = request.session.username;
 	console.log(eventId);
-	let sql = "UPDATE event SET startDate = date_format(?,\'%Y-%m-%d\'), nomEvent = ?, idUser = ? where idEvent = ? ;";
-	connection.query(sql, [dateStart, eventName ,user, eventId ], function (err, result) {
+	let sql = "update event set startdate = date_format(?,\'%Y-%m-%d\'), nomevent = ?, date = now() where idevent = ? ;";
+	let query = connection.query(sql, [dateStart, eventName , eventId ], function (err, result) {
 		console.log(result);
 		if (err){
 			console.error(err);
@@ -133,6 +133,7 @@ app.put('/inEvent', function(request, response) {
 			message: 'success'
 		})			
 	});
+	console.log(query.sql);
 });
 
 app.delete('/inEvent', function(request, response) {
@@ -140,7 +141,7 @@ app.delete('/inEvent', function(request, response) {
 	let connection = require('db_integration');
 	let eventId = request.body.idEventUpdate;	
 	console.log("delete in event" + eventId);
-	let sql = "DELETE FROM event where idEvent = ? ;";
+	let sql = "delete from event where idevent = ? ;";
 	connection.query(sql, [eventId ], function (err, result) {
 		
 		if (err){
@@ -165,7 +166,7 @@ app.delete('/inEvent', function(request, response) {
 app.get('/inSpeaker', function(request, response) {
 	try{
 		let connection = require('db_integration');
-        connection.query("SELECT idSpeaker, name, description, REPLACE(photoLink, '#idSpeaker#', idSpeaker) as photoLink, chat, linkchat, idUser FROM speaker", (error, results) => { 
+        connection.query("select idspeaker, name, description, replace(photoLink, '#idSpeaker#', idspeaker) as photolink, chat, linkchat, date from speaker", (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -213,7 +214,7 @@ app.post('/inSpeaker', function(request, response) {
 		let imageName = "photo." + fileName.substr(fileName.indexOf(".") + 1);
 		let photoLink = '/images/speaker/#idSpeaker#/' + imageName;
 		
-		let sql = "INSERT INTO Speaker (name, description, photoLink, chat, linkchat, idUser) VALUES (?,?,?,?,?,?);";
+		let sql = "insert into speaker (name, description, photoLink, chat, linkchat, date) VALUES (?,?,?,?,?,now());";
 		
 		connection.query(sql, [name, description , photoLink , JSON.parse(chat), linkchat, user], function (err, result) {
 			if (err){
@@ -266,7 +267,7 @@ app.put('/inSpeaker', function(request, response) {
 		let fileName = request.files != null ? request.files.file.name : null;
 		let imageName = fileName != null ? "photo." + fileName.substr(fileName.indexOf(".") + 1) : null;
 		const photoLink = request.files ? '/images/speaker/#idSpeaker#/' + imageName : null;
-		var sql = "UPDATE Speaker SET name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, idUser = ? where idSpeaker = ? ;";
+		var sql = "update speaker set name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, date = now() where idspeaker = ? ;";
 
 		var query = connection.query(sql, [name, description ,   linkchat, user, idSpeaker], function (err, result) {
 			if (err){
@@ -300,7 +301,7 @@ app.delete('/inSpeaker', function(request, response) {
 	
 		let connection = require('db_integration');
 		console.log("ID Speaker to delete : %s", request.body.idSpeaker);
-        connection.query('DELETE FROM speaker where idSpeaker = ?', [request.body.idSpeaker], (error, results) => { 
+        connection.query('delete from speaker where idspeaker = ?', [request.body.idSpeaker], (error, results) => { 
 			console.log(results);
 			if(error){
 				response.status(500).json({
@@ -322,7 +323,7 @@ app.delete('/inSpeaker', function(request, response) {
 app.get('/outSpeakerDdl', function(request, response) {
 	try{
 		let connection = require('db_integration');
-        connection.query('SELECT idSpeaker, name FROM speaker', (error, results) => { 
+        connection.query('select idSpeaker, name from speaker', (error, results) => { 
 			console.log("ddl" + JSON.stringify(results));
 			if(error){
 				response.json({
@@ -349,7 +350,7 @@ app.get('/outEvents', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		console.log("outEvents- eventos disponibles");
-        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') date FROM event	where  date_format(startDate,\'%Y-%m-%d\') >= date_format(now(),\'%Y-%m-%d\') ;', (error, results) => { 
+        connection.query('select idevent, date_format(startdate,\'%Y-%m-%d\') date from event	where  date_format(startdate,\'%Y-%m-%d\') >= date_format(now(),\'%Y-%m-%d\') ;', (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -375,7 +376,7 @@ app.get('/Events', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		console.log("Events- eventos disponibles");
-        connection.query('SELECT idEvent, date_format(startDate,\'%Y-%m-%d\') date FROM event	 ;', (error, results) => { 
+        connection.query('select idevent, date_format(startDate,\'%Y-%m-%d\') date from event	 ;', (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -411,8 +412,8 @@ app.post('/inConference', function(request, response) {
 	
 	
 
-    var sql = "INSERT INTO  Conference(nameConference, idEvent, idSpeaker, start, end, linkConference, date, idUser) VALUES(?,?,?,?,?,?,now(),?) ;";
-    connection.query(sql, [nameConference,event,speaker, init , end, link, username  ], function (err, result) {
+    var sql = "insert into  conference(nameconference, idevent, idspeaker, start, end, linkconference, date) values(?,?,?,?,?,?,now()) ;";
+    connection.query(sql, [nameConference,event,speaker, init , end, link ], function (err, result) {
 		console.log("response " + result);
 		if (err){
 			console.log("error " + err);
@@ -442,7 +443,7 @@ app.get('/inConference', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		
-        connection.query('SELECT idConference,  nameConference, speaker.name, start, end, linkConference, conference.idSpeaker , conference.idEvent FROM conference INNER JOIN Speaker on conference.idSpeaker = speaker.idSpeaker order by conference.start asc  ;		', (error, results) => { 
+        connection.query('selec idconference,  nameconference, speaker.name, start, end, linkconference, conference.idspeaker , conference.idevent from conference inner join speaker on conference.idspeaker = speaker.idspeaker order by conference.start asc  ;		', (error, results) => { 
 			
 			if(error){
 				response.status(500).json({
@@ -472,7 +473,7 @@ app.delete('/inConference', function(request, response) {
 	
 	let connection = require('db_integration');
 	console.log("ID conference to delete : %s", request.body.idConference);
-	connection.query('DELETE FROM Conference where idConference = ?', [request.body.idConference], (error, results) => { 
+	connection.query('delete from conference where idconference = ?', [request.body.idConference], (error, results) => { 
 		console.log(results);
 		if(error){
 			response.status(500).json({
@@ -504,8 +505,8 @@ app.put('/inConference', function(request, response) {
 	
 	console.log("idConference "+ nameConference);
 	
-    var sql = "UPDATE  Conference SET nameConference=?, idEvent=?, idSpeaker=?, start=?, end=?, linkConference=?, date=now(), idUser=? where idConference=? ;";
-    let con = connection.query(sql, [nameConference,event,speaker, init , end, link, username ,idConference ], function (err, result) {
+    var sql = "update  conference set nameconference=?, idevent=?, idspeaker=?, start=?, end=?, linkconference=?, date=now() where idconference=? ;";
+    let con = connection.query(sql, [nameConference,event,speaker, init , end, link, idConference ], function (err, result) {
 		if (err){
 			console.log("error " + err);
 			response.status(500).json(
@@ -537,7 +538,7 @@ app.get('/File', function(request, response) {
 	try{
 		console.log("file get");
 		let connection = require('db_integration');
-        connection.query("SELECT idDownloadable, fileImage, fileLink, description FROM downloadable;", (error, results) => { 
+        connection.query("select iddownloadable, fileimage, filelink, description from downloadable;", (error, results) => { 
 			if(error){
 				response.json({
 					error: error
@@ -584,9 +585,9 @@ app.post('/File', function(request, response) {
 		let fileLink = '/documents/files/' + fileName;
 		let imageLink = '/documents/filesImages/' + fileImage;
 		
-		let sql = "INSERT INTO Downloadable (description, fileImage, fileLink, date, idUser) VALUES (?,?,?,now(),?);";
+		let sql = "insert into downloadable (description, fileImage, fileLink, date) values (?,?,?,now());";
 		
-		connection.query(sql, [description, imageLink , fileLink, user], function (err, result) {
+		connection.query(sql, [description, imageLink , fileLink], function (err, result) {
 			if (err){
 				console.error(err);
 				throw (err);
@@ -633,7 +634,7 @@ app.delete('/File', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		console.log("ID Speaker to delete : %s", request.body.idFile);
-        connection.query('DELETE FROM downloadable WHERE idDownloadable = ?', [request.body.idFile], (error, results) => { 
+        connection.query('delete from downloadable where iddownloadable = ?', [request.body.idFile], (error, results) => { 
 			console.log(results);
 			if(error){
 				throw(error);
