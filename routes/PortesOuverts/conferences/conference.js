@@ -16,7 +16,7 @@ setup.use(bodyParser.urlencoded({ extended: true }));
 setup.use(bodyParser.json());
 setup.use(cors());
 
-app.get('/conference', (request, res) => {
+app.get('/', (request, res) => {
     
     console.log("entrat" );
     console.log("pprueba" + request.session.idEvent);

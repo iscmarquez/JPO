@@ -27,6 +27,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
+        <script src="/js/forgetuser.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
     <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
         <div class="row">
             <div class="col" style="text-align: center; padding-top: 5px;">
-                <h2 class="w700">ADMINISTRATION DU SITE</h2>
+                <h2 class="w700">RÉCUPÉRATION DE MOT DE PASS</h2>
             </div>
         </div>
         <div class="row" style="height:5px; background-color: white;"></div>
@@ -47,14 +48,13 @@
     <div class="container" id="shadow" style="border: 1px solid white;" s>
         <div class="row">
             <div class="col">
-                <h4 class="w300" style="color:#162b65; text-align: center;"><br>Veuillez saisir vos identifiants de
-                    connexion</h4>
+                <h4 class="w300" style="color:#162b65; text-align: center;"><br>Veuillez saisir vos identifiants pour récuperer votre mot de pass</h4>
             </div>
         </div>
         <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col"> <center>
-                <form action="/PortesOuvertsConfig/login/auth" method="POST">
+                <form id="formulaire" >
 
                         <label for="uname"><b>
                                 <h6 class="w300" style="color: #162b65" ;>Nom d'utilisateur</h6>
@@ -63,13 +63,13 @@
                         <input class="w300" type="text" placeholder="Nom utilisateur" name="username" required>
                         <br><br>
                         <label for="psw"><b>
-                                <h6 class="w300" style="color: #162b65" ;> Mot de passe</h6>
+                                <h6 class="w300" style="color: #162b65" ;> Address courriel</h6>
                             </b></label>
                         <br>
-                        <input class="w300" type="password" placeholder="Taper votre mot de passe" name="password" required>
+                        <input id="email" name="courriel" email="email" class="w300" type="email" placeholder="Address courriel" name="password" required>
                         <br><br>
                         <button type="submit" style=" margin-top: 15px; color: white; border: 0; width: 140px;background-image:
-              repeating-linear-gradient(135deg,crimson, red 15%);" class="btn btn-primary">Se connecter</button>
+              repeating-linear-gradient(135deg,crimson, red 15%);" class="btn btn-primary">Envoyer</button>
                         <br>
                         <!-- <label>
                             <input style="text-align: right;" type="checkbox" checked="checked" name="remember">
@@ -78,11 +78,29 @@
 
                 </form>
                 <br>
-                <a href="/PortesOuvertsConfig/forgetuser.html" style="text-decoration: underline; color:crimson ;">J'oublie mon mot de pass</a>
+                <a href="/PortesOuvertsConfig/forgetuser.html" style="text-decoration: underline; color:crimson ;">Oublié mon mot de pass</a>
             
         </center>
     </div>
-        </div>
+</div>
+<!--
+            <div class="col"> <center>
+
+                <form id="formulaire">
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" type="text" class="form-control" placeholder="username" autofocus>
+                    </div>
+                  <div class="form-group">
+                      <input type="text" id="email" name="courriel" email="email" class="form-control" placeholder="email" autofocus>
+                  </div>
+                  <button class="btn btn-primary btn-block">
+                      Send
+                  </button>
+              </form>
+            
+        </center>
+    </div>
+         -->
 
 
 
