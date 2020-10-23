@@ -24,19 +24,18 @@ app.post('/inGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
 	let virtualVisit = request.body.linkVirtualVisit;
     let faq = request.body.linkFAQ;
-	let message = request.body.message;
 	let welcomeTitle = request.body.welcomeTitle;
 	let welcomeSubTitle = request.body.welcomeSubTitle;
-	let username = request.session.username;
 	let welcomeText = request.body.welcomeTexte;
-	let noEvent = request.body.noEvent;
+	let welcomeText2 = request.body.welcomeText2;//sera stockeé en endmessage
+	console.log(JSON.stringify(request.body));
 	let video1 = request.body.video1;
 	let video2 = request.body.video2;
 	console.log("welcomeTitle" + welcomeTitle);
 	console.log("welcomeSubTitle" + welcomeSubTitle);
-    var sql = "update  configuration set linkvirtualvisit = ?, linkfaq = ?, endmessage = ? , welcometitle = ?,  welcomesubtitle = ?, welcometext = ?, noevent = ?, video1 = ?, video2= ? , date =now() ;";
+    var sql = "update  configuration set linkvirtualvisit = ?, linkfaq = ?, endmessage = ? , welcometitle = ?,  welcomesubtitle = ?, welcometext = ?,  video1 = ?, video2= ? , date =now() ;";
    
-	connection.query(sql, [virtualVisit, faq , message, welcomeTitle, welcomeSubTitle, welcomeText, noEvent, video1, video2 ], function (err, result) {
+	var query = connection.query(sql, [virtualVisit, faq , welcomeText2, welcomeTitle, welcomeSubTitle, welcomeText, video1, video2 ], function (err, result) {
         if (err){
 			response.status(500).json(
 				{
@@ -51,6 +50,7 @@ app.post('/inGeneralConsult', function(request, response) {
 			message: 'success'
 		})			
 	});
+	console.log(query.sql);
 });
 
 app.post('/inEvent', function(request, response) {
@@ -216,7 +216,7 @@ app.post('/inSpeaker', function(request, response) {
 		
 		let sql = "insert into speaker (name, description, photoLink, chat, linkchat, date) VALUES (?,?,?,?,?,now());";
 		
-		connection.query(sql, [name, description , photoLink , JSON.parse(chat), linkchat, user], function (err, result) {
+		connection.query(sql, [name, description , photoLink , JSON.parse(chat), linkchat], function (err, result) {
 			if (err){
 				console.error(err);
 				throw (err);
@@ -269,7 +269,7 @@ app.put('/inSpeaker', function(request, response) {
 		const photoLink = request.files ? '/images/speaker/#idSpeaker#/' + imageName : null;
 		var sql = "update speaker set name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, date = now() where idspeaker = ? ;";
 
-		var query = connection.query(sql, [name, description ,   linkchat, user, idSpeaker], function (err, result) {
+		var query = connection.query(sql, [name, description ,   linkchat, idSpeaker], function (err, result) {
 			if (err){
 				throw(err);
 			} 
@@ -443,7 +443,7 @@ app.get('/inConference', function(request, response) {
 	try{
 		let connection = require('db_integration');
 		
-        connection.query('selec idconference,  nameconference, speaker.name, start, end, linkconference, conference.idspeaker , conference.idevent from conference inner join speaker on conference.idspeaker = speaker.idspeaker order by conference.start asc  ;		', (error, results) => { 
+        connection.query('select idconference,  nameconference, speaker.name, start, end, linkconference, conference.idspeaker , conference.idevent from conference inner join speaker on conference.idspeaker = speaker.idspeaker order by conference.start asc  ;		', (error, results) => { 
 			
 			if(error){
 				response.status(500).json({
@@ -483,9 +483,9 @@ app.delete('/inConference', function(request, response) {
 			});
 			return;
 		}
-		response.status(200).json({
-			status : "success"
-		});			
+		response.json({
+			message: 'success'
+		})			
 	});
 	
 

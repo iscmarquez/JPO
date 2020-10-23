@@ -50,6 +50,15 @@ $(document).ready(function(){
 
    $( "button[name='saveGeneral']" ).click(function( event ) {
     event.preventDefault();
+
+    let form = $('#general');
+    
+    if(form[0].checkValidity() == false) {
+        form.addClass('was-validated');
+        e.stopPropagation();
+        return;
+    }
+
     $.ajax({
         "url": "/PortesOuvertsConfig/configuration/inGeneralConsult",
         "method": "POST",
@@ -58,8 +67,8 @@ $(document).ready(function(){
             linkVirtualVisit : $("input[name='virtualVisit']").val(),
             linkFAQ : $("input[name='faq']").val(),
             message: $("#message").val(),
-            welcomeTexte: $("input[name='welcomeText']").val(),
-            noEvent: $("input[name='noEvent']").val(),
+            welcomeTexte: $("#welcomeText").val(),
+            welcomeText2:  $("#welcomeText2").val(),
             video1: $("input[name='video1']").val(),    
             video2: $("input[name='video2']").val() ,
             welcomeTitle: $("input[name='welcomeTitle']").val(),    
@@ -354,7 +363,16 @@ $( "button[name='removeEvent']" ).click(function( event ) {
             'render': function (data, type, full, meta){
                 return '<input type="radio" value="' + data + '" name="idConference">';
             } 
-         }]
+         },
+         {
+            'targets': 6,
+            "visible": false
+         },
+         {
+            'targets': 7,
+            "visible": false
+         }
+        ]
     }); 
     
     $tableConference.on('click', 'tr', function () {
@@ -371,12 +389,13 @@ $( "button[name='removeEvent']" ).click(function( event ) {
                 "method": "GET",
                 "timeout": 0,
             }).done(function (response) {
+                $('#idSpeaker').empty();
                 response.forEach((item) => {
                  $("#idSpeaker").append('<option value="'+item.idSpeaker+'">'+item.name+'</option>');
                 });
             });
     }
-
+  
     $.fn.getAllConferences = function(){ 
         $.ajax({
                 "url": "/PortesOuvertsConfig/configuration/inConference",
@@ -386,23 +405,20 @@ $( "button[name='removeEvent']" ).click(function( event ) {
                 $tableConference.clear();
                 for(let i = 0; i < response.length; i++){
                     console.log(response[i]);
-                     $tableConference.row.add([response[i].idconference,response[i].nameconference, response[i].start, response[i].end, response[i].name, response[i].linkconference,response[i].idspeaker,response[i].idevent]);
+                     $tableConference.row.add([response[i].idconference,
+                        response[i].nameconference, 
+                        response[i].start, 
+                        response[i].end, 
+                        response[i].name, 
+                        response[i].linkconference,
+                        response[i].idspeaker,
+                        response[i].idevent]);
                 }
+               
                 $tableConference.draw();
         }); 
     }
-  /*  $.fn.getEvents = function(){ 
-        $.ajax({
-                "url": "/PortesOuvertsConfig/configuration/outEvents",
-                "method": "GET",
-                "timeout": 0,
-            }).done(function (response) {
-                console.log(response);
-                response.forEach((item) => {
-                 $("#idEventConference").append('<option value="'+item.idEvent+'">'+item.date+'</option>');
-                });
-            });
-    }*/
+    
 
     $.fn.getEventsConferences = function(){ 
         $.ajax({
@@ -410,9 +426,10 @@ $( "button[name='removeEvent']" ).click(function( event ) {
                 "method": "GET",
                 "timeout": 0,
             }).done(function (response) {
+                $('#idEventConference').empty();
                 console.log(response);
                 response.forEach((item) => {
-                 $("#idEventConference").append('<option value="'+item.idEvent+'">'+item.date+'</option>');
+                 $("#idEventConference").append('<option value="'+item.idevent+'">'+item.date+'</option>');
                 });
             });
     }
@@ -492,8 +509,8 @@ $( "button[name='removeConference']" ).click(function( event ) {
         }
       }).done(function (response) {
           if(response.message == "success"){
-              console.log("status");
             $.fn.getAllConferences();
+            $('#conferenceModal').modal('hide');
             $( "#successAlert" ).show("Les informations ont été effacés");
             setTimeout(function () { 
                 $("#successAlert").alert("close"); 

@@ -6,6 +6,14 @@
             "handler"  : "./routes/PortesOuvertsConfig/login/login"
         },
         {
+            "uri" : "/PortesOuvertsConfig/forgetuser",
+            "handler"  : "./routes/PortesOuvertsConfig/login/forgetuser"
+        },
+        {
+            "uri" : "/PortesOuvertsConfig/changerpwd",
+            "handler"  : "./routes/PortesOuvertsConfig/login/changerpwd"
+        },
+        {
             "uri" : "/PortesOuverts/conference",
             "handler"  : "./routes/PortesOuverts/conferences/conference"
         },

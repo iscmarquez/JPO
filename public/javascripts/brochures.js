@@ -13,7 +13,7 @@ $(document).ready(function (){
           doc.append(`
           <div class="col">
             <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;" >
-              <img class="card-img-top" src="${item.fileimage}" alt="Image": ${item.fileimage} width="100" height="100"/>    
+              <img class="card-img-top" src="${item.fileimage}" alt="Image": ${item.fileimage} >    
               <div class="card-body" >
                 <p class="card-text" style="color: #162b65;">${item.description} 
                 <br>
