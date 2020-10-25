@@ -28,32 +28,30 @@
 </head>
 
 <body>
-    <div class="container" id="shadow" style="padding:0;">
-        <div class="container" style="padding:0; background-color: #162b65; border: 1px solid white; ">
 
+    <div class="container" id="shadow" style="padding:0;">
+
+        <div class="container" style="padding:0; background-color: #162b65; border: 1px solid white; ">
             <div class="row" style="padding:0; ">
                 <div class="col-2">
-
-                    <img src="/images/logo_blanc.png" alt="Logo" style="padding-left: 7px;height: 70px;">
-
+                    <img src="/images/IGR_Logo_CMYK_Horiz-Sign_blanc.eps" alt="Logo" style="padding-left: 7px; height: 65px;">
                 </div>
                 <div class="col-7">
-                   
                 </div>
-                <div class="col-3">
-                    <div><a href=" /PortesOuvertsConfig/login.html">
-                        <p class="w300" style="text-align: center; font-size: xx-small;">configuration</p>
-                    </a></div>
+                <div class="col-3" style="text-align: right;">
+                    <p><a class="blanc" href=" /PortesOuvertsConfig/login.html">
+                            configuration
+                        </a></p>
+                    </div>
                 </div>
             </div>
-            
         </div>
 
         <div class="container" id="shadow" style="background-color: #162b65;border: 1px solid white;">
             <div class="row">
                 <div class="col" style="text-align: center; padding-top: 10px;">
 
-                    <h2>BIENVENUE <span class="w300">AUX</span></h2>
+                    <h2 class="blanc">BIENVENUE <span class="w300">AUX</span></h2>
                 </div>
             </div>
         </div>
@@ -61,26 +59,29 @@
         <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
             <div class="row">
                 <div class="col" style="padding-top:18px; border-bottom: 0; text-align: center;">
-                    <h1>PORTES OUVERTES VIRTUELLES</h1>
+                    <h1 class="blanc">PORTES OUVERTES VIRTUELLES</h1>
                 </div>
             </div>
             <div class="row" style="height:5px; background-color: white;"></div>
         </div>
 
-        <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+        <div class="container" id="shadow"
+            style="padding-left:40px; padding-right:40px;background-color: #162b65; border: 1px solid white;">
 
             <div class="form-wrap">
                 <form action="/PortesOuverts/loginpublic/loginpublic" method="POST">
-                    <label style="color: white; padding: 3px; margin-top:10px;" for="email">
-                        <h5>Connectez-vous avec l'adresse
+                    <label style="padding: 3px; margin-top:10px;" for="email">
+                        <h5 class="blanc">Connectez-vous avec l'adresse
                             courriel utilisée pour vous inscrire</h5>
                     </label>
                     <input type="email" class="form-control" name="username" id="username"
                         placeholder="Adresse courriel" required="yes">
                     <div class="form-group">
                         <center>
-                            <button class="bouton-rouge" style=" margin-top: 15px; width: 140px;" type="submit"
-                                class="btn btn-primary" value="Entrer" name="index">ENTRER</button></a>
+                            <button class="btn bouton-rouge" style=" margin-top: 15px;" type="submit"
+                                value="Entrer" name="index">
+                                <h5><strong>entrer</strong></h5>
+                            </button></a>
                         </center>
                     </div>
                 </form>
@@ -91,21 +92,22 @@
         <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
             <div class="row">
                 <div class="col" style="border-bottom: 1px solid white; text-align: center; padding: 10px;">
-                    <h5>Pas encore inscrit(e) ? Aller au <a
-                            href="site1_index_formulaire.html#jump_inscrire">formulaire d'inscription</a> |
-                        <a href="http://jpo-form-test.institutgrassetinfo.com/">Entrer comme invité(e)</a>
-                    <h5>Pas encore inscrit(e) ? Aller au <a href="http://jpo-form-test.institutgrassetinfo.com/"
-                            style="text-decoration: underline;">formulaire d'inscription</a> |
-                            <a href="/PortesOuverts/loginpublic/loginpublic">ENTRER COMME INVITÉE</a>
+
+                    <!-- <h5>Pas encore inscrit(e) ? Aller au 
+                        <a href="site1_index_formulaire.html#jump_inscrire">formulaire d'inscription</a> 
+                        <a href="http://jpo-form-test.institutgrassetinfo.com/">ENTRER COMME INVITÉE</a> -->
+
+                    <h5 class="blanc">Pas encore inscrit(e) ? Aller au
+                        <a class="blanc" href="http://jpo-form-test.institutgrassetinfo.com/">formulaire d'inscription</a> |
+                        <a class="blanc" href="/PortesOuverts/loginpublic/loginpublic">Entrer comme invité(e)</a>
                     </h5>
                     </a>
                 </div>
                 <img class="col-md-auto" src="/images/login_img.jpg" style="padding-left: 0px; padding-right: 0px;">
             </div>
         </div>
-    </div>
-   
 
+    </div>
 
 </body>
 
