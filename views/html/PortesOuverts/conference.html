@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 
 <head>
@@ -25,11 +25,11 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
     <script src="/js/accueil.js"></script>
-
-    <script src="/js/conference.js"></script>
+    <!-- /Users/herminie/JPO/routes/accueil/accueil.js ???-->
 </head>
 
 <body>
+
 
     <div class="container" id="shadow" style="padding:0;">
 
@@ -48,8 +48,8 @@
         </div>
 
         <nav style="padding-left:0;" class="nav nav-pills-notstyle flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/accueil.html">ACCUEIL</a>
-            <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/conference.html">CALENDRIER</a>
+            <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/accueil.html">ACCUEIL</a>
+            <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/conference.html">CALENDRIER</a>
             <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/chat.html">CLAVARDER</a>
             <a id="visitevirtuelle" class="flex-sm-fill text-sm-center nav-link" href="visiter.html"
                 target="_blank">VISITER</a>
@@ -58,19 +58,69 @@
             <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/brochures.html">BROCHURES</a>
         </nav>
 
+        <div class="container" style="padding:0; border-left:1px solid white;border-right:1px solid white;">
 
-    <div class="container">
-        <div class="row">
+            <div class="row" style="padding-top: 30px; padding-left: 15px;">
 
-            <div class="col">
-                <h3 class="w.300" style="padding-top: 30px; padding-left: 15px;color: #162b65; text-align: center; ">Programme de la journée
-                <br><br></h3>
+                <div class="col">
+                    <h3>Programme de la journée</h3>
+                    <br>
+                </div>
+            </div>
+
+<!-- ////////* ICI COMMENCE LE "ROW" AVEC LES DEUX COLONNES "COL" POUR CHACUNE DES "CARD"-->
+            <div class="row" style="padding:20px;">
+
+                <div class="col">
+                    <div class="card" style="margin-bottom: 20px; border-color: crimson;">
+                        <img class="card-img-top" src="/images/prog_fx.jpg" alt="Image">
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <h5><strong>Sous-titre</strong></h5>
+                            <p class="card-text">AEC Composition et effets spéciaux pour vidéo
+                                numérique NWY.16
+                                <br>
+                                <br>
+                            </p>
+                            <center>
+                                <button class="btn bouton-rouge" style=" margin-top: 15px;">
+                                    <h5 class="blanc"><strong>Participer</strong></h5>
+                                </button></a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" style="margin-bottom: 20px; border-color: crimson;">
+                        <img class="card-img-top" src="/images/prog_fx.jpg" alt="Image">
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <h5><strong>Sous-titre</strong></h5>
+                            <p class="card-text">AEC Composition et effets spéciaux pour vidéo
+                                numérique NWY.16
+                                <br>
+                                <br>
+                            </p>
+                            <center>
+                                <button class="btn bouton-rouge" style=" margin-top: 15px;">
+                                    <h5 class="blanc"><strong>Participer</strong></h5>
+                                </button></a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+<!--FIN DU "ROW" AVEC LES DEUX "CARDS"//////////////////////////////////////////////////////////////-->
+
+            </div>
 
 
 
-                <!--ELIZABETH
+            <!--ELIZABETH je ne sais pas si tu as encore besoinde ça ?
                 /////////////////////////////////////////////////////-->
-                <!-- <div id="resultat">
+            <!-- <div id="resultat">
                     <div class="row row-cols-3" id="cardsContainer">
                     </div>
                 </div>
@@ -79,17 +129,18 @@
         </div>
     </div> -->
 
+            <div class="container" style="padding:0; background-color: #162b65;">
+                <div class="row" style="height: 80px;">
+                </div>
+            </div>
+            <div class="container"
+                style="padding:0;background-image: repeating-linear-gradient(135deg,crimson, red 15%);">
+                <div class="row" style="height: 10px;">
+                </div>
+            </div>
 
-    <div class="container" style="padding:0; background-color: #162b65;">
-        <div class="row" style="height: 80px;">
+
         </div>
-    </div>
-    <div class="container" style="padding:0;   background-image: repeating-linear-gradient(135deg,crimson, red 15%);
-    ">
-        <div class="row" style="height: 10px;">
-        </div>
-    </div>
-</div>
 
 </body>
 

@@ -12,7 +12,7 @@ h2 {font-size: 2rem;}
 h3{font-size: 1,5rem;}
 h4{font-size: 1.2rem;}
 h5 {font-size: .8rem;}
-h6{font-size: 1rem;}
+h6{font-size: 0.5rem;}
 p{font-size: 0.9rem;}
 
 
@@ -22,8 +22,8 @@ p{font-size: 0.9rem;}
   h2 {font-size: 2rem;}
   h3{font-size: 1,5rem;}
   h4{font-size: 1.2rem;}
-  h5 {font-size: .8rem;}
-  h6{font-size: 0.6rem;}
+  h5 {font-size: 1rem;}
+  h6{font-size: 0.5rem;}
   p{font-size: 0.9rem;}
 
 }
@@ -33,9 +33,10 @@ p{font-size: 0.9rem;}
   h2 {font-size: 2rem;}
   h3{font-size: 1,5rem;}
   h4{font-size: 1.2rem;}
-  h5 {font-size: .8rem;}
+  h5 {font-size: 1rem;}
   h6{font-size: 0.6rem;}
-  .btn{width: 20%;}
+  p{font-size: 1rem;}
+  .btn{width: 40%;}
 
 }
  
@@ -53,7 +54,8 @@ p{font-size: 0.9rem;}
   h4{font-size: 2rem;}
   h5{font-size: 1.3rem;}
   h6{font-size: 0.7rem;}
-  .btn{width: 18%;}
+  p{font-size: 1rem;}
+  .btn{width: 28%;}
 }
  
 
@@ -101,6 +103,7 @@ p{font-size: 0.9rem;}
 
  .nav-link {
    color: white;
+   text-decoration: none;
    background-color: #162b65;
    border: 1px solid white;
    font-weight: 300;
