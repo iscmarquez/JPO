@@ -7,10 +7,14 @@ $(document).ready(function (){
   }).done(function (response) {
       console.log(response);
       const events = $('#cardsContainer');
+      let i = 0;
+      let $row = null;
       response.forEach((item) => {
-          console.log("linkphoyto" + item.photolink);
-
-          events.append(`
+          if(i%2 == 0){
+            $row = $('<div class="row" style="padding-left: 50px; padding-top: 20; padding-right: 50px;"></div>');
+            events.append($row);
+          }
+          $row.append(`
           <div class="col">
             <div class="card" style="margin-bottom: 20px; border-color: crimson; border-radius: 0;">
               <img class="card-img-bottom" src="${item.photolink}" alt=${item.nameconference}>
@@ -23,6 +27,10 @@ $(document).ready(function (){
               </div>
             </div>
           </div>`);
+          if((i == (response.length - 1)) && response.length%2 != 0){
+              $row.append('<div class="col"></div>');
+          }
+          i++;
       });
     }); 
 } );
