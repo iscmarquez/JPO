@@ -10,28 +10,39 @@ ici pas de media queriy parce que Bootstrap est mobile first
 h1 {font-size:1.5rem;} /*1rem = 16px*/
 h2 {font-size: 1rem;}
 h5{font-size: .8rem;}
+p{font-size: 0.4rem;}
+
+
 @media (min-width: 544px) {  
   h1 {font-size:2rem;}
-h2{font-size: 1.5;}
-h5{font-size: .8rem;}
+  h2{font-size: 1.5;}
+  h5{font-size: .8rem;}
+  p{font-size: 0.5rem;}
+
 }
  
 @media (min-width: 768px) {  
   h1 {font-size:2.5rem;}
   h2 {font-size: 2rem;}
   h5 {font-size: .8rem;}
+  p{font-size: 0.6rem;}
+  .btn{width: 20%;}
+
 }
  
 @media (min-width: 992px) { 
   h1 {font-size:3rem;}
   h2{font-size: 2.5rem;}
   h5{font-size: 1rem;}
+  
 }
  
 @media (min-width: 1200px) {  
   h1 {font-size:3.5rem;}
   h2{font-size: 3rem;}
   h5{font-size: 1.3rem;}
+  p{font-size: 0.7rem;}
+  .btn{width: 18%;}
 }
  
 
@@ -73,6 +84,9 @@ h5{font-size: .8rem;}
    font-weight: 700;
  }
 
+ .blanc{
+   color: white;
+ }
 
  .nav-link {
    background-color: #162b65;
@@ -84,18 +98,8 @@ h5{font-size: .8rem;}
   background-image: repeating-linear-gradient(135deg,crimson, red 15%);
   color: white;
  }
-/* FOND BLANC*/
-
- #fond-blanc{
-   color: #162b65;
- }
-
- 
-
-/* BLUE BACKGROUND */
 
  a {
-   color: white;
    text-decoration: underline;
  }
 
@@ -109,34 +113,19 @@ a:hover {
 
  h1 {
   font-weight: 700;
-   color: white;
- }
+}
 
  h2 {
-   color: white;
-   font-size: 36px;
    font-weight: 700;
  }
 
- h3 {
-   color: white;
-   font-size: 30px;
- }
-
- h4 {
-   color: white;
- }
-
  h5 {
-   color: white;
    font-weight: 300;
  }
 
- p {
-   color: white;
-   font-size: 18px;
+ p{
+  font-weight: 300;
  }
-
 
  #shadow {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -148,12 +137,15 @@ a:hover {
  }
 
  .bouton-rouge {
-  background-image: repeating-linear-gradient(135deg,crimson, red 15%);
+  background-image: repeating-linear-gradient(135deg,crimson, red 12%);
   color: white;
   border: 0;
   border-radius: 8px;
-  height: 40px;
-  font-size: large;
-  font-weight: 300;
+  padding-top: 16px;
   
+ }
+
+ .bouton-rouge:hover{
+  background-image: repeating-linear-gradient(135deg,red,crimson 6%);
+  color: white;
  }
