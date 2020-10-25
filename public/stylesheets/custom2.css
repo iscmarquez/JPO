@@ -36,7 +36,7 @@ p{font-size: 0.9rem;}
   h5 {font-size: 1rem;}
   h6{font-size: 0.6rem;}
   p{font-size: 1rem;}
-  .btn{width: 40%;}
+  .bouton-rouge{width: 40%;}
 
 }
  
@@ -55,7 +55,8 @@ p{font-size: 0.9rem;}
   h5{font-size: 1.3rem;}
   h6{font-size: 0.7rem;}
   p{font-size: 1rem;}
-  .btn{width: 28%;}
+  .bouton-rouge{width: 28%;}
+  .bouton-rouge-small{width: 60%;}
 }
  
 
@@ -161,7 +162,6 @@ h4{
  }
  p{
   font-weight: 300;
-  text-align: justify;
   color: #162b65; 
  }
 
@@ -183,6 +183,19 @@ h4{
  }
 
  .bouton-rouge:hover{
+  background-image: repeating-linear-gradient(135deg,red,crimson 6%);
+ 
+ }
+
+ .bouton-rouge-small{
+  background-image: repeating-linear-gradient(135deg,crimson, red 12%);
+  border: 0;
+  border-radius: 8px;
+  padding-top: 16px;
+
+ }
+
+ .bouton-rouge-small:hover{
   background-image: repeating-linear-gradient(135deg,red,crimson 6%);
  
  }
