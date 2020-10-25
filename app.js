@@ -39,7 +39,8 @@ for(index in config.routes){
 }
 
 app.use(function(request, response, next){
-  if(request.path.includes("index.html")){
+  console.log("REquest Path : " + request.path);
+  if(request.path == "/"){
     next();
   }else{
     let htmlRegex = /.*htm.*$/;
@@ -58,7 +59,7 @@ app.use(function(request, response, next){
   }
 });
 
-app.use("/index.html", function( request, response) {
+app.use("/", function( request, response) {
   console.log("Entering to index.html");
   response.sendFile(path.resolve("./views/html/PortesOuverts/index.html"));
 });
