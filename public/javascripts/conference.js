@@ -22,12 +22,19 @@ $(document).ready(function (){
                 <h4 class="card-title" style="color: #162b65;">${item.nameconference}</h4>
                 <p class="card-text" style="color: #162b65;">${item.name}</p>
                 <p class="card-text" style="color: #162b65;">${item.description}</p>
-                <p style="color: crimson; font-size:smaller;">${item.start} ${item.end}</p>
-                <a href="${item.linkconference}" class="btn">Participer</a>
+                <p style="color: crimson; font-size:smaller;">${item.start} - ${item.end}</p>
+                <center>
+                <button class="btn bouton-rouge-small" style=" margin-top: 15px;">
+                <a href="${item.linkconference}" class="btn">
+                  <p class="blanc"><strong>Participer</strong></p>
+                </a>
+                </button>
+                </center>
               </div>
             </div>
           </div>`);
           if((i == (response.length - 1)) && response.length%2 != 0){
+            for(let j = 0 ; j < response.length % 2; j++)
               $row.append('<div class="col"></div>');
           }
           i++;
