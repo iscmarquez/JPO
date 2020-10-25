@@ -1,4 +1,42 @@
- @font-face {
+ /*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+ 
+/* 
+ici pas de media queriy parce que Bootstrap est mobile first
+*/
+h1 {font-size:1.5rem;} /*1rem = 16px*/
+h2 {font-size: 1rem;}
+h5{font-size: .8rem;}
+@media (min-width: 544px) {  
+  h1 {font-size:2rem;}
+h2{font-size: 1.5;}
+h5{font-size: .8rem;}
+}
+ 
+@media (min-width: 768px) {  
+  h1 {font-size:2.5rem;}
+  h2 {font-size: 2rem;}
+  h5 {font-size: .8rem;}
+}
+ 
+@media (min-width: 992px) { 
+  h1 {font-size:3rem;}
+  h2{font-size: 2.5rem;}
+  h5{font-size: 1rem;}
+}
+ 
+@media (min-width: 1200px) {  
+  h1 {font-size:3.5rem;}
+  h2{font-size: 3rem;}
+  h5{font-size: 1.3rem;}
+}
+ 
+
+
+@font-face {
    font-family: gotham;
    font-weight: 500;
    src: url("Gotham-Medium.otf") format("opentype");
@@ -70,15 +108,14 @@ a:hover {
 }
 
  h1 {
-   font-family: gotham;
-   font-weight: 700;
+  font-weight: 700;
    color: white;
-   font-size: 62px
  }
 
  h2 {
    color: white;
-   font-size: 50px;
+   font-size: 36px;
+   font-weight: 700;
  }
 
  h3 {
@@ -92,6 +129,7 @@ a:hover {
 
  h5 {
    color: white;
+   font-weight: 300;
  }
 
  p {
