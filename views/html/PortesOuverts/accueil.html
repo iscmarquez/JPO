@@ -28,7 +28,7 @@
     <!-- /Users/herminie/JPO/routes/accueil/accueil.js ???-->
 </head>
 <style>
-    a{
+    a {
         text-decoration: none;
     }
 </style>
@@ -36,15 +36,22 @@
 <body>
 
 
-    <div class="container" id="shadow" style="padding:0; background-color: yellow; border: 1px solid white;">
-        <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;">
+    <div class="container" id="shadow" style="padding:0;">
 
-            <div class="container" id="shadow"
-                style="padding-left: 7px; background-color: #162b65; border: 1px solid white;">
-                <img src="/images/logo_blanc.png" alt="Logo" style="height: 70px;">
+        <div class="container" style="padding:0; background-color: #162b65; border: 1px solid white; ">
+            <div class="row" style="padding:0; ">
+                <div class="col-2">
+                    <img alt="Logo" style="padding-left: 7px; height: 60px;"
+                        src="/images/IGR_Logo_CMYK_Horiz-Sign_blanc.png">
+                </div>
+                <div class="col-7">
+                </div>
+                <div class="col-3" style="text-align: right; ">
+                    <h6><a class="blanc" href=" /PortesOuvertsConfig/login.html">configuration</a>&nbsp</h6>
+                </div>
             </div>
-
         </div>
+
         <nav style="padding-left:0;" class="nav nav-pills-notstyle flex-column flex-sm-row">
             <a class="flex-sm-fill text-sm-center nav-link active" href="/PortesOuverts/accueil.html">ACCUEIL</a>
             <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/conference.html">CALENDRIER</a>
@@ -56,77 +63,59 @@
             <a class="flex-sm-fill text-sm-center nav-link" href="/PortesOuverts/brochures.html">BROCHURES</a>
         </nav>
 
-    </div>
 
-    <div class="container" id="shadow" style="padding:0; border-left:1px solid white;border-right:1px solid white;">
-        <div class="row">
+        <div class="container" id="shadow" style="padding:0; border-left:1px solid white;border-right:1px solid white;">
+            
+            <div class="row" style="padding-top: 30px; padding-left: 15px;">
 
-            <div class="col">
-
-                <h3 id="title" class="w.300" style="padding-top: 30px; padding-left: 15px;color: #162b65; ">
-                </h3>
-
-                <br>
-                <h5 id="subtitle" class="w.500" style="color:crimson; padding-left: 15px;"></h5>
-
-
-                <p id="welcomeText" style="padding-left: 15px;font-weight:300; ; color: #162b65; text-align: justify;">
-                    <br> </p>
-
-                <div style="padding-left: 15px;"><img class="img-fluid" src="/images/accueil_img.jpg"></div>
-              <!--  <p
-                    style="padding-top: 26px; padding-left: 15px;font-weight:300; ; color: #162b65; text-align: justify;">
-                    Velit euismod in pellentesque massa placerat. Faucibus pulvinar elementum integer enim neque
-                    volutpat
-                    ac. Tristique senectus et netus et malesuada fames ac turpis egestas. Dictum sit amet justo donec.
-                    Consequat interdum varius sit amet mattis vulputate enim. Interdum velit laoreet id donec ultrices
-                    tincidunt arcu. In fermentum et sollicitudin ac orci phasellus egestas tellus. Pellentesque eu
-                    tincidunt tortor aliquam nulla.
-                    Elit pellentesque habitant morbi tristique senectus et netus et. In ornare quam viverra orci.
-                    Egestas egestas fringilla phasellus faucibus scelerisque eleifend. Cras fermentum odio eu feugiat
-                    pretium nibh ipsum consequat.
-                </p>-->
-
-
-            </div>
-
-
-            <div class="col">
-                <div style="padding-top:40px;padding-right: 15px; padding-bottom: 15px;">
-                    <iframe id="video1" width="560" height="315"  frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="col">
+                    <h3 id="title" ></h3>
+                    <br>
+                    <h4 id="subtitle">blabla</h4>
+                    <p id="welcomeText"></p>
+                    <br>
+                    <div>
+                        <img class="img-fluid" src="/images/accueil_img.jpg">
+                    </div>
                 </div>
-            <!--    <p style="padding-right: 15px;font-weight:300; ; color: #162b65; text-align: justify;">Lorem ipsum dolor
-                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur.</p>
 
-                <h5 class="w.500" style="color:crimson;">sous-titre</h5>-->
 
-                <p id="welcomeText2" style="padding-right: 15px;font-weight:300; ; color: #162b65; text-align: justify;">
+                <div class="col">
+                    <div style="padding-top:40px;padding-right: 15px; padding-bottom: 15px;">
+                        <iframe id="video1" width="560" height="315" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    <p id="welcomeText2"
+                        style="padding-right: 15px;">
                     </p>
-                <div style="padding-top:6px;padding-right: 15px; padding-bottom: 15px;">
-                    <iframe id="video2" width="560" height="315"  frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                    <!--    <p style="padding-right: 15px;font-weight:300; ; color: #162b65; text-align: justify;"> Eget aliquet nibh praesent tristique. Quisque egestas diam in arcu cursus euismod.
+                    <div style="padding-top:6px;padding-right: 15px; padding-bottom: 15px;">
+                        <iframe id="video2" width="560" height="315" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        <!--    <p style="padding-right: 15px;font-weight:300; ; color: #162b65; text-align: justify;"> Eget aliquet nibh praesent tristique. Quisque egestas diam in arcu cursus euismod.
                             Condimentum mattis pellentesque id nibh tortor.</p>-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container" id="shadow"
-        style="padding:0; background-image: repeating-linear-gradient(135deg,crimson, red 2%); border: 1px solid white; height:8px;">
-
-    </div>
-
-    <div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
-        <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;height: 80px;">
+        
+        <div class="container" style="padding:0; background-color: #162b65;">
+            <div class="row" style="height: 80px;">
+            </div>
         </div>
+        <div class="container" style="padding:0;   background-image: repeating-linear-gradient(135deg,crimson, red 15%);
+        ">
+            <div class="row" style="height: 10px;">
+            </div>
+        </div>
+        
+
     </div>
+
+    
 
 
 </body>
