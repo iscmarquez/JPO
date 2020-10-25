@@ -28,22 +28,24 @@
 </head>
 
 <body>
+    <div class="container" id="shadow" style="padding:0;">
+        <div class="container" style="padding:0; background-color: #162b65; border: 1px solid white; ">
 
-    <div class="container" id="shadow" style="padding:0; background-color: #162b65; border: 1px solid white;">
-        <div class="row" style="border-right: 1px solid white; border-bottom: 1px solid white;">
-            <div class="col-2">
-                <div style="border-left: 1px solid white;">
+            <div class="row" style="padding:0; ">
+                <div class="col-2">
+
                     <img src="/images/logo_blanc.png" alt="Logo" style="padding-left: 7px;height: 70px;">
+
+                </div>
+                <div class="col-8">
+                </div>
+                <div class="col-2" ">
+                    <div><a href=" /PortesOuvertsConfig/login.html">
+                        <p>configuration</p>
+                    </a></div>
                 </div>
             </div>
-            <div class="col-8">
-            </div>
-            <div class="col-2" style="text-align: right; padding-right: 18px;"" >
-                <a href="/PortesOuvertsConfig/login.html"> <p class="p2b">configuration</p>
-                    <!-- <img class="mr-3" src="./images/admin_icon.png" alt="Icone"
-                        style="padding-left: 45px; padding-top: 3px; height: 20px;"> -->
-                    </a>
-            </div>
+            
         </div>
 
         <div class="container" id="shadow" style="background-color: #162b65;border: 1px solid white;">
@@ -68,19 +70,18 @@
 
             <div class="form-wrap">
                 <form action="/PortesOuverts/loginpublic/loginpublic" method="POST">
-                <label style="color: white; padding: 3px; margin-top:10px;" for="email">
-                    <h5 class="w300">Connectez-vous avec l'adresse
-                        courriel utilisée pour vous inscrire</h5>
-                </label>
-                <input type="email" class="form-control" name="username" id="username" placeholder="Adresse courriel"
-                    required="yes">
-                <div class="form-group">
-                    <center>
-                        <button style=" margin-top: 15px; color: white; border: 0; width: 140px;background-image:
-                                repeating-linear-gradient(135deg,crimson, red 15%);" type="submit"
-                            class="btn btn-primary" value="Entrer" name="index">ENTRER</button></a>  
-                    </center>
-                </div>
+                    <label style="color: white; padding: 3px; margin-top:10px;" for="email">
+                        <h5 class="w300">Connectez-vous avec l'adresse
+                            courriel utilisée pour vous inscrire</h5>
+                    </label>
+                    <input type="email" class="form-control" name="username" id="username"
+                        placeholder="Adresse courriel" required="yes">
+                    <div class="form-group">
+                        <center>
+                            <button class="bouton-rouge" style=" margin-top: 15px; width: 140px;" type="submit"
+                                class="btn btn-primary" value="Entrer" name="index">ENTRER</button></a>
+                        </center>
+                    </div>
                 </form>
             </div>
 
@@ -89,15 +90,19 @@
         <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
             <div class="row">
                 <div class="col" style="border-bottom: 1px solid white; text-align: center; padding: 10px;">
-                    <h5 class="w300">Pas encore inscrit(e) ? Aller au <a href="site1_index_formulaire.html#jump_inscrire"
+                    <h5 class="w300">Pas encore inscrit(e) ? Aller au <a
+                            href="site1_index_formulaire.html#jump_inscrire"
                             style="text-decoration: underline;">formulaire d'inscription</a> |
-                            <a href="http://jpo-form-test.institutgrassetinfo.com/" style="text-decoration: underline;">ENTRER COMME INVITÉE</a>
+                        <a href="http://jpo-form-test.institutgrassetinfo.com/"
+                            style="text-decoration: underline;">Entrer comme invité(e)</a>
                     </h5>
                     </a>
                 </div>
                 <img class="col-md-auto" src="/images/login_img.jpg" style="padding-left: 0px; padding-right: 0px;">
             </div>
         </div>
+    </div>
+   
 
 
 </body>
