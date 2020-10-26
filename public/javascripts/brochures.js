@@ -24,8 +24,8 @@ $(document).ready(function (){
                     <p class="card-text">${item.description}</p>
                     <center>
                     <button class="btn bouton-rouge-small" style=" margin-top: 15px;">
-                    <a download  href="${item.filelink}">
-                      <p class="blanc"><strong>télécharger</strong></p>
+                    <a download  href="${item.filelink}" style="text-decoration: none;">
+                      <p class="blanc" ><strong>télécharger</strong></p>
                     </a>
                     </center>
                     </button>
