@@ -119,25 +119,29 @@ p{font-size: 0.9rem;}
  a {
    text-decoration: underline;
  }
-
  a.active {
   color: crimson;
 }
-
 a:hover {
   color: crimson;
 }
-
+/* 
+a.bouton-rouge{
+  text-decoration: none !important;
+}
+a.bouton-rouge-small{
+  text-decoration: none !important;
+} */
  h1 {
   font-weight: 700;
   color: #162b65; 
- 
 }
 
  h2 {
    font-weight: 700;
    color: #162b65; 
  }
+
 h3{
   font-weight: 700;
   color: #162b65; 
@@ -179,12 +183,12 @@ h4{
   border: 0;
   border-radius: 8px;
   padding-top: 16px;
-  
+  text-decoration: none !important;
  }
 
  .bouton-rouge:hover{
   background-image: repeating-linear-gradient(135deg,red,crimson 6%);
- 
+  text-decoration: none !important;
  }
 
  .bouton-rouge-small{
@@ -192,10 +196,30 @@ h4{
   border: 0;
   border-radius: 8px;
   padding-top: 16px;
+  text-decoration: none !important;
 
  }
 
  .bouton-rouge-small:hover{
   background-image: repeating-linear-gradient(135deg,red,crimson 6%);
- 
+  text-decoration: none !important;
+ }
+
+ .btn{
+  text-decoration: none !important;
+ }
+ .btn:hover{
+  text-decoration: none !important;
+ }
+ .button{
+  text-decoration: none !important;
+ }
+ .button:hover{
+  text-decoration: none !important;
+ }
+ .card{
+  text-decoration: none !important;
+ }
+ .card:hover{
+  text-decoration: none !important;
  }
