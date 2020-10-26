@@ -39,12 +39,13 @@ $(document).ready(function(){
               console.log(response );
             $("input[name='virtualVisit']").val(response[0].linkvirtualvisit);
             $("input[name='faq']").val(response[0].linkfaq);
-            $("#welcomeText").text (response[0].welcometext);
             $("input[name='welcomeTitle']").val(response[0].welcometitle);
             $("input[name='welcomeSubTitle']").val(response[0].welcomesubtitle);
-            $("input[name='noEvent']").val(response[0].noevent);
+            $("#welcomeText").text (response[0].welcometext);
+            $("#welcomeText2").text(response[0].welcomtext2);
+            $("#welcomeText3").text(response[0].welcomtext3);
             $("input[name='video1']").val(response[0].video1);
-            $("input[name='video2']").val(response[0].video2);
+           
         }); 
    }
 
@@ -69,6 +70,7 @@ $(document).ready(function(){
             message: $("#message").val(),
             welcomeTexte: $("#welcomeText").val(),
             welcomeText2:  $("#welcomeText2").val(),
+            welcomeText3:  $("#welcomeText3").val(),
             video1: $("input[name='video1']").val(),    
             video2: $("input[name='video2']").val() ,
             welcomeTitle: $("input[name='welcomeTitle']").val(),    
@@ -273,7 +275,10 @@ $( "button[name='removeEvent']" ).click(function( event ) {
             speakerMethod="PUT";
             $("input[name='speakerName']").val(speakerData[2]);
             $("input[name='speakerDescription']").val(speakerData[3]);
-            $("input[name='chat']").val(speakerData[4]);
+            if(speakerData[4]== "oui")
+                $("input[name='chat']").prop("checked", true); 
+            else
+                $("input[name='chat']").prop("checked", false);
             $("input[name='linkchat']").val(speakerData[5]);
 
         }  
@@ -642,6 +647,79 @@ $( "button[name='removeFiles']" ).click(function( event ) {
         setTimeout(function () { 
             $("#errorAlert").alert("close"); 
         }, 10000);
+  });
+});
+
+$( "button[name='inscriptions']" ).click(function( event ) {
+    event.preventDefault();
+     
+    $.ajax({
+        "url": "/PortesOuvertsConfig/configuration/reportIns",
+        "method": "POST",
+        "timeout": 0,
+        "data" : {
+            dateInitialIns : $("input[name='dateInitialIns']").val(),
+            dateFinIns : $("input[name='dateFinIns']").val()               
+        }
+    }).done(function (response, status, xhr) {
+        console.log(response);
+        // check for a filename
+        var filename = "";
+        var disposition = xhr.getResponseHeader('Content-Disposition');
+        if (disposition && disposition.indexOf('attachment') !== -1) {
+            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+            var matches = filenameRegex.exec(disposition);
+            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+        }
+
+        var type = xhr.getResponseHeader('Content-Type');
+        var blob = new Blob([response], { type: type });
+
+        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+            window.navigator.msSaveBlob(blob, filename);
+        } else {
+            var URL = window.URL || window.webkitURL;
+            var downloadUrl = URL.createObjectURL(blob);
+
+            if (filename) {
+                // use HTML5 a[download] attribute to specify filename
+                var a = document.createElement("a");
+                // safari doesn't support this yet
+                if (typeof a.download === 'undefined') {
+                    window.location = downloadUrl;
+                } else {
+                    a.href = downloadUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                }
+            } else {
+                window.location = downloadUrl;
+            }
+
+            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+        }
+    }).fail(function(xhr, status, error) {
+        
+  });
+});
+
+$( "button[name='program']" ).click(function( event ) {
+    event.preventDefault();
+     
+    $.ajax({
+        "url": "/PortesOuvertsConfig/configuration/reportProg",
+        "method": "POST",
+        "timeout": 0,
+        "data" : {
+            dateInitialIns : $("input[name='dateInitialProg']").val(),
+            dateFinIns : $("input[name='dateFinProg']").val()               
+        }
+      }).done(function (response) {
+
+    }).fail(function(xhr, status, error) {
+        
   });
 });
 
