@@ -170,8 +170,14 @@
 				<li class="nav-item ">
 					<a  href="#tab4" role="tab">Gestion des conférences</a>
 				</li>
-				<li class="nav-item active">
+				<li class="nav-item ">
 					<a  href="#tab5" role="tab">Gestion des brochures</a>
+				</li>
+				<li class="nav-item ">
+					<a  href="#tab6" role="tab">Rapport inscription</a>
+				</li>
+				<li class="nav-item ">
+					<a  href="#tab7" role="tab">Rapport programmes</a>
 				</li>
 			</ul>
 			<div>
@@ -454,8 +460,35 @@
 					  </div>
 					</div>
 				  </div>		
-		</div>		
-					
+		
+		
+		
+				</div>		
+		
+			<div class="tab-pane" id="tab6">
+					<p>Rapports des inscriptions </p>
+					<div class="form-group">
+						Date de début: <input type="date" name="dateInitialIns" id="dateInitialIns" value="2020-11-02" placeholder="jj/mm/aaaa" >
+						Date de fin: <input type="date" name="dateFinIns" id="dateFinIns" value="2020-11-02" placeholder="jj/mm/aaaa" >
+					</div>
+										
+					<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" d name="inscriptions">Générer</button>					
+					</div>
+			 </div>
+			
+			 <div class="tab-pane" id="tab7">
+				<p>Rapports des programmes </p>
+				<div class="form-group">
+					Date de début: <input type="date" name="dateInitialProg" id="dateInitialProg" value="2020-11-02" placeholder="jj/mm/aaaa" >
+					Date de fin: <input type="date" name="dateFinProg" id="dateFinProg" value="2020-11-02" placeholder="jj/mm/aaaa" >
+				</div>
+									
+				<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary"  name="program">Générer</button>					
+				</div>
+		 </div>
+
 		<div id="successAlert" class="alert alert-success collapse" role="alert">Les informations ont été enregistrées</div>
 		<div id="errorAlert" class="alert alert-danger alert-dismissible collapse" role="alert" >
 			<strong>Error!</strong> <span id="errorMesssge"></span>

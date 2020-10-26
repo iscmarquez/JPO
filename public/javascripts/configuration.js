@@ -650,6 +650,44 @@ $( "button[name='removeFiles']" ).click(function( event ) {
   });
 });
 
+$( "button[name='inscriptions']" ).click(function( event ) {
+    event.preventDefault();
+     
+    $.ajax({
+        "url": "/PortesOuvertsConfig/configuration/reportIns",
+        "method": "GET",
+        "timeout": 0,
+        "data" : {
+            dateInitialIns : $("input[name='dateInitialIns']").val(),
+            dateFinIns : $("input[name='dateFinIns']").val()               
+        }
+      }).done(function (response) {
+          i
+         
+    }).fail(function(xhr, status, error) {
+        
+  });
+});
+
+$( "button[name='program']" ).click(function( event ) {
+    event.preventDefault();
+     
+    $.ajax({
+        "url": "/PortesOuvertsConfig/configuration/reportProg",
+        "method": "GET",
+        "timeout": 0,
+        "data" : {
+            dateInitialIns : $("input[name='dateInitialProg']").val(),
+            dateFinIns : $("input[name='dateFinProg']").val()               
+        }
+      }).done(function (response) {
+          i
+         
+    }).fail(function(xhr, status, error) {
+        
+  });
+});
+
 
     $.fn.getGeneralConfig();
 });
