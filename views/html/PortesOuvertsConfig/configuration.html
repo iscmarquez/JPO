@@ -34,6 +34,58 @@
 		border: 0;
 	  }
 
+	  element.style {
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor, .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor, .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
+    cursor: text;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    float: left;
+    padding: .5em 1em;
+    text-decoration: none;
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: #fff;
+	text-decoration: none;
+	background-image: repeating-linear-gradient(135deg,crimson, red 15%);
+	border:0;
+}
+.ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited, .ui-state-focus a, .ui-state-focus a:hover, .ui-state-focus a:link, .ui-state-focus a:visited, a.ui-button:hover, a.ui-button:focus {
+    color: #ffffff;
+    text-decoration: underline;
+}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+    color: #ffffff;
+    text-decoration: none;
+}
+.ui-widget-header a {
+    color: #333;
+}
+.ui-widget-content a {
+    color: #333;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+* {
+    font-family: 'gotham';
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    list-style: none;
+    float: left;
+    position: relative;
+    top: 0;
+    margin: 1px .2em 0 0;
+    border-bottom-width: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
 	
 	  #overlay{	
 	position: fixed;
@@ -94,7 +146,7 @@
     <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
         <div class="row">
             <div class="col" style="text-align: center; padding-top: 5px;">
-                <h2 class="w700">ADMINISTRATION DU SITE</h2>
+                <h2 class="w700 blanc">ADMINISTRATION DU SITE</h2>
             </div>
         </div>
         <div class="row" style="height:5px; background-color: white;"></div>
@@ -115,7 +167,7 @@
 				<li class="nav-item active">
 					<a  href="#tab3" role="tab">Gestion des conférenciers et des clavardeurs</a>
 				</li>
-				<li class="nav-item active">
+				<li class="nav-item ">
 					<a  href="#tab4" role="tab">Gestion des conférences</a>
 				</li>
 				<li class="nav-item active">
