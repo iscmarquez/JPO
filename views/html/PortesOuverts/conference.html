@@ -25,7 +25,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
     <script src="/js/accueil.js"></script>
-    <!-- /Users/herminie/JPO/routes/accueil/accueil.js ???-->
+    <script src="/js/conference.js"></script>
 </head>
 
 <body>
@@ -59,89 +59,21 @@
         </nav>
 
         <div class="container" style="padding:0; border-left:1px solid white;border-right:1px solid white;">
-
             <div class="row" style="padding-top: 30px; padding-left: 15px;">
-
                 <div class="col">
                     <h3>Programme de la journée</h3>
                     <br>
                 </div>
             </div>
-<!--* * * * * * * * * * * * * * * * * * * * ** * *  ** * * * * * * * * * ** * * * * * * * * * -->
-<!-- ////////* ICI COMMENCE LE "ROW" AVEC LES DEUX COLONNES "COL" POUR CHACUNE DES "CARD"-->
-            <div class="row" style="padding:20px;">
-
-                <div class="col">
-                    <div class="card" style="margin-bottom: 20px; border-color: crimson;">
-                        <img class="card-img-top" src="/images/prog_fx.jpg" alt="Image">
-                        <div class="card-body">
-                            <h4 class="card-title">John Doe</h4>
-                            <h5><strong>Horaire</strong></h5>
-                            <p class="card-text">AEC Composition et effets spéciaux pour vidéo
-                                numérique NWY.16
-                                <br>
-                                <br>
-                            </p>
-                            <center>
-                                <button class="btn bouton-rouge" style=" margin-top: 15px;">
-                                    <h5 class="blanc"><strong>Participer</strong></h5>
-                                </button></a>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card" style="margin-bottom: 20px; border-color: crimson;">
-                        <img class="card-img-top" src="/images/prog_fx.jpg" alt="Image">
-                        <div class="card-body">
-                            <h4 class="card-title">John Doe</h4>
-                            <h5><strong>Horaire</strong></h5>
-                            <p class="card-text">AEC Composition et effets spéciaux pour vidéo
-                                numérique NWY.16
-                                <br>
-                                <br>
-                            </p>
-                            <center>
-                                <button class="btn bouton-rouge" style=" margin-top: 15px;">
-                                    <h5 class="blanc"><strong>Participer</strong></h5>
-                                </button></a>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-<!--FIN DU "ROW" AVEC LES DEUX "CARDS"//////////////////////////////////////////////////////////////-->
-
-            </div>
-
-
-
-            <!--ELIZABETH je ne sais pas si tu as encore besoinde ça ?
-                /////////////////////////////////////////////////////-->
-            <!-- <div id="resultat">
-                    <div class="row row-cols-3" id="cardsContainer">
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div> -->
-
-            <div class="container" style="padding:0; background-color: #162b65;">
-                <div class="row" style="height: 80px;">
-                </div>
-            </div>
-            <div class="container"
-                style="padding:0;background-image: repeating-linear-gradient(135deg,crimson, red 15%);">
-                <div class="row" style="height: 10px;">
-                </div>
-            </div>
-
-
+        <div class="container" style="padding:0; border-left:1px solid white;border-right:1px solid white;" id="cardsContainer"></div>
+        <div class="container" style="padding:0; background-color: #162b65;">
+            <div class="row" style="height: 80px;"></div>
         </div>
-
+        <div class="container" style="padding:0;background-image: repeating-linear-gradient(135deg,crimson, red 15%);">
+            <div class="row" style="height: 10px;"></div>
+        </div>
+    </div>
 </body>
 
 </html>
