@@ -6,7 +6,7 @@ var app =  express.Router();
 
 app.get('/outGeneralConsult', function(request, response) {
 	let connection = require('db_integration');
-        connection.query('SELECT linkvirtualvisit, linkfaq, welcometitle, welcomesubtitle,welcometext, endmessage, noevent , video1, video2, date FROM configuration', (error, results) => { 
+        connection.query("SELECT linkvirtualvisit, linkfaq, welcometitle, welcomesubtitle,welcometext, endmessage 'welcomtext2', noevent , video1, video2 'welcomtext3', date FROM configuration", (error, results) => { 
 			console.log(results);
 			if(error){
 				response.json({
@@ -28,14 +28,15 @@ app.post('/inGeneralConsult', function(request, response) {
 	let welcomeSubTitle = request.body.welcomeSubTitle;
 	let welcomeText = request.body.welcomeTexte;
 	let welcomeText2 = request.body.welcomeText2;//sera stockeé en endmessage
+	let welcomeText3 = request.body.welcomeText3;//sera stockeé en video2
 	console.log(JSON.stringify(request.body));
 	let video1 = request.body.video1;
-	let video2 = request.body.video2;
+	
 	console.log("welcomeTitle" + welcomeTitle);
 	console.log("welcomeSubTitle" + welcomeSubTitle);
     var sql = "update  configuration set linkvirtualvisit = ?, linkfaq = ?, endmessage = ? , welcometitle = ?,  welcomesubtitle = ?, welcometext = ?,  video1 = ?, video2= ? , date =now() ;";
    
-	var query = connection.query(sql, [virtualVisit, faq , welcomeText2, welcomeTitle, welcomeSubTitle, welcomeText, video1, video2 ], function (err, result) {
+	var query = connection.query(sql, [virtualVisit, faq , welcomeText2, welcomeTitle, welcomeSubTitle, welcomeText, video1, welcomeText3 ], function (err, result) {
         if (err){
 			response.status(500).json(
 				{

@@ -39,12 +39,13 @@ $(document).ready(function(){
               console.log(response );
             $("input[name='virtualVisit']").val(response[0].linkvirtualvisit);
             $("input[name='faq']").val(response[0].linkfaq);
-            $("#welcomeText").text (response[0].welcometext);
             $("input[name='welcomeTitle']").val(response[0].welcometitle);
             $("input[name='welcomeSubTitle']").val(response[0].welcomesubtitle);
-            $("input[name='noEvent']").val(response[0].noevent);
+            $("#welcomeText").text (response[0].welcometext);
+            $("#welcomeText2").text(response[0].welcomtext2);
+            $("#welcomeText3").text(response[0].welcomtext3);
             $("input[name='video1']").val(response[0].video1);
-            $("input[name='video2']").val(response[0].video2);
+           
         }); 
    }
 
@@ -69,6 +70,7 @@ $(document).ready(function(){
             message: $("#message").val(),
             welcomeTexte: $("#welcomeText").val(),
             welcomeText2:  $("#welcomeText2").val(),
+            welcomeText3:  $("#welcomeText3").val(),
             video1: $("input[name='video1']").val(),    
             video2: $("input[name='video2']").val() ,
             welcomeTitle: $("input[name='welcomeTitle']").val(),    

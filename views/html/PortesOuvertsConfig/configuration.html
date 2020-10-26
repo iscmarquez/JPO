@@ -141,25 +141,12 @@
 							</label>
 							<input type="text" class="form-control" name="faq" required maxlength="255">
 						</div>
-						<div class="form-group">
-							<label for="video1">
-								Lien video 1
-							</label>
-							<input type="text" class="form-control" name="video1" required maxlength="255">
-						</div>
-						<div class="form-group">
-							<label for="video2">
-								Lien video 2
-							</label>
-							<input type="text" class="form-control" name="video2" required maxlength="255">
-						</div>
+						
 						<hr>
 						<label for="inputMessage">
 							<h4>Page d'accueil</h4>
 						</label><br/>
 						<div class="form-group">
-							
-
 							<label for="inputMessage">
 								Titre de bienvenu
 							</label>
@@ -171,18 +158,25 @@
 							<label for="inputMessage">
 								Message de bienvenu 1
 							</label>
-							
-						<!--	<input type="text" class="form-control" name="message" form="usrform">-->
+							<!--	<input type="text" class="form-control" name="message" form="usrform">-->
 							<textarea id="welcomeText" class="form-control" name="welcomeText" rows="10" cols="30" maxlength="500" required="yes"></textarea>
-								
-						</div>
-						<div class="form-group">
+							<div class="form-group">
+								<label for="video1">
+									Lien video 1
+								</label>
+								<input type="text" class="form-control" name="video1" required maxlength="255">
+							</div>
 							<label for="inputMessage">
 								Message de bienvenu 2
 							</label>
-							<textarea id="welcomeText2" class="form-control" name="welcomeText2" rows="10" cols="30" required maxlength="500" required="yes"></textarea>
+							<textarea id="welcomeText2" class="form-control" name="welcomeText2" rows="10" cols="30" required maxlength="500" required="yes"></textarea>	
+							<div class="form-group">
+								<label for="video2">
+									Message de bienvenu 3
+								</label>
+								<textarea id="welcomeText3" class="form-control" name="welcomeText3" rows="10" cols="30" required maxlength="500" required="yes"></textarea>	
+							</div>
 						</div>
-						
 						<button type="button" class="btn btn-primary" name="saveGeneral">
 							Enregistrer
 						</button>
