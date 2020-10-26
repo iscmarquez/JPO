@@ -275,7 +275,10 @@ $( "button[name='removeEvent']" ).click(function( event ) {
             speakerMethod="PUT";
             $("input[name='speakerName']").val(speakerData[2]);
             $("input[name='speakerDescription']").val(speakerData[3]);
-            $("input[name='chat']").val(speakerData[4]);
+            if(speakerData[4]== "oui")
+                $("input[name='chat']").prop("checked", true); 
+            else
+                $("input[name='chat']").prop("checked", false);
             $("input[name='linkchat']").val(speakerData[5]);
 
         }  
