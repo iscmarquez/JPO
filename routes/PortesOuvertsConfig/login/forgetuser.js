@@ -39,6 +39,7 @@ app.post('/User', (req, res, next) => {
           var passwordClient = results[0].password;
   
           connection.query(`select * from nodemailer`, (error, results, fields) => {
+            console.log(results);
             if(error){
               throw error;
               return res.json({ 

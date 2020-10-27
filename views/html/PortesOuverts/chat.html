@@ -5,7 +5,7 @@
     <title>Chat-Portes Ouvertes Institut Grasset</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS SANS CDN-->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -24,8 +24,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>
+    <script src="/js/jquery.js"></script>
     <script src="/js/accueil.js"></script>
     <script src="/js/chat.js"></script>
+    
+          <!--End of Tawk.to Script -->
 </head>
 
 <body>
@@ -79,26 +82,25 @@
             </div>
         </div>
       <!-- Start of Tawk.to Script-->
-<script type="text/javascript"> 
-  var urlRaw= window.location.href;
-  console.log(typeof urlRaw);
-  var urlClean = new URL(urlRaw);
-  let link = urlClean.searchParams.get("linkchat").slice(1, -1);
-  console.log(typeof link);
-  console.log(link);
-  
-  
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src=link;
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script -->
+      <script type="text/javascript"> 
+        var urlRaw= window.location.href;
+        console.log(urlRaw);
+        var urlClean = new URL(urlRaw);
+        let link = urlClean.searchParams.get("linkchat");//.slice(1, -1);
+        console.log(link);
+        console.log(link);
+        
+        
+          var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src=link;
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+          })();
+      </script>
 
 </body>
 </html>

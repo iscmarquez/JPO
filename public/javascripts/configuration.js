@@ -293,7 +293,7 @@ $( "button[name='removeEvent']" ).click(function( event ) {
         data.append("name", $("input[name='speakerName']").val());
         data.append("description", $("input[name='speakerDescription']").val());
         data.append("chat", ($("input[name='chat']").is(":checked") ? true : false));
-        data.append("linkchat", $("input[name='linkchat']").val());
+        data.append("linkchat",$("input[name='linkchat']").val());
 
         if(speakerMethod === "PUT")
             data.append("idSpeaker", $("input[name='idSpeaker']:checked").val());    
