@@ -25,7 +25,7 @@ $(document).ready(function (){
                 <p style="color: crimson; font-size:smaller;">${item.start} - ${item.end}</p>
                 <center>
                 <button class="btn bouton-rouge-small" style=" margin-top: 15px;">
-                <a href="${item.linkconference}" class="btn">
+                <a href="${item.linkconference}" class="btn" target="_blank">
                   <p class="blanc"><strong>Participer</strong></p>
                 </a>
                 </button>
