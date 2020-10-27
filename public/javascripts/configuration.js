@@ -573,7 +573,7 @@ $tableFiles.on('click', 'tr', function () {
         }).done(function (response) {
             $tableFiles.clear();
             for(let i = 0; i < response.length; i++){
-                $tableFiles.row.add([response[i].iddownloadable, response[i].fileimage, response[i].filelink, response[i].description] );
+                $tableFiles.row.add([response[i].iddownloadable, response[i].fileimage, response[i].description,response[i].filelink] );
 
             }
             $tableFiles.draw();
@@ -583,6 +583,18 @@ $tableFiles.on('click', 'tr', function () {
 $("#fileModal").on("hidden.bs.modal", function () {
     $("#fileForm")[0].reset();
 })
+
+$("#fileModal").on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget)
+    if(button.attr("name") === "addFile")
+        fileMethod="POST";
+    else if(button.attr("name") === "updateFile"){
+        fileMethod="PUT";       
+        $("input[name='fileDescription']").val(filesData[2]);
+        
+
+    }  
+  }) 
 
 $( "button[name='saveFile']" ).click(function( event ) {
     event.preventDefault();
@@ -595,7 +607,7 @@ $( "button[name='saveFile']" ).click(function( event ) {
 
     $.ajax({
         "url": "/PortesOuvertsConfig/configuration/File",
-        "method": "POST",
+        "method": fileMethod,
         "enctype": 'multipart/form-data',
         "processData": false,  // Important!
         "contentType": false,

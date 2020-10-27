@@ -419,6 +419,8 @@
 
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" name="addFile">Ajouter</button>
 				<button type="button" class="btn btn-primary" name="removeFiles">Effacer</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" name="updateFile">Metre à jour</button>
+				
 
 				<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -437,19 +439,19 @@
 								</div>
 								<div class="form-group">
 									<label for="exampleInputFile">Document</label>
-									<input type="file" class="form-control-file" id="inputFileDocument">
+									<input type="file" class="form-control-file" id="inputFileDocument" name="inputFileDocument">
 									<p class="help-block">Ajouter le document.</p>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputFile">Image</label>
-									<input type="file" class="form-control-file" id="inputFileImage">
+									<input type="file" class="form-control-file" id="inputFileImage" name="inputFileImage">
 									<p class="help-block">Ajouter l'image.</p>
 								</div>					
 							</form>
 						</div>
 						<div class="modal-footer">
 						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						  <button type="button" class="btn btn-primary" name="saveFile">Enregistrer</button>
+						  <button type="button" class="btn btn-primary" name="saveFile">Enregistrer/Mettre à jour</button>
 						</div>
 					  </div>
 					</div>
