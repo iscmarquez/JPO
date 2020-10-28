@@ -589,10 +589,8 @@ $("#fileModal").on("show.bs.modal", function (event) {
     if(button.attr("name") === "addFile")
         fileMethod="POST";
     else if(button.attr("name") === "updateFile"){
-        fileMethod="PUT";       
+        fileMethod="PUT";
         $("input[name='fileDescription']").val(filesData[2]);
-        
-
     }  
   }) 
 
@@ -605,6 +603,9 @@ $( "button[name='saveFile']" ).click(function( event ) {
     data.append("image",image);
     data.append("description", $("input[name='fileDescription']").val());
 
+    if (fileMethod === "PUT") {
+        data.append("idFile", $("input[name='idFile']:checked").val())
+    }
     $.ajax({
         "url": "/PortesOuvertsConfig/configuration/File",
         "method": fileMethod,
@@ -634,6 +635,7 @@ $( "button[name='saveFile']" ).click(function( event ) {
   });
   $('#fileForm')[0].reset();
 });
+
 
 $( "button[name='removeFiles']" ).click(function( event ) {
     event.preventDefault();

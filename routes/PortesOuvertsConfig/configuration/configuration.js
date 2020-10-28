@@ -540,19 +540,16 @@ app.get('/File', function(request, response) {
 	try{
 		console.log("file get");
 		let connection = require('db_integration');
-        connection.query("select iddownloadable, fileimage, filelink, description from downloadable;", (error, results) => { 
+        connection.query("select iddownloadable, replace(fileimage, '#idFile#', iddownloadable) as fileimage, replace(filelink, '#idFile#', iddownloadable) as filelink, description from downloadable;", (error, results) => { 
 			if(error){
-				response.json({
-					error: error
-				});
-				return;
+				throw(error);
 			}
-			response.json(results);			
+			return response.status(200).json(results);			
 		});
 		
 	}catch(error){
 		console.error(error);
-		response.status(500).json(
+		return response.status(500).json(
 			{
 				"readyState":error.code,
 				"status":error.sqlState,
@@ -584,8 +581,10 @@ app.post('/File', function(request, response) {
 		let user = request.session.username;
 		
 		
-		let fileLink = '/documents/files/' + fileName;
-		let imageLink = '/documents/filesImages/' + fileImage;
+		let fileLink = '/documents/#idFile#/files/' + fileName;
+		let imageLink = '/documents/#idFile#/filesImages/' + fileImage;
+
+		
 		
 		let sql = "insert into downloadable (description, fileImage, fileLink, date) values (?,?,?,now());";
 		
@@ -594,18 +593,19 @@ app.post('/File', function(request, response) {
 				console.error(err);
 				throw (err);
 			}
-			console.log('Result %s', JSON.stringify(result));
 
-
-
-			request.files.file.mv(documentsPath + "/files/" + fileName, function(err){
+			fs.mkdirSync(documentsPath + "/" +  result.insertId);
+			fs.mkdirSync(documentsPath + "/" +  result.insertId + "/files/");
+			fs.mkdirSync(documentsPath + "/" +  result.insertId + "/filesImages/");
+			
+			request.files.file.mv(documentsPath + "/" +  result.insertId + "/files/" + fileName, function(err){
 				if(err){
 					console.error(err);
 					throw (err);
 				}
 			});
 
-			request.files.image.mv(documentsPath + "/filesImages/" + fileImage, function(err){
+			request.files.image.mv(documentsPath+ "/" +  result.insertId + "/filesImages/" + fileImage, function(err){
 				if(err){
 					console.error(err);
 					throw (err);
@@ -631,6 +631,69 @@ app.post('/File', function(request, response) {
 	});
 });
 
+app.put('/File', function(request, response) {
+	
+	try{
+		let connection = require('db_integration'); 
+		let description = request.body.description;
+		let idFile = request.body.idFile;
+		let user = request.session.username;
+
+		let isFileLinkUpdated = request.files && request.files.file ;
+		let isImageUpdated = request.files && request.files.image ;
+		
+		let sql = "UPDATE downloadable SET " + (isFileLinkUpdated ? " filelink = '" + '/documents/#idFile#/files/' +  request.files.file.name + "', " : "") + (isImageUpdated? " fileimage = '" + '/documents/#idFile#/filesImages/' + request.files.image.name + "'," : "") + " description = ?, date =now() WHERE iddownloadable = ?;";
+		
+		connection.query(sql, [description , idFile], function (err, result) {
+			if (err){
+				console.error(err);
+				throw (err);
+			}
+			console.log('Result %s', JSON.stringify(result));
+			
+			if(!fs.existsSync(documentsPath + "/" +  idFile))
+				fs.mkdirSync(documentsPath + "/" +  idFile);
+
+			if(isFileLinkUpdated){
+				if (!fs.existsSync(documentsPath + "/" +  idFile + "/files/"))
+					fs.mkdirSync(documentsPath + "/" +  idFile + "/files/");
+				request.files.file.mv(documentsPath + "/" +  idFile + "/files/" + request.files.file.name, function(err){
+					if(err){
+						console.error(err);
+						throw (err);
+					}
+				});			
+			}
+				
+			if(isImageUpdated ){
+				if(!fs.existsSync(documentsPath + "/" +  idFile + "/filesImages/"))
+					fs.mkdirSync(documentsPath + "/" +  idFile + "/filesImages/");
+				request.files.image.mv(documentsPath+ "/" +  idFile + "/filesImages/" + request.files.image.name, function(err){
+					if(err){
+						console.error(err);
+						throw (err);
+					}
+				});
+			}
+
+		});
+
+	}catch(error){
+		console.log("ERROR => ");
+		console.error(error);
+		return response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+
+	return 	response.status(200).json({
+		status : "success"
+	});
+});
 
 app.delete('/File', function(request, response) {
 	try{
@@ -641,6 +704,8 @@ app.delete('/File', function(request, response) {
 			if(error){
 				throw(error);
 			}
+
+			fs.rmdirSync(documentsPath + "/" +  request.body.idFile, { recursive: true });
 		});
 	}catch(err){
 		return response.status(500).json({
