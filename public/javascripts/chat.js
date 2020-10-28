@@ -29,7 +29,7 @@
                           </p>
                           <center>
                           <button class="btn bouton-rouge-small" style=" margin-top: 15px;">
-                          <a href="chat.html?linkchat=${item.linkchat}" class="btn">
+                          <a href="chat.html?linkchat=${item.linkchat}" class="btn" >
                             <p class="blanc"><strong>Clavarder</strong></p>
                           </a>
                           </button>                          
