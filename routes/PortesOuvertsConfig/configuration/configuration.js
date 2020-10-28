@@ -721,100 +721,48 @@ app.delete('/File', function(request, response) {
 });
 
 
-app.post('/reportIns', (request, response) => {
-	let connection = require('db_integration');
-    const dateReport = request.body;
-    const debut = request.body.dateInitialIns;
-    console.log(debut)
-    const fin = request.body.dateFinIns;
-    console.log(fin)
-  
-    let resultsQry1;
-    let query = connection.query(`select inscription.date, inscription.lastname, inscription.firstname, inscription.phone, inscription.mail, inscription.country, inscription.state, program.programdescription , inscription.moyencommunication from inscription left join interestingprogrammes on inscription.mail = interestingprogrammes.mail inner join program on interestingprogrammes.idprogram = program.idprogram where inscription.date >= '${debut}' and inscription.date <= '${fin}'`, (error, results, fields) => {
+app.put('/File', function(request, response) {
+	try{
+		let connection = require('db_integration'); 
+		let id = request.body.idSpeaker;
+		let name = request.body.name;
+		let description = request.body.description;
+		let chat = request.body.chat;
+		let linkchat = request.body.linkchat;
+		let user = request.session.username;
 
-        if(error){
-            throw error;
-            return response.json({
-                success: false,
-                message: "Erreur : erreur dans le serveur!!!"
-            });
-        }
-        else{
-            if(Object.entries(results).length===0){
-                return response.json({ 
-                    success: false,
-                    message: "Erreur : il n'y a pas d'informations relatives aux dates saisies."
-                  });
-              }
-              else{
-            resultsQry1 = results;
-            console.log(resultsQry1);
 
-            connection.query(`select count(idguests) as nombre from guests where dateadmission >= '${dateReport.debut}' and dateadmission <= '${dateReport.fin}'`, (error, results, fields) => {
-                if(error){
-                    throw error;
-                    return response.json({ 
-                        success: false,
-                        message: "Erreur : "
-                    });
-                 }
-                 else{
-					let workbook = new excel.Workbook(); // pour creer un nouveaux fichier excel 
+		let fileName = request.files != null ? request.files.file.name : null;
+		let imageName = fileName != null ? "photo." + fileName.substr(fileName.indexOf(".") + 1) : null;
+		const photoLink = request.files ? '/images/speaker/#idSpeaker#/' + imageName : null;
+		var sql = "update speaker set name = ?, description = ?," + (request.files ? " photoLink = '" + photoLink + "' ," : "")  + "chat = " + chat + ",  linkchat = ?, date = now() where idspeaker = ? ;";
 
-                    if (typeof debut !== 'undefined' && debut !== null && debut !=="M-DD-YY-Y-"&&
-                            	typeof fin !== 'undefined' && fin !== null && fin !=="M-DD-YY-Y-") {
-                                
-                                let worksheet = workbook.addWorksheet('inscription') // pour creer une nouvelle page 
-                                worksheet.columns = [                                // creer les titres et les colomnes 
-                                  {header: 'date', key: 'date'},                     // donner un nom aux titres 
-                                  {header: 'Nom', key: 'lastname'},
-                                  {header: 'Prenom', key: 'firstname'},
-                                  {header: 'Telephone', key: 'phone'},
-                                  {header: 'Mail', key: 'mail'},
-                                  {header: 'Pays', key: 'country'},
-                                  {header: 'Province', key: 'state'},
-                                  {header: 'Programme', key: 'programdescription'},
-                                  {header: 'Moyen de Communication', key: 'moyencommunication'}
-                                ];
-                                worksheet.columns.forEach(column => {            //gerer la taille des colonnes
-                                    column.width = column.header.length < 12 ? 12 : column.header.length //si la taille du titre est plus grand que 12 on lui donne la taille de la colonne
-                                });
-                                worksheet.getColumn("E").width = 25;    // changer manuellement la taille de la colonne
-                                worksheet.getColumn("H").width = 50;   // pareil
-                                const cell2 = worksheet.getCell('K1');   // mettre une cellule dans une variable par exemple ici la cellule K1
-                                cell2.value = "Nombre d'invités";        // change la valeur de la cellule 
-                                worksheet.getRow(1).font = {bold: true}; // modifie le style de caracthere de toute la rangee 1
-                                // Dump all the data into Excel
-                                resultsQry1.forEach((e, index) => {       //place les information de la base de donnee dans le classeur
-                                // row 1 is the header.
-                                    const rowIndex = index + 2
-                                    worksheet.addRow({
-                                        ...e,
-                                      });
-                                });                                  // fin du placement des donnees
-                                const cell = worksheet.getCell('K2');
-                                cell.value = results[0].nombre; //ici nombre vaut le nombre de guests 
-                                //workbook.xlsx.writeFile('Rapport Inscription '+debut+' à '+fin+'.xlsx'); // ecrit le classeur avec la date de debut et de fin dans le nom
-                            }
-    
-							response.setHeader(
-								"Content-Type",
-								"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-								);
-							response.setHeader(
-								"Content-Disposition",
-								"attachment; filename=report_inscriptions.xlsx"
-								);
-							  
-							return workbook.xlsx.write(response).then(function () {
-								response.status(200).end();
-								});
-                 }
-         });
-        }
-    }
+		var query = connection.query(sql, [name, description ,   linkchat, idSpeaker], function (err, result) {
+			if (err){
+				throw(err);
+			} 
+			if(request.files){
+				request.files.file.mv(imagesPath + "/speaker/"+ idSpeaker + "/" + imageName, function(err){
+					if(err){
+						throw (err);
+					}
+				});
+			}
+		});
+		console.log(query.sql);
+	}catch(error){
+		console.error(error);
+		return response.status(500).json(
+			{
+				"readyState":error.code,
+				"status":error.sqlState,
+				"statusText":error.sqlMessage
+			}
+		);		
+	}
+	return response.status(200).json({
+		status : "success"
 	});
-	console.log('QUERY : %s', query.sql);
 });
 
 
