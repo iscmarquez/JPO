@@ -1,0 +1,642 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+
+<head>
+  <!-- <title> Formulaire d'inscription</title>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="frontjs//formulaire.js"></script> -->
+  <title>Site1_index_formulaire</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,800;1,300;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap CSS SANS CDN-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <!-- Override de Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="css/custom2.css">
+
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+            </script> -->
+
+  <!-- <script src="js//server.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script src="formulaire.js"></script>
+  <script src="validator.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+  <div class="container" id="shadow" style="padding-left: 7px; background-color: #162b65; border: 1px solid white;">
+    <img src="./images/logo_blanc.png" alt="Logo" style="height: 70px;">
+  </div>
+
+  <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+    <div class="row">
+      <div class="col" style="text-align: center; padding-top: 10px;">
+        <h1 class="w300" style="font-size: 46px;">INSTITUT <span class="w700">GRASSET</span></h1>
+      </div>
+    </div>
+    <div class="row" style="height:5px; background-color: white;"></div>
+  </div>
+
+  <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+    <div class="row">
+      <div id="dateDynamique" class="col" style="padding:15px; border-bottom: 0; text-align: center;">
+        <h1 class="w700">PORTES OUVERTES VIRTUELLES</h1>
+        <!-- <h3 class="w300" style="color: white;"></h3> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white;">
+    <div class="row">
+      <div class="col" style="padding-left:20px; padding-top: 15px; padding-bottom: 10px; text-align: center; background-image:
+        repeating-linear-gradient(135deg,crimson, red 3%); border-bottom: 2px solid white;">
+        <a href="#jump_inscrire">
+          <h4 class="w500">INSCRIVEZ-VOUS POUR PARTICIPER</h4>
+        </a>
+      </div>
+    </div>
+    <!--<div class="col-5"
+            style="padding-left:20px; padding-top: 5px; background-image: repeating-linear-gradient(135deg,crimson, red 10%); border-bottom: 1px solid white; border-left: 1px solid white;">
+            <a href="#jump_inscrire">
+              <h4 class="w300">ALLER AU<br>FORMULAIRE</h4>
+            </a>
+          </div>-->
+    <div class="row">
+      <div class="col" style="padding: 0;">
+        <img src="./images/form_img.jpg" style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+
+  <!--//form id="formulaire" method="POST" action="/Inscription" onsubmit="return submitForm(this)"///
+    <form id="formulaire" >
+        <h2> Formulaire d'inscription</h2>
+        <label for="nom">Nom:</label>
+        <input id="nom" type="text" name="nom" placeholder="Veuillez entrer votre nom SVP"><br><br>
+    
+        <label for="prenom">Prénom:</label>
+        <input id="prenom" type="text" name="prenom" placeholder="Veuillez entrer votre Prénom SVP"><br><br>
+    
+        <label for="telephone">Numéro de téléphone:</label>
+        <input id="numeroDeTelephone" type="text" name="telephone" placeholder="Veuillez entrer votre numéro de téléphone SVP"><br><br>
+    
+        <label for="courriel">Adresse courriel:</label>
+        <input id="adresse courriel" type="text" name="courriel" placeholder="..............@..........."><br><br>-->
+
+  <div class="container" id="shadow" style="background-color: #162b65; border: 1px solid white; padding-top: 20px;">
+
+    <h3 id="jump_inscrire" class="w300" style="padding-left: 15px; padding-bottom: 20px;">Remplisser le formulaire
+      pour participer aux portes ouvertes virtuelles</h3>
+    <form class="bootstrap-form needs-validation novalidate w300" id="formulaire"
+      style="color: white; font-size: 20px;">
+
+
+      <div class="row w300" style="padding-top: 15px;padding-left :15px; padding-right: 15px; padding-bottom: 8px;">
+        <div class="col-md-4">
+          <label for="nom">Nom</label>
+          <input class="form-control" id="nom" type="text" name="nom" placeholder="Nom" autocomplete="off" required>
+          <div class="valid-feedback">
+            Saisie valide
+          </div>
+          <div class="invalid-feedback">
+            Prénom incomplet
+          </div>
+        </div>
+        <!-- </div> -->
+
+        <!-- <div class="row w300" style="padding: 15px;"> -->
+
+        <div class="col-md-4">
+          <label for="prénom">Prénom</label>
+          <input class="form-control" id="prenom" type="text" name="prenom" placeholder="Prénom" autocomplete="off"
+            required>
+          <div class="valid-feedback">
+            Saisie valide
+          </div>
+          <div class="invalid-feedback">
+            Nom incomplet
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="row" style="padding-top: 8px;padding-left :15px; padding-right: 15px; padding-bottom: 8px;">
+        <div class="col-md-4">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="adresse courriel" name="courriel" placeholder="Email"
+            autocomplete="off" required>
+          <div class="valid-feedback">
+            Saisie valide
+          </div>
+          <div class="invalid-feedback">
+            Adresse courriel invalide
+          </div>
+        </div>
+        <!-- </div> -->
+
+
+
+        <!-- <div class="row" style="padding: 15px;"> -->
+        <div class="col-md-4">
+          <label for="numéro de téléphone">Numéro de téléphone</label>
+          <input class="form-control" id="numeroDeTelephone" type="tel" name="telephone" placeholder="0123456789"
+            autocomplete="off" required>
+          <div class="valid-feedback">
+            Numéro valide
+          </div>
+          <div class="invalid-feedback">
+            Numéro invalide
+          </div>
+        </div>
+      </div>
+      <!-- placeholder="Veuillez entrer votre numéro de téléphone SVP"><br><br> -->
+
+
+      <!-- <label for="pays">Pays:</label>
+<select name = "pays" onchange="changeFunc();" id ="selectBox">
+    <option value = "Canada" selected = "selected"> Canada </option> -->
+
+      <div class="row" style="padding-top: 8px;padding-left :15px; padding-right: 15px; padding-bottom: 8px;">
+
+        <div class="col-md-4 form-group">
+          <label for="Pays">Pays</label>
+          <select class="custom-select" name="pays" onchange="changeFunc();" id="selectBox">
+            <option value="Canada" selected="selected"> Canada </option>
+
+            <option value="Afghanistan"> Afghanistan </option>
+            <option value="Afrique_Centrale"> Afrique_Centrale </option>
+            <option value="Afrique_du_sud"> Afrique_du_Sud </option>
+            <option value="Albanie"> Albanie </option>
+            <option value="Algerie"> Algérie </option>
+            <option value="Allemagne"> Allemagne </option>
+            <option value="Andorre"> Andorre </option>
+            <option value="Angola"> Angola </option>
+            <option value="Anguilla"> Anguilla </option>
+            <option value="Arabie_Saoudite"> Arabie_Saoudite </option>
+            <option value="Argentine"> Argentine </option>
+            <option value="Arménie"> Arménie </option>
+            <option value="Australie"> Australie </option>
+            <option value="Autriche"> Autriche </option>
+            <option value="Azerbaidjan"> Azerbaidjan </option>
+
+            <option value="Bahamas"> Bahamas </option>
+            <option value="Bangladesh"> Bangladesh </option>
+            <option value="Barbade"> Barbade </option>
+            <option value="Bahrein"> Bahrein </option>
+            <option value="Belgique"> Belgique </option>
+            <option value="Belize"> Belize </option>
+            <option value="Benin"> Bénin </option>
+            <option value="Bermudes"> Bermudes </option>
+            <option value="Bielorussie"> Bielorussie </option>
+            <option value="Bolivie"> Bolivie </option>
+            <option value="Botswana"> Botswana </option>
+            <option value="Bhoutan"> Bhoutan </option>
+            <option value="Boznie_Herzegovine"> Boznie_Herzegovine </option>
+            <option value="Bresil"> Bresil </option>
+            <option value="Brunei"> Brunei </option>
+            <option value="Bulgarie"> Bulgarie </option>
+            <option value="Burkina_Faso"> Burkina_Faso </option>
+            <option value="Burundi"> Burundi </option>
+
+            <option value="Caïman"> Caïman </option>
+            <option value="Cambodge"> Cambodge </option>
+            <option value="Cameroun"> Cameroun </option>
+            <option value="Canada"> Canada </option>
+            <option value="Canaries"> Canaries </option>
+            <option value="Cap_vert"> Cap_Vert </option>
+            <option value="Chili"> Chili </option>
+            <option value="Chine"> Chine </option>
+            <option value="Chypre"> Chypre </option>
+            <option value="Colombie"> Colombie </option>
+            <option value="Comores"> Colombie </option>
+            <option value="Congo"> Congo </option>
+            <option value="Congo_democratique"> Congo_democratique </option>
+            <option value="Cook"> Cook </option>
+            <option value="Coree_du_Nord"> Coree_du_Nord </option>
+            <option value="Coree_du_Sud"> Coree_du_Sud </option>
+            <option value="Costa_Rica"> Costa_Rica </option>
+            <option value="Cote_d_Ivoire"> Côte_d_Ivoire </option>
+            <option value="Croatie"> Croatie </option>
+            <option value="Cuba"> Cuba </option>
+
+            <option value="Danemark"> Danemark </option>
+            <option value="Djibouti"> Djibouti </option>
+            <option value="Dominique"> Dominique </option>
+
+            <option value="Egypte"> Egypte </option>
+            <option value="Emirats_Arabes_Unis"> Emirats_Arabes_Unis </option>
+            <option value="Equateur"> Equateur </option>
+            <option value="Erythree"> Erythree </option>
+            <option value="Espagne"> Espagne </option>
+            <option value="Estonie"> Estonie </option>
+            <option value="Etats_Unis"> Etats_Unis </option>
+            <option value="Ethiopie"> Ethiopie </option>
+
+            <option value="Falkland"> Falkland </option>
+            <option value="Feroe"> Feroe </option>
+            <option value="Fidji"> Fidji </option>
+            <option value="Finlande"> Finlande </option>
+            <option value="France"> France </option>
+
+            <option value="Gabon"> Gabon </option>
+            <option value="Gambie"> Gambie </option>
+            <option value="Georgie"> Georgie </option>
+            <option value="Ghana"> Ghana </option>
+            <option value="Gibraltar"> Gibraltar </option>
+            <option value="Grece"> Grece </option>
+            <option value="Grenade"> Grenade </option>
+            <option value="Groenland"> Groenland </option>
+            <option value="Guadeloupe"> Guadeloupe </option>
+            <option value="Guam"> Guam </option>
+            <option value="Guatemala"> Guatemala </option>
+            <option value="Guernesey"> Guernesey </option>
+            <option value="Guinee"> Guinee </option>
+            <option value="Guinee_Bissau"> Guinee_Bissau </option>
+            <option value="Guinee equatoriale"> Guinee_Equatoriale </option>
+            <option value="Guyana"> Guyane </option>
+            <option value="Guyane_Francaise"> Guyane_Francaise </option>
+
+            <option value="Haïti"> Haïti </option>
+            <option value="Hawaii"> Hawaï </option>
+            <option value="Honduras"> Honduras </option>
+            <option value="Hong_Kong"> Hong_Kong </option>
+            <option value="Hongrie"> Hongrie </option>
+
+            <option value="Inde"> Inde </option>
+            <option value="Indonesia"> Indonésien </option>
+            <option value="Iran"> Iran </option>
+            <option value="Iraq"> Iraq </option>
+            <option value="Irlande"> Irlande </option>
+            <option value="Islande"> Islande </option>
+            <option value="Israel"> Israël </option>
+            <option value="Italie"> italie </option>
+
+            <option value="Jamaique"> Jamaique </option>
+            <option value="Jan Mayen"> Jan Mayen </option>
+            <option value="Japon"> Japon </option>
+            <option value="Jersey"> Jersey </option>
+            <option value="Jordanie"> Jordanie </option>
+
+            <option value="Kazakhstan"> Kazakhstan </option>
+            <option value="Kenya"> Kenya </option>
+            <option value="Kirghizstan"> Kirghizistan </option>
+            <option value="Kiribati"> Kiribati </option>
+            <option value="Koweit"> Koweit </option>
+
+            <option value="Laos"> Laos </option>
+            <option value="Lesotho"> Lesotho </option>
+            <option value="Lettonie"> Lettonie </option>
+            <option value="Liban"> Liban </option>
+            <option value="Liberia"> Liberia </option>
+            <option value="Liechtenstein"> Liechtenstein </option>
+            <option value="Lituanie"> Lituanie </option>
+            <option value="Luxembourg"> Luxembourg </option>
+            <option value="Lybie"> Lybie </option>
+
+            <option value="Macao"> Macao </option>
+            <option value="Macedoine"> Macédoine </option>
+            <option value="Madagascar"> Madagascar </option>
+            <option value="Madère"> Madère </option>
+            <option value="Malaisie"> Malaisie </option>
+            <option value="Malawi"> Malawi </option>
+            <option value="Maldives"> Maldives </option>
+            <option value="Mali"> Mali </option>
+            <option value="Malte"> Malte </option>
+            <option value="Man"> Homme </option>
+            <option value="Mariannes du Nord"> Mariannes du Nord </option>
+            <option value="Maroc"> Maroc </option>
+            <option value="Marshall"> Marshall </option>
+            <option value="Martinique"> Martinique </option>
+            <option value="Maurice"> Maurice </option>
+            <option value="Mauritanie"> Mauritanie </option>
+            <option value="Mayotte"> Mayotte </option>
+            <option value="Mexique"> Mexique </option>
+            <option value="Micronesie"> Micronésie </option>
+            <option value="Midway"> Midway </option>
+            <option value="Moldavie"> Moldavie </option>
+            <option value="Monaco"> Monaco </option>
+            <option value="Mongolie"> Mongolie </option>
+            <option value="Montserrat"> Montserrat </option>
+            <option value="Mozambique">Mozambique </option>
+
+            <option value="Namibie"> Namibie </option>
+            <option value="Nauru"> Nauru </option>
+            <option value="Nepal"> Népal </option>
+            <option value="Nicaragua"> Nicaragua </option>
+            <option value="Niger"> Niger </option>
+            <option value="Nigeria"> Nigeria </option>
+            <option value="Niue"> Niue </option>
+            <option value="Norfolk"> Norfolk </option>
+            <option value="Norvege"> Norvege </option>
+            <option value="Nouvelle_Caledonie"> Nouvelle_Caledonie </option>
+            <option value="Nouvelle_Zelande">Nouvelle_Zelande </option>
+
+            <option value="Oman"> Oman </option>
+            <option value="Ouganda"> Ouganda </option>
+            <option value="Ouzbekistan"> Ouzbékistan </option>
+
+            <option value="Pakistan"> Pakistan </option>
+            <option value="Palau"> Palau </option>
+            <option value="Palestine"> Palestine </option>
+            <option value="Panama"> Panama </option>
+            <option value="Papouasie_Nouvelle_Guinee"> Papouasie_Nouvelle_Guinee </option>
+            <option value="Paraguay"> Paraguay </option>
+            <option value="Pays_Bas"> Pays_Bas </option>
+            <option value="Perou"> Pérou </option>
+            <option value="Philippines"> Philippines </option>
+            <option value="Pologne"> Pologne </option>
+            <option value="Polynésie "> Polynésie </option>
+            <option value=" Porto_Rico "> Porto_Rico </option>
+            <option value=" Portugal "> Portugal </option>
+
+            <option value="Qatar"> Qatar </option>
+
+            <option value="Republique_Dominicaine"> Republique_Dominicaine </option>
+            <option value="Republique_Tcheque"> Republique_Tcheque </option>
+            <option value="Reunion"> Réunion </option>
+            <option value="Roumanie"> Roumanie </option>
+            <option value="Royaume_Uni"> Royaume_Uni </option>
+            <option value="Russie"> Russie </option>
+            <option value="Rwanda"> Rwanda </option>
+
+            <option value="Sahara Occidental"> Sahara Occidental </option>
+            <option value="Sainte_Lucie"> Sainte_Lucie </option>
+            <option value="Saint_Marin"> Saint_Marin </option>
+            <option value="Salomon"> Salomon </option>
+            <option value="Salvador"> Salvador </option>
+            <option value="Samoa_Occidentales"> Samoa_Occidentales </option>
+            <option value="Samoa_Americaine"> Samoa_Americaine </option>
+            <option value="Sao_Tome_et_Principe"> Sao_Tome_et_Principe </option>
+            <option value="Sénégal"> Sénégal </option>
+            <option value="Seychelles"> Seychelles </option>
+            <option value="Sierra Leone"> Sierra Leone </option>
+            <option value="Singapour"> Singapour </option>
+            <option value="Slovaquie"> Slovaquie </option>
+            <option value="Slovenie"> Slovénie </option>
+            <option value="Somalie"> Somalie </option>
+            <option value="Soudan"> Soudan </option>
+            <option value="Sri_Lanka"> Sri_Lanka </option>
+            <option value="Suede"> Suede </option>
+            <option value="Suisse"> Suisse </option>
+            <option value="Surinam"> Surinam </option>
+            <option value="Swaziland"> Swaziland </option>
+            <option value="Syrie"> Syrie </option>
+
+            <option value="Tadjikistan"> Tadjikistan </option>
+            <option value="Taiwan"> Taiwan </option>
+            <option value="Tonga"> Tonga </option>
+            <option value="Tanzanie"> Tanzanie </option>
+            <option value="Tchad"> Tchad </option>
+            <option value="Thailande"> Thailande </option>
+            <option value="Tibet"> Tibet </option>
+            <option value="Timor_Oriental"> Timor_Oriental </option>
+            <option value="Togo"> Togo </option>
+            <option value="Trinite_et_Tobago"> Trinite_et_Tobago </option>
+            <option value="Tristan da cunha "> Tristan de cuncha </option>
+            <option value=" Tunisie "> Tunisie </option>
+            <option value=" Turkmenistan "> Turmenistan </option>
+            <option value="Turquie"> Turquie </option>
+
+            <option value="Ukraine"> Ukraine </option>
+            <option value="Uruguay"> Uruguay </option>
+
+            <option value="Vanuatu"> Vanuatu </option>
+            <option value="Vatican"> Vatican </option>
+            <option value="Venezuela"> Venezuela </option>
+            <option value="Vierges_Americaines"> Vierges_Americaines </option>
+            <option value="Vierges_Britanniques"> Vierges_Britanniques </option>
+            <option value="Vietnam"> Vietnam </option>
+
+            <option value="Wake"> Wake </option>
+            <option value="Wallis et Futuma"> Wallis et Futuma </option>
+
+            <option value="Yemen"> Yémen </option>
+            <option value="Yougoslavie"> Yougoslavie </option>
+
+            <option value="Zambie"> Zambie </option>
+            <option value="Zimbabwe"> Zimbabwe </option>
+
+          </select>
+        </div>
+
+
+
+        <!-- <label for="province">Province:</label> -->
+        <!-- <label id="provinceLabel" for="province">Province:</label> -->
+
+        <!-- <select name = "province"> -->
+        <!-- <select name = "province" id="province">
+        <option value = "Quebec" selected = "selected"> Quebec </option>
+        
+        <option value = "Alberta"> Alberta </option>
+        <option value = "Colombie-Britannique"> Colombie-Britannique </option>
+        <option value = "Île-du-Prince-Édouard"> Île-du-Prince-Édouard </option>
+        <option value = "Manitoba"> Manitoba </option>
+        <option value = "Nouveau-Brunswick"> Nouveau-Brunswick </option>
+        <option value = "Nouvelle-Écosse"> Nouvelle-Écosse </option>
+        <option value = "Ontario"> Ontario </option>
+        <option value = "Québec"> Québec </option>
+        <option value = "Saskatchewan"> Saskatchewan </option>
+        <option value = "Terre-Neuve et Labrador"> Terre-Neuve et Labrador </option>
+         
+    </select><br><br> -->
+        <div class="col-md-4 form-group">
+          <label id="provinceLabel" for="province">Province</label>
+          <select class="custom-select" name="province" id="province">
+            <option value="Quebec" selected="selected"> Quebec </option>
+
+            <option value="Alberta"> Alberta </option>
+            <option value="Colombie-Britannique"> Colombie-Britannique </option>
+            <option value="Île-du-Prince-Édouard"> Île-du-Prince-Édouard </option>
+            <option value="Manitoba"> Manitoba </option>
+            <option value="Nouveau-Brunswick"> Nouveau-Brunswick </option>
+            <option value="Nouvelle-Écosse"> Nouvelle-Écosse </option>
+            <option value="Ontario"> Ontario </option>
+            <option value="Québec"> Québec </option>
+            <option value="Saskatchewan"> Saskatchewan </option>
+            <option value="Terre-Neuve et Labrador"> Terre-Neuve et Labrador </option>
+
+          </select>
+        </div>
+      </div>
+
+      <div for="idProgram" class="col-9 form-group">
+
+        <div class="form-check" style="font-size: 18px; margin-top: 5px;">
+
+          <h5 style="font-weight: w300; ">Sélectionner le ou les programmes qui vous intéressent</h5>
+
+          <div id="idProgram" class="col-9 form-group">
+
+          </div>
+
+
+          <div class="col-9 form-group">
+            <div class="form-check w300" style="font-size: 18px; margin-top: 5px;">
+              <h5>Comment avez-vous été informé de l’événement et de ses actualités ?</h5>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input class="moyenCommunication" id="bouche" type="checkbox" name="moyenCommunication"
+                    value="Bouche à oreilles" checked> Bouche à oreille
+                </label>
+              </div>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input class="moyenCommunication" id="web" type="checkbox" name="moyenCommunication" value="web">
+                  Web
+                </label>
+              </div>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input class="moyenCommunication" id="reseaux" type="checkbox" name="moyenCommunication"
+                    value="réseaux sociaux"> Réseaux sociaux
+                </label>
+              </div>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input class="moyenCommunication" id="journal" type="checkbox" name="moyenCommunication"
+                    value="journal"> Journal
+                </label>
+              </div>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input class="moyenCommunication" id="carrefour" type="checkbox" name="moyenCommunication"
+                    value="carrefour de l'emploi"> Carrefour de l'emploi
+                </label>
+              </div>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input class="moyenCommunication" type="checkbox" name="moyenCommunication"
+                    value="ne se souvient pas"> Je ne me souviens pas
+                </label>
+              </div>
+
+              <div class="radio" style="margin-top: 5px;">
+                <label>
+                  <input id="autre" onclick="afficherCacher()" class="moyenCommunication" type="checkbox"
+                    name="moyenCommunication" value="autre"> Autre, préciser
+                </label>
+              </div>
+              <div class="col-4">
+                <input id="autreText" class="moyenCommunication" class="form-control" id="preciser"
+                  style="display:none;" type="text" name="moyenCommunication">
+              </div>
+            </div>
+
+
+
+
+            <div class="row" style="padding-left: 25px;">
+              <div class="col-12" style="padding-top: 30px;">
+                <div class="form-group">
+                  <div class="form-check" style="margin-top: 5px;">
+                    <input value="1" name="consent" class="form-check-input" type="checkbox" id="checkbox" required>
+
+                    <label class="form-check-label" for="checkbox">
+                      J'accepte de recevoir des informations sur l'Institut Grasset. Je pourrais retirer mon
+                      consentement
+                      à tout moment en écrivant à xxxxx@xxxxx.com.
+                    </label>
+                    <div class="valid-feedback">
+                      Vous acceptez de recevoir des informations de l'Institut Grasset.
+                    </div>
+                    <div class="invalid-feedback">
+                      Vous devez accepter de recevoir des informations pour pouvoir vous inscrire.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="padding-left: 15px; padding-bottom: 40px; padding-top: 10px;">
+              <div class="col-2"></div>
+              <div class="col-6"><button
+                  style="border: 0;background-image: repeating-linear-gradient(135deg,crimson, red 15%); " type="submit"
+                  class="btn btn-primary">S'inscrire aux Portes Ouvertes</button>
+
+              </div>
+
+            </div>
+            </select>
+
+    </form>
+
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+crossorigin="anonymous"></script>
+<script src="./js/validator.js"></script> -->
+
+
+
+
+</body>
+
+</html>
+<!-- <div id="idProgram" for="idProgram">Selectionner un ou plusieurs programmes qui vous interesse:</div><br><br>
+
+
+<label for="moyenCommunication">Comment avez-vous été informé de l’événement et de ses actualités ?</label><br><br>
+<input id="bouche" class="moyenCommunication" type="checkbox" name="moyenCommunication" value="bouche à oreille" >Bouche à oreille
+<input id="web" class="moyenCommunication" type="checkbox" name="moyenCommunication" value="web" >Web 
+<input id="reseaux" class="moyenCommunication" type="checkbox" name="moyenCommunication" value="réseaux sociaux" >Réseaux sociaux 
+<input id="journal" class="moyenCommunication" type="checkbox" name="moyenCommunication" value="journal" >Journal 
+<input id="carrefour" class="moyenCommunication" type="checkbox" name="moyenCommunication" value="carrefour de l'emploi" >Carrefour de l'emploi<br>
+<input id="autre" onclick="afficherCacher()" class="moyenCommunication" type="checkbox" name="moyenCommunication" value="autre" >Autre
+<input id="autreText" style="display:none;" type="text" class="moyenCommunicationText" name="moyenCommunication" placeholder="à préciser">
+<input class="moyenCommunication" type="checkbox" name="moyenCommunication" value="je ne me souviens pas" >Je ne me souviens pas
+<br><br>  
+
+
+      
+    <label for="consent">Veuillez nous confirmer </label><br><br>
+    <input type="radio" value="1" name ="consent" >Oui, je suis d'accord pour recevoir des messages sur l’Institut Grasset. Vous pouvez retirer votre consentement à recevoir ces messages à tout moment. <br>
+    <br>
+
+ 
+
+    </select>
+    
+    <button type="submit">Submit</button> -->
+
+
+
+<!-- </form>
+
+</body>
+</html> -->

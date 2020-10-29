@@ -287,7 +287,7 @@
 			</div>
 
 				<div class="tab-pane" id="tab3">
-					<p>Gestion des enseignents</p>
+					<p>Gestion des conférenciers et des clavardeurs</p>
 					<table class="table table-bordered" id="speakerList"  style="width: 100%;">
 						<thead>
 							<tr>
@@ -423,7 +423,7 @@
 
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" name="addFile">Ajouter</button>
 				<button type="button" class="btn btn-primary" name="removeFiles">Effacer</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" name="updateFile">Metre à jour</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileModal" name="updateFile">Mettre à jour</button>
 				
 
 				<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel" aria-hidden="true">
@@ -436,7 +436,7 @@
 						  </button>
 						</div>
 						<div class="modal-body">
-							<form role="form" enctype="multipart/form-data" id="fileForm">
+							<form role="form" enctype="multipart/form-data" id="downForm" name="downForm">
 								<div class="form-group"> 
 									<label for="inputDescription">Description</label>
 									<input type="text" class="form-control" name="fileDescription">

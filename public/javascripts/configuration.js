@@ -581,7 +581,7 @@ $tableFiles.on('click', 'tr', function () {
 }
 
 $("#fileModal").on("hidden.bs.modal", function () {
-    $("#fileForm")[0].reset();
+    $("#downForm")[0].reset();
 })
 
 $("#fileModal").on("show.bs.modal", function (event) {
@@ -633,7 +633,7 @@ $( "button[name='saveFile']" ).click(function( event ) {
             $("#errorAlert").alert("close"); 
         }, 10000);
   });
-  $('#fileForm')[0].reset();
+  $('#downForm')[0].reset();
 });
 
 
